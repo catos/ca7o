@@ -1,8 +1,5 @@
-import { Inter } from 'next/font/google'
-
-import './globals.css'
-
-const inter = Inter({ subsets: ['latin'] })
+import Nav from './nav'
+import "./globals.css"
 
 export const metadata = {
   title: 'ca7o',
@@ -16,7 +13,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className='bg-white'>
+        <Nav />
+        {children}
+      </body>
     </html>
   )
 }
