@@ -1,4 +1,5 @@
-import Link from "next/link";
+import SigninButton from "@/components/SignInButton"
+import Link from "next/link"
 
 export default function Nav() {
   return (
@@ -8,7 +9,7 @@ export default function Nav() {
       <Link href="/posts">Posts</Link>
 
       <div className="flex flex-1 justify-end">
-        Login/logout
+        <SigninButton />
       </div>
     </div>
   )

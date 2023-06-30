@@ -1,14 +1,15 @@
-import { verifyJwt } from "@/lib/jwt"
+import { authOptions } from "@/lib/auth"
 import prisma from "@/lib/prisma"
+import { getServerSession } from "next-auth"
 
 export async function GET(
-  request: Request,
+  _req: Request,
   { params }: { params: { id: number } }
 ) {
-  const accessToken = request.headers.get("authorization")
-  // TODO: investigate getServerSession({ req: request })
+  const session = await getServerSession(authOptions)
+  console.log("### SESSION: ", session)
 
-  if (!accessToken || !verifyJwt(accessToken)) {
+  if (!session) {
     return new Response(
       JSON.stringify({
         error: "unauthorized",

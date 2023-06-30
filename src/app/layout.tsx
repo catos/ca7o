@@ -1,9 +1,11 @@
-import Nav from './nav'
+import Providers from "@/components/Providers"
+
 import "./globals.css"
+import Nav from "./nav"
 
 export const metadata = {
-  title: 'ca7o',
-  description: 'Description for ca7o',
+  title: "ca7o",
+  description: "Description for ca7o",
 }
 
 export default function RootLayout({
@@ -13,9 +15,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className='bg-white'>
-        <Nav />
-        {children}
+      <body className="bg-white">
+        <Providers>
+          <Nav />
+          {children}
+        </Providers>
       </body>
     </html>
   )
