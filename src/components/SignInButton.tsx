@@ -7,13 +7,21 @@ import Button from "./ui/Button"
 export default function SigninButton() {
   const { data: session } = useSession()
 
+  const handleSignOut = () => {
+    signOut({ callbackUrl: "/" })
+  }
+
+  const handleSignIn = () => {
+    signIn()
+  }
+
   if (session && session.user) {
     return (
-      <div className="flex gap-4 ml-auto">
-        <p className="text-sky-600">{session.user.name}</p>
-        <Button onClick={() => signOut()}>Sign Out</Button>
-      </div>
+      <>
+        <span className="mr-2">{session.user.name}</span>
+        <Button onClick={handleSignOut}>Sign Out</Button>
+      </>
     )
   }
-  return <Button onClick={() => signIn()}>Sign In</Button>
+  return <Button onClick={handleSignIn}>Sign In</Button>
 }

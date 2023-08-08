@@ -7,7 +7,7 @@ interface IProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 export default function Button({ children, ...rest }: IProps) {
   return (
     <button
-      className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+      className="bg-primary-500 hover:bg-primary-700 text-white py-2 px-4 rounded"
       {...rest}
     >
       {children}

@@ -1,7 +1,7 @@
 import Providers from "@/components/Providers"
 
+import Header from "../components/Header"
 import "./globals.css"
-import Nav from "./nav"
 
 export const metadata = {
   title: "ca7o",
@@ -17,7 +17,7 @@ export default function RootLayout({
     <html lang="en">
       <body className="bg-white">
         <Providers>
-          <Nav />
+          <Header />
           {children}
         </Providers>
       </body>
