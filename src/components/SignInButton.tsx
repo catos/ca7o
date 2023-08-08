@@ -2,6 +2,8 @@
 
 import { signIn, signOut, useSession } from "next-auth/react"
 
+import Button from "./ui/Button"
+
 export default function SigninButton() {
   const { data: session } = useSession()
 
@@ -9,15 +11,9 @@ export default function SigninButton() {
     return (
       <div className="flex gap-4 ml-auto">
         <p className="text-sky-600">{session.user.name}</p>
-        <button onClick={() => signOut()} className="text-red-600">
-          Sign Out
-        </button>
+        <Button onClick={() => signOut()}>Sign Out</Button>
       </div>
     )
   }
-  return (
-    <button onClick={() => signIn()} className="text-green-600 ml-auto">
-      Sign In
-    </button>
-  )
+  return <Button onClick={() => signIn()}>Sign In</Button>
 }
