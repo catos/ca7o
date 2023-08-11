@@ -16,12 +16,7 @@ export default function SigninButton() {
   }
 
   if (session && session.user) {
-    return (
-      <>
-        <span className="mr-2">{session.user.name}</span>
-        <Button onClick={handleSignOut}>Sign Out</Button>
-      </>
-    )
+    return <Button onClick={handleSignOut}>Sign Out</Button>
   }
   return <Button onClick={handleSignIn}>Sign In</Button>
 }

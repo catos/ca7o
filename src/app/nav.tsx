@@ -42,15 +42,18 @@ export default function Nav() {
         </svg>
       </div>
 
-      <div className="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
+      <div className="flex-grow flex items-center">
         <div className="text-sm lg:flex-grow">
           <Link className="mr-2" href="/">
             Home
           </Link>
+          <Link className="mr-2" href="/recipes">
+            Recipes
+          </Link>
           <Link href="/posts">Posts</Link>
         </div>
 
-        <div>
+        <div className="ml-auto">
           <SigninButton />
         </div>
       </div>
