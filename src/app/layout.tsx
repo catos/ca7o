@@ -18,7 +18,7 @@ export default function RootLayout({
       <body className="bg-white">
         <Providers>
           <Nav />
-          <main className="flex py-4 min-h-screen flex-col items-center">
+          <main className="bg-gray-100 flex py-4 min-h-screen flex-col items-center">
             {children}
           </main>
         </Providers>

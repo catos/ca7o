@@ -6,7 +6,7 @@ interface IProps extends HTMLAttributes<HTMLDivElement> {
 
 export default function Navbar({ children }: IProps) {
   return (
-    <nav className="flex items-center justify-between flex-wrap bg-primary-200 px-6 py-4">
+    <nav className="flex items-center justify-between flex-wrap bg-primary-300 px-6 py-4">
       {children}
     </nav>
   )

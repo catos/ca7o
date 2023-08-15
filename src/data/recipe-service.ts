@@ -30,13 +30,28 @@ export async function getRecipe(slug: number) {
   })
 }
 
-export async function updateRecipe(id: number, { title }: { title: string }) {
+export async function updateRecipe(
+  id: number,
+  {
+    title,
+    image,
+    description,
+    ingredients,
+    instructions,
+  }: {
+    title: string
+    image: string
+    description: string
+    ingredients: string
+    instructions: string
+  }
+) {
   try {
     return await prisma.recipe.update({
       where: {
         id,
       },
-      data: { title },
+      data: { title, image, description, ingredients, instructions },
     })
   } catch (error) {
     // TODO: how to handle errors?

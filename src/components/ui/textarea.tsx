@@ -1,4 +1,4 @@
-export default function Input(props: React.HTMLProps<HTMLInputElement>) {
+export default function Input(props: React.HTMLProps<HTMLTextAreaElement>) {
   const { id, label, ...rest } = props
 
   return (
@@ -9,8 +9,8 @@ export default function Input(props: React.HTMLProps<HTMLInputElement>) {
       >
         {label}
       </label>
-      <input
-        className="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+      <textarea
+        className="appearance-none h-32 border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline focus:h-64"
         id={id}
         {...rest}
       />

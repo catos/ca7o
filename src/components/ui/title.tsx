@@ -20,6 +20,5 @@ export default function Title({ type = "h1", children }: ITitle) {
     titleTypes[type]
   )
 
-  console.log("Title", type, titleTypes[type], classes)
   return <h1 className={classes}>{children}</h1>
 }
