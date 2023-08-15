@@ -1,6 +1,7 @@
-import SigninButton from "@/components/SignInButton"
-import Navbar from "@/components/ui/Navbar"
+import SigninButton from "@/components/sign-in-button"
+
 import Link from "@/components/ui/link"
+import Navbar from "@/components/ui/navbar"
 
 export default function Nav() {
   return (
@@ -46,10 +47,12 @@ export default function Nav() {
 
       <div className="flex-grow flex items-center">
         <div className="text-sm lg:flex-grow">
-          <Link className="mr-2" href="/recipes">
+          <Link className="no-underline mr-2" href="/recipes">
             Recipes
           </Link>
-          <Link href="/posts">Posts</Link>
+          <Link className="no-underline" href="/posts">
+            Posts
+          </Link>
         </div>
 
         <div className="ml-auto">

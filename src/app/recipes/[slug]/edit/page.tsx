@@ -1,7 +1,10 @@
-import Button from "@/components/ui/Button"
-import Input from "@/components/ui/input"
-import { getRecipe, updateRecipe } from "@/data/recipe-service"
 import { revalidatePath } from "next/cache"
+
+import { getRecipe, updateRecipe } from "@/data/recipe-service"
+
+import Button from "@/components/ui/button"
+import Input from "@/components/ui/input"
+import Title from "@/components/ui/title"
 
 // TODO: add more details to this page
 export default async function EditRecipe({
@@ -28,11 +31,15 @@ export default async function EditRecipe({
   }
 
   return (
-    // TODO: form ui component
     <form className="mx-auto w-1/2 border mt-4 p-4 rounded" action={update}>
-      {/* TODO: header ui components */}
-      <h1 className="text-2xl">Edit recipe: {recipe.title}</h1>
-      <Input id="title" type="text" name="title" defaultValue={recipe.title} />
+      <Title>Edit recipe: {recipe.title}</Title>
+      <Input
+        required
+        id="title"
+        type="text"
+        name="title"
+        defaultValue={recipe.title}
+      />
       <Button type="submit">Save</Button>
     </form>
   )

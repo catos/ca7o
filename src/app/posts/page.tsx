@@ -1,3 +1,4 @@
+import Title from "@/components/ui/title"
 import { getPosts } from "@/data/post-service"
 import { authOptions } from "@/lib/auth"
 import { getServerSession } from "next-auth"
@@ -13,7 +14,7 @@ export default async function Posts() {
 
   return (
     <>
-      <h1 className="text-4xl font-bold">Posts</h1>
+      <Title>Posts</Title>
       <pre className="flex flex-col items-center justify-center">
         {JSON.stringify(data, null, 2)}
       </pre>

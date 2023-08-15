@@ -1,4 +1,4 @@
-import Providers from "@/components/Providers"
+import Providers from "@/components/providers"
 
 import "./globals.css"
 import Nav from "./nav"

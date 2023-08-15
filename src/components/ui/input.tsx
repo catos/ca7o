@@ -14,7 +14,6 @@ export default function Input(props: React.HTMLProps<HTMLInputElement>) {
         id={id}
         {...rest}
       />
-      {/* TODO: <p className="text-red-500 text-xs italic">Please choose a password.</p> */}
     </div>
   )
 }

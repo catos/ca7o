@@ -2,7 +2,7 @@
 
 import { signIn, signOut, useSession } from "next-auth/react"
 
-import Button from "./ui/Button"
+import Button from "./ui/button"
 
 export default function SigninButton() {
   const { data: session } = useSession()
