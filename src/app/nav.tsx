@@ -1,6 +1,6 @@
 import SigninButton from "@/components/SignInButton"
 import Navbar from "@/components/ui/Navbar"
-import Link from "next/link"
+import Link from "@/components/ui/link"
 
 export default function Nav() {
   return (

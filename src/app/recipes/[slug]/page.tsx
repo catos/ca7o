@@ -1,5 +1,5 @@
+import Link from "@/components/ui/link"
 import { getRecipe } from "@/data/recipe-service"
-import Link from "next/link"
 
 export default async function Recipes({
   params,
