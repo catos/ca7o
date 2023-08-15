@@ -1,20 +1,39 @@
-import Link from "@/components/ui/link"
+import Image from "@/components/image"
+import Markdown from "@/components/markdown"
+
 import { getRecipe } from "@/data/recipe-service"
+
+import Link from "@/components/ui/link"
+import Title from "@/components/ui/title"
 
 export default async function Recipes({
   params,
 }: {
   params: { slug: string }
 }) {
-  const data = await getRecipe(+params.slug)
-  if (!data) return null
+  const recipe = await getRecipe(+params.slug)
+  if (!recipe) return null
 
   return (
     <div>
-      <Link href={`/recipes/${data.id}/edit`}>Edit</Link>
-      <pre className="flex flex-col items-center justify-center">
-        {JSON.stringify(data, null, 2)}
-      </pre>
+      <Link href={`/recipes/${recipe.id}/edit`}>Edit</Link>
+      <Title>{recipe.title}</Title>
+      {/* <Image src={recipe.image} alt={recipe.title} /> */}
+
+      <label>description</label>
+      <Markdown>{recipe.description}</Markdown>
+
+      <div className="grid md:grid-cols-2">
+        <div>
+          <label>ingredients</label>
+          <Markdown>{recipe.ingredients}</Markdown>
+        </div>
+
+        <div>
+          <label>instructions</label>
+          <Markdown>{recipe.instructions}</Markdown>
+        </div>
+      </div>
     </div>
   )
 }

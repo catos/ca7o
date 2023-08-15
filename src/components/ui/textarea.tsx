@@ -1,4 +1,8 @@
-export default function Input(props: React.HTMLProps<HTMLTextAreaElement>) {
+interface IInput extends React.HTMLAttributes<HTMLTextAreaElement> {
+  label: string
+}
+
+export default function Input(props: IInput) {
   const { id, label, ...rest } = props
 
   return (
