@@ -21,6 +21,18 @@ module.exports = {
         secondary: colors.amber,
       },
     },
+    fontFamily: {
+      sans: [
+        "BlinkMacSystemFont",
+        "Segoe UI",
+        "Noto Sans",
+        "Helvetica",
+        "Arial",
+        "sans-serif",
+        "Apple Color Emoji",
+        "Segoe UI Emoji",
+      ],
+    },
   },
   plugins: [],
 }

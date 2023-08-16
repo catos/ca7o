@@ -3,6 +3,8 @@ import { twMerge } from "tailwind-merge"
 interface ITitle extends React.HTMLAttributes<HTMLHeadingElement> {
   type?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6"
   children: React.ReactNode
+  noMargin?: boolean
+  className?: string
 }
 
 const titleTypes = {
@@ -14,11 +16,20 @@ const titleTypes = {
   h6: "text-sm",
 }
 
-export default function Title({ type = "h1", children }: ITitle) {
+export default function Title({
+  type = "h1",
+  children,
+  noMargin = false,
+  className,
+}: ITitle) {
   const classes = twMerge(
-    "mb-4 font-extrabold leading-none tracking-tight text-gray-900",
-    titleTypes[type]
+    "mb-4 font-bold leading-none tracking-tight text-gray-900",
+    titleTypes[type],
+    noMargin && "m-0",
+    className
   )
+
+  console.log(classes)
 
   return <h1 className={classes}>{children}</h1>
 }

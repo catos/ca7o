@@ -1,4 +1,5 @@
 import SigninButton from "@/components/sign-in-button"
+import React, { ReactNode } from "react"
 
 import Link from "@/components/ui/link"
 import Navbar from "@/components/ui/navbar"
@@ -6,7 +7,7 @@ import Navbar from "@/components/ui/navbar"
 export default function Nav() {
   return (
     <Navbar>
-      <div className="flex items-center flex-shrink-0 text-white mr-6">
+      <div className="flex items-center flex-shrink-0 text-white mr-4">
         <Link href="/">
           <svg
             className="h-8 w-8 mr-2"
@@ -46,13 +47,9 @@ export default function Nav() {
       </div>
 
       <div className="flex-grow flex items-center">
-        <div className="text-sm lg:flex-grow">
-          <Link className="no-underline mr-2" href="/recipes">
-            Recipes
-          </Link>
-          <Link className="no-underline" href="/posts">
-            Posts
-          </Link>
+        <div className="text-base lg:flex-grow">
+          <NavLink href="/recipes">Recipes</NavLink>
+          <NavLink href="/posts">Posts</NavLink>
         </div>
 
         <div className="ml-auto">
@@ -60,5 +57,16 @@ export default function Nav() {
         </div>
       </div>
     </Navbar>
+  )
+}
+
+function NavLink({ href, children }: { href: string; children: ReactNode }) {
+  return (
+    <Link
+      className="no-underline font-semibold mr-2 hover:bg-primary-200 px-2 py-1 rounded inline-block"
+      href={href}
+    >
+      {children}
+    </Link>
   )
 }

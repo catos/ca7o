@@ -1,5 +1,7 @@
 import Image from "@/components/image"
+
 import Link from "@/components/ui/link"
+import Title from "@/components/ui/title"
 
 interface ICard {
   image: string
@@ -11,12 +13,15 @@ interface ICard {
 
 export default function Card({ image, href, title, description, tags }: ICard) {
   return (
-    <div className="w-full rounded overflow-hidden shadow-lg">
-      <Image src={image} alt={title} />
+    <Link
+      className="no-underline w-full rounded overflow-hidden shadow-lg hover:shadow-xl"
+      href={href}
+    >
+      <Image className="max-h-48 object-cover" src={image} alt={title} />
       <div className="px-6 py-4">
-        <Link className="font-bold text-xl mb-2" href={href}>
+        <Title type="h2" className="font-bold text-xl mb-0">
           {title}
-        </Link>
+        </Title>
         <p className="text-gray-700 text-base">{description}</p>
       </div>
       {tags && (
@@ -31,6 +36,6 @@ export default function Card({ image, href, title, description, tags }: ICard) {
           ))}
         </div>
       )}
-    </div>
+    </Link>
   )
 }
