@@ -85,24 +85,18 @@ export default async function EditRecipe({
       <Textarea
         required
         id="description"
-        type="text"
-        name="description"
         label="Description"
         defaultValue={recipe.description ?? ""}
       />
       <Textarea
         required
         id="ingredients"
-        type="text"
-        name="ingredients"
         label="Ingredients"
         defaultValue={recipe.ingredients ?? ""}
       />
       <Textarea
         required
         id="instructions"
-        type="text"
-        name="instructions"
         label="Instructions"
         defaultValue={recipe.instructions ?? ""}
       />
