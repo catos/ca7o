@@ -1,5 +1,6 @@
 interface IInput extends React.HTMLAttributes<HTMLTextAreaElement> {
   required?: boolean
+  name: string
   label: string
 }
 
