@@ -37,7 +37,8 @@ export default async function EditRecipe({
 
     const description = formData.get("description")
     if (!description || typeof description !== "string") {
-      return
+      // TODO: make this work ? (and error.tsx)
+      throw new Error("Description is required!")
     }
 
     const ingredients = formData.get("ingredients")
@@ -84,13 +85,13 @@ export default async function EditRecipe({
         label="Image"
         defaultValue={recipe.image}
       />
-      <Textarea
+      {/* <Textarea
         required
         id="description"
         name="description"
         label="Description"
         defaultValue={recipe.description ?? ""}
-      />
+      /> */}
 
       <div className="grid grid-cols-2 gap-8">
         <Textarea
