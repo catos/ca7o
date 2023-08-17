@@ -92,3 +92,16 @@ export async function createRecipe({
     return null
   }
 }
+
+export async function deleteRecipe(id: number) {
+  try {
+    return await prisma.recipe.delete({
+      where: {
+        id,
+      },
+    })
+  } catch (error) {
+    console.log("Unable to delete recipe", error)
+    return null
+  }
+}

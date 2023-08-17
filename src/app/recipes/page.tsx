@@ -6,7 +6,10 @@ import Card from "@/components/ui/card"
 import Link from "@/components/ui/link"
 import Title from "@/components/ui/title"
 
-export default async function Recipes() {
+// TODO: can I set this more globally ?
+export const revalidate = 10
+
+export default async function RecipesPage() {
   const recipes = await getRecipes()
 
   return (

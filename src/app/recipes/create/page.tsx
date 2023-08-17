@@ -3,7 +3,7 @@ import { getServerSession } from "next-auth"
 import { revalidatePath } from "next/cache"
 import { redirect } from "next/navigation"
 
-import { createRecipe, getRecipe, updateRecipe } from "@/data/recipe-service"
+import { createRecipe } from "@/data/recipe-service"
 
 import Button from "@/components/ui/button"
 import Input from "@/components/ui/input"

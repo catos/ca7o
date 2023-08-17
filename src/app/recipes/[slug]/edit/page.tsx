@@ -1,3 +1,5 @@
+import { authOptions } from "@/lib/auth"
+import { getServerSession } from "next-auth"
 import { revalidatePath } from "next/cache"
 import { redirect } from "next/navigation"
 
@@ -9,11 +11,11 @@ import Link from "@/components/ui/link"
 import Textarea from "@/components/ui/textarea"
 import Title from "@/components/ui/title"
 
-export default async function EditRecipe({
-  params,
-}: {
+interface IProps {
   params: { slug: string }
-}) {
+}
+
+export default async function EditRecipePage({ params }: IProps) {
   const recipe = await getRecipe(+params.slug)
 
   if (!recipe) return null
@@ -21,7 +23,14 @@ export default async function EditRecipe({
   async function update(formData: FormData) {
     "use server"
 
-    if (!recipe) return
+    const session = await getServerSession(authOptions)
+    if (!session || !session.user) {
+      throw new Error("Not authenticated")
+    }
+
+    if (!recipe) {
+      throw new Error("Recipe not found")
+    }
 
     // TODO: any way to simplify and validate this? zod ?
     const title = formData.get("title")

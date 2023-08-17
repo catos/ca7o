@@ -1,3 +1,4 @@
+TODO: .env ... c'moooon
 TODO: make default image better
 TODO: https://supabase.com/docs/guides/auth/auth-helpers/nextjs#manual-configuration
 TODO: https://fireship.io/courses
