@@ -9,7 +9,6 @@ import Button from "@/components/ui/button"
 import Input from "@/components/ui/input"
 import Link from "@/components/ui/link"
 import Textarea from "@/components/ui/textarea"
-import Title from "@/components/ui/title"
 
 interface IProps {
   params: { slug: string }
@@ -72,11 +71,14 @@ export default async function EditRecipePage({ params }: IProps) {
   }
 
   return (
-    <form
-      className="relative flex flex-col gap-4 w-full bg-white shadow-md rounded px-8 py-8 mb-4"
-      action={update}
-    >
-      <Title>Edit recipe: {recipe.title}</Title>
+    <form className="relative flex flex-col gap-4 p-4 mb-4" action={update}>
+      <div className="flex gap-8 items-center">
+        <Button type="submit">Save</Button>
+        <Link className="no-underline font-bold" href={`/recipes/${recipe.id}`}>
+          Recipe
+        </Link>
+      </div>
+
       <Input
         required
         id="title"
@@ -116,13 +118,6 @@ export default async function EditRecipePage({ params }: IProps) {
           label="Instructions"
           defaultValue={recipe.instructions ?? ""}
         />
-      </div>
-
-      <div className="flex gap-8 items-center justify-between absolute right-8 top-8">
-        <Button type="submit">Save</Button>
-        <Link className="no-underline font-bold" href={`/recipes/${recipe.id}`}>
-          Cancel
-        </Link>
       </div>
     </form>
   )

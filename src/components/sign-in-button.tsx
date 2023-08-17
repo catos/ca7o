@@ -4,6 +4,8 @@ import { signIn, signOut, useSession } from "next-auth/react"
 
 import Button from "@/components/ui/button"
 
+import Link from "./ui/link"
+
 export default function SigninButton() {
   const { data: session } = useSession()
 
@@ -16,7 +18,14 @@ export default function SigninButton() {
   }
 
   if (session && session.user) {
-    return <Button onClick={handleSignOut}>Sign Out</Button>
+    return (
+      <>
+        <Link className="mr-2 no-underline" href="/admin">
+          Admin
+        </Link>
+        <Button onClick={handleSignOut}>Sign Out</Button>
+      </>
+    )
   }
   return <Button onClick={handleSignIn}>Sign In</Button>
 }

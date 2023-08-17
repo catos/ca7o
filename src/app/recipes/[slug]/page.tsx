@@ -19,7 +19,12 @@ export default async function RecipesPage({ params }: IProps) {
     <div className="flex flex-col gap-4">
       <div>
         <div className="relative">
-          <AdminActions recipeId={recipe.id} />
+          <Link
+            className="absolute top-2 right-2 no-underline font-bold opacity-60 bg-primary-900 text-primary-100 rounded-full p-2"
+            href={`/admin/recipes/${recipe.id}`}
+          >
+            <Icon name="edit" />
+          </Link>
           <Title
             className="absolute right-0 bottom-0 left-0 opacity-80 bg-primary-900 text-primary-100 p-4"
             noMargin
@@ -53,25 +58,6 @@ export default async function RecipesPage({ params }: IProps) {
           <Markdown>{recipe.instructions}</Markdown>
         </div>
       </div>
-    </div>
-  )
-}
-
-function AdminActions({ recipeId }: { recipeId: number }) {
-  return (
-    <div className="absolute top-2 right-2 no-underline flex flex-col gap-2">
-      <Link
-        className="font-bold opacity-60 bg-primary-900 text-primary-100 rounded-full p-2"
-        href={`/recipes/${recipeId}/edit`}
-      >
-        <Icon name="edit" />
-      </Link>
-      <Link
-        className="font-bold opacity-60 bg-primary-900 text-primary-100 rounded-full p-2"
-        href={`/recipes/${recipeId}/delete`}
-      >
-        <Icon name="delete" />
-      </Link>
     </div>
   )
 }

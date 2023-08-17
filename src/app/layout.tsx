@@ -15,10 +15,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className="bg-white">
+      <body className="bg-gray-100">
         <Providers>
           <Nav />
-          <main className="bg-gray-100 flex p-4 min-h-screen flex-col">
+          <main className="container mx-auto bg-white flex p-4 min-h-screen flex-col">
             {children}
           </main>
         </Providers>
