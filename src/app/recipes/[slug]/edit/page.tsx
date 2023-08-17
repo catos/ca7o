@@ -9,7 +9,6 @@ import Link from "@/components/ui/link"
 import Textarea from "@/components/ui/textarea"
 import Title from "@/components/ui/title"
 
-// TODO: add more details to this page
 export default async function EditRecipe({
   params,
 }: {
@@ -85,13 +84,13 @@ export default async function EditRecipe({
         label="Image"
         defaultValue={recipe.image}
       />
-      {/* <Textarea
+      <Textarea
         required
         id="description"
         name="description"
         label="Description"
         defaultValue={recipe.description ?? ""}
-      /> */}
+      />
 
       <div className="grid grid-cols-2 gap-8">
         <Textarea

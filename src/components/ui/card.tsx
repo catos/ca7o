@@ -17,7 +17,11 @@ export default function Card({ image, href, title, description, tags }: ICard) {
       className="no-underline w-full rounded overflow-hidden shadow-lg hover:shadow-xl"
       href={href}
     >
-      <Image className="max-h-48 object-cover" src={image} alt={title} />
+      <Image
+        className="max-h-48 object-cover bg-primary-300"
+        src={image}
+        alt={title}
+      />
       <div className="px-6 py-4">
         <Title type="h2" className="font-bold text-xl mb-0">
           {title}

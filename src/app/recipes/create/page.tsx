@@ -1,7 +1,9 @@
+import { authOptions } from "@/lib/auth"
+import { getServerSession } from "next-auth"
 import { revalidatePath } from "next/cache"
 import { redirect } from "next/navigation"
 
-import { getRecipe, updateRecipe } from "@/data/recipe-service"
+import { createRecipe, getRecipe, updateRecipe } from "@/data/recipe-service"
 
 import Button from "@/components/ui/button"
 import Input from "@/components/ui/input"
@@ -9,51 +11,56 @@ import Link from "@/components/ui/link"
 import Textarea from "@/components/ui/textarea"
 import Title from "@/components/ui/title"
 
-// TODO: add more details to this page
-export default async function NewRecipe({
-  params,
-}: {
-  params: { slug: string }
-}) {
+export default async function CreateRecipe() {
   async function create(formData: FormData) {
     "use server"
+
+    const session = await getServerSession(authOptions)
+    if (!session || !session.user) {
+      throw new Error("Not authenticated")
+    }
 
     // TODO: any way to simplify and validate this? zod ?
     const title = formData.get("title")
     if (!title || typeof title !== "string") {
-      return
+      throw new Error("Title is required")
     }
 
     const image = formData.get("image")
     if (!image || typeof image !== "string") {
-      return
+      throw new Error("Image is required")
     }
 
     const description = formData.get("description")
     if (!description || typeof description !== "string") {
-      return
+      throw new Error("Description is required")
     }
 
     const ingredients = formData.get("ingredients")
     if (!ingredients || typeof ingredients !== "string") {
-      return
+      throw new Error("Ingredients is required")
     }
 
     const instructions = formData.get("instructions")
     if (!instructions || typeof instructions !== "string") {
-      return
+      throw new Error("Instructions is required")
     }
 
-    // await createRecipe({
-    //   title,
-    //   image,
-    //   description,
-    //   ingredients,
-    //   instructions,
-    // })
+    const recipe = await createRecipe({
+      authorId: session.user.id,
+      title,
+      image,
+      description,
+      ingredients,
+      instructions,
+    })
 
-    // revalidatePath(`/recipes/${recipe.id}/edit`)
-    // redirect(`/recipes/${recipe.id}`)
+    if (!recipe) {
+      throw new Error("Failed to create recipe")
+    }
+
+    revalidatePath(`/recipes/${recipe.id}`)
+    redirect(`/recipes/${recipe.id}`)
   }
 
   return (
@@ -68,7 +75,7 @@ export default async function NewRecipe({
         type="text"
         name="title"
         label="Title"
-        defaultValue=""
+        defaultValue="Test recipe"
       />
       <Input
         required
@@ -76,14 +83,14 @@ export default async function NewRecipe({
         type="text"
         name="image"
         label="Image"
-        defaultValue=""
+        defaultValue="http://image.lol.com.org/image.jpg"
       />
       <Textarea
         required
         id="description"
         name="description"
         label="Description"
-        defaultValue=""
+        defaultValue="Description of the recipe"
       />
 
       <div className="grid grid-cols-2 gap-8">
@@ -92,14 +99,14 @@ export default async function NewRecipe({
           id="ingredients"
           name="ingredients"
           label="Ingredients"
-          defaultValue=""
+          defaultValue="Ingredients of the recipe"
         />
         <Textarea
           required
           id="instructions"
           name="instructions"
           label="Instructions"
-          defaultValue=""
+          defaultValue="Instructions of the recipe"
         />
       </div>
 

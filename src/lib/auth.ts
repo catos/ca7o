@@ -3,6 +3,8 @@ import bcrypt from "bcrypt"
 import { NextAuthOptions } from "next-auth"
 import CredentialsProvider from "next-auth/providers/credentials"
 
+import { getUser } from "@/data/user-service"
+
 export const authOptions: NextAuthOptions = {
   providers: [
     CredentialsProvider({
@@ -21,17 +23,7 @@ export const authOptions: NextAuthOptions = {
           return null
         }
 
-        const user = await prisma.user.findFirst({
-          where: {
-            email: credentials.username,
-          },
-          select: {
-            id: true,
-            name: true,
-            email: true,
-            password: true,
-          },
-        })
+        const user = await getUser(credentials.username)
 
         const userExistsAndPasswordValid =
           user && (await bcrypt.compare(credentials.password, user.password))
@@ -52,7 +44,7 @@ export const authOptions: NextAuthOptions = {
       return { ...token, ...user }
     },
     async session({ session, token }: { session: any; token: any }) {
-      session.user = token as any
+      session.user = token
       return session
     },
   },

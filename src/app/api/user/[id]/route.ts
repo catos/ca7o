@@ -7,8 +7,6 @@ export async function GET(
   { params }: { params: { id: number } }
 ) {
   const session = await getServerSession(authOptions)
-  console.log("### SESSION: ", session)
-
   if (!session) {
     return new Response(
       JSON.stringify({

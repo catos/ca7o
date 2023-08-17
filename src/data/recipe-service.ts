@@ -1,5 +1,7 @@
 import prisma from "@/lib/prisma"
-import { Recipe } from "@prisma/client"
+
+// TODO: define interfaces for all the data types
+// TODO: try-catch all the things and handle errors
 
 export async function getRecipes() {
   return await prisma.recipe.findMany({
@@ -54,8 +56,39 @@ export async function updateRecipe(
       data: { title, image, description, ingredients, instructions },
     })
   } catch (error) {
-    // TODO: how to handle errors?
-    console.log("error", error)
-    return { error }
+    console.log("Unable to update recipe", error)
+    return null
+  }
+}
+
+export async function createRecipe({
+  authorId,
+  title,
+  image,
+  description,
+  ingredients,
+  instructions,
+}: {
+  authorId: number
+  title: string
+  image: string
+  description: string
+  ingredients: string
+  instructions: string
+}) {
+  try {
+    return await prisma.recipe.create({
+      data: {
+        title,
+        image,
+        description,
+        ingredients,
+        instructions,
+        authorId: +authorId,
+      },
+    })
+  } catch (error) {
+    console.log("Unable to create recipe", error)
+    return null
   }
 }

@@ -28,8 +28,5 @@ export default function Title({
     noMargin && "m-0",
     className
   )
-
-  console.log(classes)
-
   return <h1 className={classes}>{children}</h1>
 }
