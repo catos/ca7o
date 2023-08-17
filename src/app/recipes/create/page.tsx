@@ -59,6 +59,7 @@ export default async function CreateRecipe() {
       throw new Error("Failed to create recipe")
     }
 
+    // TODO: review all revalidatePath
     revalidatePath(`/recipes/${recipe.id}`)
     redirect(`/recipes/${recipe.id}`)
   }
