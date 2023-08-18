@@ -16,6 +16,9 @@ export default function AdminLayout({
             <Link href="/admin/">Dashboard</Link>
           </ListItem>
           <ListItem>
+            <Link href="/admin/users/">Users</Link>
+          </ListItem>
+          <ListItem>
             <Link href="/admin/recipes">Recipes</Link>
             <List>
               <ListItem>

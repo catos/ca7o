@@ -8,30 +8,20 @@ module.exports = {
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
-    // extend: {
-    //   backgroundImage: {
-    //     "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-    //     "gradient-conic":
-    //       "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
-    //   },
-    // },
     extend: {
+      //   backgroundImage: {
+      //     "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
+      //     "gradient-conic":
+      //       "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+      //   },
       colors: {
         primary: colors.slate,
         secondary: colors.amber,
       },
-    },
-    fontFamily: {
-      sans: [
-        "BlinkMacSystemFont",
-        "Segoe UI",
-        "Noto Sans",
-        "Helvetica",
-        "Arial",
-        "sans-serif",
-        "Apple Color Emoji",
-        "Segoe UI Emoji",
-      ],
+      fontFamily: {
+        sans: ["var(--font-inter)"],
+        mono: ["var(--font-roboto-mono)"],
+      },
     },
   },
   plugins: [],

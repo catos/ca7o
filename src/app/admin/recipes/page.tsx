@@ -2,8 +2,9 @@ import Icon from "@/components/icon"
 
 import { getRecipes } from "@/data/recipe-service"
 
-import Card from "@/components/ui/card"
 import Link from "@/components/ui/link"
+import List from "@/components/ui/list"
+import ListItem from "@/components/ui/list-item"
 import Title from "@/components/ui/title"
 
 // TODO: can I set this more globally ?
@@ -20,15 +21,13 @@ export default async function RecipesPage() {
           Recipes...
         </Title>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          {recipes.map((recipe) => (
-            <Card
-              key={recipe.id}
-              image={recipe.image}
-              href={`/recipes/${recipe.id}`}
-              title={recipe.title}
-              description={recipe.description}
-            />
-          ))}
+          <List>
+            {recipes.map((recipe) => (
+              <ListItem key={recipe.id}>
+                <Link href={`/admin/recipes/${recipe.id}`}>{recipe.title}</Link>
+              </ListItem>
+            ))}
+          </List>
         </div>
       </div>
     </div>
