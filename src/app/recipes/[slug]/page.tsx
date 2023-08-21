@@ -2,10 +2,12 @@ import Icon from "@/components/icon"
 import Image from "@/components/image"
 import Markdown from "@/components/markdown"
 
-import { getRecipe } from "@/data/recipe-service"
+import { getRecipe, getRecipes } from "@/data/recipe-service"
 
 import Link from "@/components/ui/link"
 import Title from "@/components/ui/title"
+
+export const revalidate = 60 * 60 * 24
 
 interface IProps {
   params: { slug: string }
@@ -25,21 +27,23 @@ export default async function RecipesPage({ params }: IProps) {
           >
             <Icon name="edit" />
           </Link>
-          <Title
-            className="absolute right-0 bottom-0 left-0 opacity-80 bg-primary-900 text-primary-100 p-4"
-            noMargin
-          >
-            {recipe.title}
-          </Title>
+          <div className="flex flex-col absolute right-0 bottom-0 left-0">
+            <Title
+              className="opacity-80 bg-primary-900 text-primary-100 p-4"
+              noMargin
+            >
+              {recipe.title}
+            </Title>
+            <div className="opacity-90 bg-primary-900 text-primary-100 p-4 px-4 py-2">
+              <Markdown>{recipe.description}</Markdown>
+            </div>
+          </div>
 
           <Image
             className="max-h-64 sm:max-h-96 object-cover"
             src={recipe.image}
             alt={recipe.title}
           />
-        </div>
-        <div className="bg-primary-900 text-primary-100 px-4 py-2">
-          <Markdown>{recipe.description}</Markdown>
         </div>
       </div>
 
@@ -60,4 +64,10 @@ export default async function RecipesPage({ params }: IProps) {
       </div>
     </div>
   )
+}
+
+// TODO: not working ?=
+export async function generateStaticParams() {
+  const recipes = await getRecipes()
+  return recipes.map((recipe) => ({ params: { slug: recipe.id.toString() } }))
 }

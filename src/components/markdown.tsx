@@ -27,7 +27,7 @@ const serializers = {
     return <ListItem>{children}</ListItem>
   },
   p: ({ children }: any) => {
-    return <p>{children}</p>
+    return <p className="m-0">{children}</p>
   },
   //   code: ({ children }: { children: ReactNode & ReactNode[] }) => {
   //     const code = children && children[0]

@@ -1,13 +1,13 @@
 "use client"
 
+import Icon from "@/components/icon"
 import { signIn, signOut, useSession } from "next-auth/react"
 
 import Button from "@/components/ui/button"
-
-import Link from "./ui/link"
+import Link from "@/components/ui/link"
 
 export default function SigninButton() {
-  const { data: session } = useSession()
+  const { data: session, status } = useSession()
 
   const handleSignOut = () => {
     signOut({ callbackUrl: "/" })
@@ -17,15 +17,18 @@ export default function SigninButton() {
     signIn()
   }
 
-  if (session && session.user) {
+  if (status === "loading") return <Button>...</Button>
+
+  if (status === "authenticated") {
     return (
-      <>
-        <Link className="mr-2 no-underline" href="/admin">
-          Admin
+      <div className="flex gap-4 items-center">
+        <Link className="no-underline" href="/admin">
+          <Icon name="cog" />
         </Link>
-        <Button onClick={handleSignOut}>Sign Out</Button>
-      </>
+        <Button onClick={handleSignOut}>Sign out</Button>
+      </div>
     )
   }
-  return <Button onClick={handleSignIn}>Sign In</Button>
+
+  return <Button onClick={handleSignIn}>Sign in</Button>
 }

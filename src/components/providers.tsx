@@ -2,6 +2,10 @@
 
 import { SessionProvider } from "next-auth/react"
 
-export default function Providers({ children }: { children: React.ReactNode }) {
+interface IProps {
+  children: React.ReactNode
+}
+
+export default function Providers({ children }: IProps) {
   return <SessionProvider>{children}</SessionProvider>
 }

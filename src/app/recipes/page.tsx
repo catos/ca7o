@@ -1,9 +1,6 @@
-import Icon from "@/components/icon"
-
 import { getRecipes } from "@/data/recipe-service"
 
 import Card from "@/components/ui/card"
-import Link from "@/components/ui/link"
 import Title from "@/components/ui/title"
 
 // TODO: can I set this more globally ?

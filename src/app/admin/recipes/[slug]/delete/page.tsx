@@ -32,9 +32,8 @@ export default async function DeleteRecipe({ params }: IProps) {
     }
 
     await deleteRecipe(recipeId)
-
     revalidatePath(`/recipes/${recipeId}`)
-    redirect(`/recipes/${recipeId}`)
+    redirect(`/admin/recipes`)
   }
 
   return (
@@ -46,7 +45,10 @@ export default async function DeleteRecipe({ params }: IProps) {
 
       <div className="flex gap-8 items-center justify-between absolute right-8 top-8">
         <Button type="submit">Delete</Button>
-        <Link className="no-underline font-bold" href={`/recipes`}>
+        <Link
+          className="no-underline font-bold"
+          href={`/admin/recipes/${recipeId}`}
+        >
           Cancel
         </Link>
       </div>

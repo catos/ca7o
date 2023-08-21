@@ -1,4 +1,5 @@
 import Icon from "@/components/icon"
+import toLocaleDate from "@/lib/to-locale-date"
 
 import { getRecipes } from "@/data/recipe-service"
 
@@ -20,15 +21,34 @@ export default async function RecipesPage() {
         <Title type="h2" className="mb-0 text-lg uppercase text-primary-600">
           Recipes...
         </Title>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          <List>
+        {/* TODO: move styling to global.css or ui components */}
+        <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+          <thead className="text-xs text-gray-700 uppercase bg-gray-50">
+            <tr>
+              <th className="p-4">Title</th>
+              <th className="p-4">Author</th>
+              <th className="p-4">Created</th>
+              <th className="p-4">Updated</th>
+            </tr>
+          </thead>
+          <tbody>
             {recipes.map((recipe) => (
-              <ListItem key={recipe.id}>
-                <Link href={`/admin/recipes/${recipe.id}`}>{recipe.title}</Link>
-              </ListItem>
+              <tr
+                key={recipe.id}
+                className="bg-white border-b hover:bg-gray-50"
+              >
+                <td className="px-6 py-4">
+                  <Link href={`/admin/recipes/${recipe.id}`}>
+                    {recipe.title}
+                  </Link>
+                </td>
+                <td className="px-6 py-4">{recipe.author?.name}</td>
+                <td className="px-6 py-4">{toLocaleDate(recipe.createdAt)}</td>
+                <td className="px-6 py-4">{toLocaleDate(recipe.updatedAt)}</td>
+              </tr>
             ))}
-          </List>
-        </div>
+          </tbody>
+        </table>
       </div>
     </div>
   )

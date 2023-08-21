@@ -74,6 +74,12 @@ export default async function EditRecipePage({ params }: IProps) {
     <form className="relative flex flex-col gap-4 p-4 mb-4" action={update}>
       <div className="flex gap-8 items-center">
         <Button type="submit">Save</Button>
+        <Link
+          className="no-underline font-bold"
+          href={`/admin/recipes/${recipe.id}/delete`}
+        >
+          Delete
+        </Link>
         <Link className="no-underline font-bold" href={`/recipes/${recipe.id}`}>
           Recipe
         </Link>

@@ -3,7 +3,19 @@ import Title from "@/components/ui/title"
 export default function Home() {
   return (
     <>
-      <Title>H1 Lorem</Title>
+      <h1>
+        H1 Lorem - TODO: consider just using globals.css for simple styling
+        instead of UI components
+      </h1>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed
+        faucibus sapien. Phasellus hendrerit sollicitudin sagittis. Morbi eu dui
+        turpis. Sed ac pretium orci, vel accumsan mi. Nam in mollis nisl.
+        Phasellus non dapibus dolor. Morbi tincidunt euismod nibh ut
+        condimentum. Suspendisse at odio dui.
+      </p>
+
+      <Title>H1 Title Lorem</Title>
       <p>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed
         faucibus sapien. Phasellus hendrerit sollicitudin sagittis. Morbi eu dui
