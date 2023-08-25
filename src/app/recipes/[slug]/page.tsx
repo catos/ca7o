@@ -19,6 +19,8 @@ interface IProps {
 //   return { title: `User profile of ${user?.name}` }
 // }
 
+// TODO: implement like | dislike: https://fireship.io/courses/nextjs/adv-actions/
+
 export default async function RecipesPage({ params }: IProps) {
   const recipe = await getRecipe(+params.slug)
   if (!recipe) return null

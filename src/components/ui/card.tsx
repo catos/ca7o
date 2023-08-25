@@ -14,7 +14,7 @@ interface ICard {
 export default function Card({ image, href, title, description, tags }: ICard) {
   return (
     <Link
-      className="no-underline w-full rounded overflow-hidden shadow-lg hover:shadow-xl"
+      className="no-underline w-full rounded overflow-hidden shadow-lg hover:outline hover:outline-primary-600 hover:outline-2"
       href={href}
     >
       <Image

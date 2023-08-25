@@ -1,96 +1,35 @@
-import { authOptions } from "@/lib/auth"
-import { getServerSession } from "next-auth"
-import { revalidatePath } from "next/cache"
-import { redirect } from "next/navigation"
-
-import { getRecipe, updateRecipe } from "@/data/recipe-service"
+import { getRecipe } from "@/data/recipe-service"
 
 import Button from "@/components/ui/button"
 import Input from "@/components/ui/input"
 import Link from "@/components/ui/link"
 import Textarea from "@/components/ui/textarea"
 
+import { update, updateAndClose } from "../actions"
+
 interface IProps {
   params: { slug: string }
 }
 
-// TODO: If I use client side component for this, abstract logic below to check for MY user
-// export async function POST(req: Request) {
-//     const session = await getServerSession();
-//     const currentUserEmail = session?.user?.email!;
-//     const { targetUserId } = await req.json();
-
-// TODO: consider using client-side rendering for the form: https://fireship.io/courses/nextjs/adv-form-submit/
 export default async function EditRecipePage({ params }: IProps) {
   const recipe = await getRecipe(+params.slug)
 
   if (!recipe) return null
 
-  async function update(formData: FormData) {
-    "use server"
-
-    const session = await getServerSession(authOptions)
-    if (!session || !session.user) {
-      throw new Error("Not authenticated")
-    }
-
-    if (!recipe) {
-      throw new Error("Recipe not found")
-    }
-
-    // TODO: any way to simplify and validate this? zod ?
-    const title = formData.get("title")
-    if (!title || typeof title !== "string") {
-      return
-    }
-
-    const image = formData.get("image")
-    if (!image || typeof image !== "string") {
-      return
-    }
-
-    const description = formData.get("description")
-    if (!description || typeof description !== "string") {
-      // TODO: make this work ? (and error.tsx)
-      throw new Error("Description is required!")
-    }
-
-    const ingredients = formData.get("ingredients")
-    if (!ingredients || typeof ingredients !== "string") {
-      return
-    }
-
-    const instructions = formData.get("instructions")
-    if (!instructions || typeof instructions !== "string") {
-      return
-    }
-
-    await updateRecipe(recipe.id, {
-      title,
-      image,
-      description,
-      ingredients,
-      instructions,
-    })
-
-    revalidatePath(`/recipes/${recipe.id}/edit`)
-    redirect(`/recipes/${recipe.id}`)
-  }
-
   return (
     <form className="relative flex flex-col gap-4 p-4 mb-4" action={update}>
       <div className="flex gap-8 items-center">
-        <Button type="submit">Save</Button>
+        <Button type="submit">Save & Continue</Button>
+        <Button formAction={updateAndClose}>Save & Close</Button>
         <Link
           className="no-underline font-bold"
           href={`/admin/recipes/${recipe.id}/delete`}
         >
           Delete
         </Link>
-        <Link className="no-underline font-bold" href={`/recipes/${recipe.id}`}>
-          Recipe
-        </Link>
       </div>
+
+      <Input id="id" type="hidden" name="id" defaultValue={recipe.id} />
 
       <Input
         required
