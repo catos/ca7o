@@ -3,8 +3,8 @@ import { redirect } from "next/navigation"
 
 import Title from "@/components/ui/title"
 
-export default function Admin() {
-  const session = getServerSession()
+export default async function Admin() {
+  const session = await getServerSession()
   if (!session) {
     redirect("/api/auth/signin")
   }
@@ -12,6 +12,8 @@ export default function Admin() {
   return (
     <div>
       <Title>Admin</Title>
+
+      <pre>{JSON.stringify(session, null, 2)}</pre>
     </div>
   )
 }

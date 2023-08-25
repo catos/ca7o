@@ -13,6 +13,12 @@ interface IProps {
   params: { slug: string }
 }
 
+// TODO: implement dynamic metadata
+// export async function generateMetadata({ params }: Props): Promise<Metadata> {
+//   const user = await prisma.user.findUnique({ where: { id: params.id } })
+//   return { title: `User profile of ${user?.name}` }
+// }
+
 export default async function RecipesPage({ params }: IProps) {
   const recipe = await getRecipe(+params.slug)
   if (!recipe) return null

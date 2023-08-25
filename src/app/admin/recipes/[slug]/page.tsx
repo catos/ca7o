@@ -14,6 +14,13 @@ interface IProps {
   params: { slug: string }
 }
 
+// TODO: If I use client side component for this, abstract logic below to check for MY user
+// export async function POST(req: Request) {
+//     const session = await getServerSession();
+//     const currentUserEmail = session?.user?.email!;
+//     const { targetUserId } = await req.json();
+
+// TODO: consider using client-side rendering for the form: https://fireship.io/courses/nextjs/adv-form-submit/
 export default async function EditRecipePage({ params }: IProps) {
   const recipe = await getRecipe(+params.slug)
 
