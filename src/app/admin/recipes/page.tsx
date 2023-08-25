@@ -21,6 +21,8 @@ export default async function RecipesPage() {
         <Title type="h2" className="mb-0 text-lg uppercase text-primary-600">
           Recipes...
         </Title>
+
+        <Link href="/admin/recipes/create">Create New</Link>
         {/* TODO: move styling to global.css or ui components */}
         <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
           <thead className="text-xs text-gray-700 uppercase bg-gray-50">

@@ -6,7 +6,7 @@ import Link from "@/components/ui/link"
 export default function Nav() {
   return (
     <nav className="border-b border-primary-300">
-      <div className="container mx-auto flex items-center justify-between flex-wrap gap-2 h-16">
+      <div className="px-2 md:px-0 container mx-auto flex items-center justify-between flex-wrap gap-2 h-16">
         <Link href="/" className="mr-2">
           <svg
             className="h-8 w-8"
