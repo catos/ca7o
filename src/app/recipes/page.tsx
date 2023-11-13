@@ -1,6 +1,7 @@
+import Card from "@/components/recipe/card"
+
 import { getRecipes } from "@/data/recipe-service"
 
-import Card from "@/components/ui/card"
 import Title from "@/components/ui/title"
 
 // TODO: can I set this more globally ?
