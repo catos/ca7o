@@ -1,4 +1,3 @@
-import prisma from "@/lib/prisma"
 import bcrypt from "bcrypt"
 import { NextAuthOptions } from "next-auth"
 import CredentialsProvider from "next-auth/providers/credentials"
@@ -15,15 +14,15 @@ export const authOptions: NextAuthOptions = {
       // e.g. domain, username, password, 2FA token, etc.
       // You can pass any HTML attribute to the <input> tag through the object.
       credentials: {
-        username: { label: "Username", type: "text", placeholder: "jsmith" },
+        email: { label: "Email", type: "text" },
         password: { label: "Password", type: "password" },
       },
-      async authorize(credentials, req) {
+      async authorize(credentials, _) {
         if (!credentials) {
           return null
         }
 
-        const user = await getUser(credentials.username)
+        const user = await getUser({ email: credentials.email })
 
         const userExistsAndPasswordValid =
           user && (await bcrypt.compare(credentials.password, user.password))
@@ -52,3 +51,21 @@ export const authOptions: NextAuthOptions = {
     },
   },
 }
+
+// TODO: make handy function to replace all auth-check in code: const session = await getServerSession(authOptions)
+// type AccessType = "authenticated" | "admin"
+// export async function isAuthorized(requiredAccess: AccessType) {
+//   const session = await getServerSession(authOptions)
+//   if (!session || !session.user) {
+//     return { isAuthorized: false, session }
+//   }
+
+//   if (
+//     requiredAccess === "admin" &&
+//     session.user.email !== "cskogholt@gmail.com"
+//   ) {
+//     return { isAuthorized: false, session }
+//   }
+
+//   return { isAuthorized: true, session }
+// }

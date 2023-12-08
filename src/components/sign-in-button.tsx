@@ -22,6 +22,7 @@ export default function SigninButton() {
   if (status === "authenticated") {
     return (
       <div className="flex gap-4 items-center">
+        <span>{session.user.name}</span>
         <Link className="no-underline" href="/admin">
           <Icon name="cog" />
         </Link>

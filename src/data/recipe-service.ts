@@ -50,9 +50,7 @@ export async function updateRecipe(
 ) {
   try {
     return await prisma.recipe.update({
-      where: {
-        id,
-      },
+      where: { id },
       data: { title, image, description, ingredients, instructions },
     })
   } catch (error) {

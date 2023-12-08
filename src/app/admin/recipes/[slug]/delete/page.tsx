@@ -19,6 +19,7 @@ export default async function DeleteRecipe({ params }: IProps) {
   const recipe = await getRecipe(recipeId)
   if (!recipe) return null
 
+  // TODO: move to actions ?
   async function del() {
     "use server"
 

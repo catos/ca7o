@@ -63,7 +63,7 @@ export async function create(formData: FormData) {
 /**
  * Update recipe with form data and revalidate
  * @param formData recipe form data
- * @returns ???
+ * @returns a promise of nothingness!
  */
 export async function update(formData: FormData) {
   const session = await getServerSession(authOptions)
@@ -116,7 +116,7 @@ export async function update(formData: FormData) {
     instructions,
   })
 
-  revalidatePath(`/admin/recipes/${recipe.id}/edit`)
+  revalidatePath(`/admin/recipes/${recipe.id}`)
 }
 
 /**
