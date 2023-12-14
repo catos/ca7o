@@ -2,7 +2,7 @@ import Icon from "@/components/icon"
 import Image from "@/components/image"
 import Markdown from "@/components/markdown"
 
-import { getRecipe, getRecipes } from "@/data/recipe-service"
+import { getRecipe, getRecipes } from "@/data/recipe-actions"
 
 import Link from "@/components/ui/link"
 import Title from "@/components/ui/title"

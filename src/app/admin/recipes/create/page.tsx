@@ -1,16 +1,16 @@
+import { createRecipe } from "@/data/recipe-actions"
+
 import Button from "@/components/ui/button"
 import Input from "@/components/ui/input"
 import Link from "@/components/ui/link"
 import Textarea from "@/components/ui/textarea"
 import Title from "@/components/ui/title"
 
-import { create } from "../actions"
-
 export default async function CreateRecipe() {
   return (
     <form
       className="relative flex flex-col gap-4 w-full bg-white shadow-md rounded px-8 py-8 mb-4"
-      action={create}
+      action={createRecipe}
     >
       <Title>Create recipe</Title>
       <Input

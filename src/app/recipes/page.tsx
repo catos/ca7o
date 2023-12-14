@@ -1,6 +1,6 @@
 import Card from "@/components/recipe/card"
 
-import { getRecipes } from "@/data/recipe-service"
+import { getRecipes } from "@/data/recipe-actions"
 
 import Title from "@/components/ui/title"
 

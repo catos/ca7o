@@ -1,7 +1,7 @@
 import Icon from "@/components/icon"
 import toLocaleDate from "@/lib/to-locale-date"
 
-import { getRecipes } from "@/data/recipe-service"
+import { getRecipes } from "@/data/recipe-actions"
 
 import Link from "@/components/ui/link"
 import List from "@/components/ui/list"
