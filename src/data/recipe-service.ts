@@ -1,35 +1,42 @@
 import prisma from "@/lib/prisma"
 
-// TODO: define interfaces for all the data types
-// TODO: try-catch all the things and handle errors
-
 export async function getRecipes() {
-  return await prisma.recipe.findMany({
-    include: {
-      author: {
-        select: {
-          name: true,
-          email: true,
+  try {
+    return await prisma.recipe.findMany({
+      include: {
+        author: {
+          select: {
+            name: true,
+            email: true,
+          },
         },
       },
-    },
-  })
+    })
+  } catch (error) {
+    console.error("Database error", error)
+    throw new Error("Failed to get recipes.")
+  }
 }
 
 export async function getRecipe(slug: number) {
-  return await prisma.recipe.findUnique({
-    where: {
-      id: slug,
-    },
-    include: {
-      author: {
-        select: {
-          name: true,
-          email: true,
+  try {
+    return await prisma.recipe.findUnique({
+      where: {
+        id: slug,
+      },
+      include: {
+        author: {
+          select: {
+            name: true,
+            email: true,
+          },
         },
       },
-    },
-  })
+    })
+  } catch (error) {
+    console.error("Database error", error)
+    throw new Error("Failed to get recipe.")
+  }
 }
 
 export async function updateRecipe(
@@ -54,8 +61,8 @@ export async function updateRecipe(
       data: { title, image, description, ingredients, instructions },
     })
   } catch (error) {
-    console.log("Unable to update recipe", error)
-    return null
+    console.error("Database error", error)
+    throw new Error("Failed to update recipe.")
   }
 }
 
@@ -86,8 +93,8 @@ export async function createRecipe({
       },
     })
   } catch (error) {
-    console.log("Unable to create recipe", error)
-    return null
+    console.error("Database error", error)
+    throw new Error("Failed to create recipe.")
   }
 }
 
@@ -99,7 +106,7 @@ export async function deleteRecipe(id: number) {
       },
     })
   } catch (error) {
-    console.log("Unable to delete recipe", error)
-    return null
+    console.error("Database error", error)
+    throw new Error("Failed to delete recipe.")
   }
 }

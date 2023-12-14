@@ -1,3 +1,5 @@
+import { notFound } from "next/navigation"
+
 import { getRecipe } from "@/data/recipe-service"
 
 import Button from "@/components/ui/button"
@@ -14,7 +16,9 @@ interface IProps {
 export default async function EditRecipePage({ params }: IProps) {
   const recipe = await getRecipe(+params.slug)
 
-  if (!recipe) return null
+  if (!recipe) {
+    notFound()
+  }
 
   return (
     <form className="relative flex flex-col gap-4 p-4 mb-4" action={update}>

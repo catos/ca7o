@@ -1,4 +1,5 @@
 import Link from "next/link"
+import { notFound } from "next/navigation"
 
 import { getUser } from "@/data/user-service"
 
@@ -13,7 +14,9 @@ interface IProps {
 
 export default async function EditUserPage({ params }: IProps) {
   const user = await getUser({ id: params.id })
-  if (!user) return null
+  if (!user) {
+    notFound()
+  }
 
   return (
     <form className="relative flex flex-col gap-4 p-4 mb-4" action={update}>
