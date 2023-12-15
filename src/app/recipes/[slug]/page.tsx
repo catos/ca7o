@@ -74,8 +74,8 @@ export default async function RecipesPage({ params }: IProps) {
   )
 }
 
-// TODO: not working ?=
-export async function generateStaticParams() {
-  const recipes = await getRecipes()
-  return recipes.map((recipe) => ({ params: { slug: recipe.id.toString() } }))
-}
+// TODO: not working ? what is this ?
+// export async function generateStaticParams() {
+//   const recipes = await getRecipes()
+//   return recipes.map((recipe) => ({ params: { slug: recipe.id.toString() } }))
+// }

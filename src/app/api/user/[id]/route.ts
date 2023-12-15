@@ -19,19 +19,20 @@ export async function GET(
     )
   }
 
-  const userPosts = await prisma.post.findMany({
-    where: {
-      authorId: +params.id,
-    },
-    include: {
-      author: {
-        select: {
-          name: true,
-          email: true,
-        },
-      },
-    },
-  })
+  //   const userPosts = await prisma.post.findMany({
+  //     where: {
+  //       authorId: +params.id,
+  //     },
+  //     include: {
+  //       author: {
+  //         select: {
+  //           name: true,
+  //           email: true,
+  //         },
+  //       },
+  //     },
+  //   })
 
-  return new Response(JSON.stringify(userPosts))
+  //   return new Response(JSON.stringify(userPosts))
+  return new Response(JSON.stringify({ lol: "lol" }))
 }
