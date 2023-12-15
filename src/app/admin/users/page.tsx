@@ -1,4 +1,4 @@
-import { getUsers } from "@/data/user-service"
+import { getUsers } from "@/data/user-actions"
 
 import Link from "@/components/ui/link"
 
@@ -24,7 +24,9 @@ export default async function Users() {
             <tr key={u.id} className="bg-white border-b hover:bg-gray-50">
               <td className="px-6 py-4">{u.id}</td>
               <td className="px-6 py-4">
-                <Link href={`/admin/users/${u.id}`}>{u.name}</Link>
+                <Link href={`/admin/users/${encodeURIComponent(u.email)}`}>
+                  {u.name}
+                </Link>
               </td>
               <td className="px-6 py-4">{u.email}</td>
             </tr>

@@ -2,7 +2,7 @@ import bcrypt from "bcrypt"
 import { NextAuthOptions } from "next-auth"
 import CredentialsProvider from "next-auth/providers/credentials"
 
-import { getUser } from "@/data/user-service"
+import { getUser } from "@/data/user-actions"
 
 export const authOptions: NextAuthOptions = {
   providers: [
@@ -22,7 +22,7 @@ export const authOptions: NextAuthOptions = {
           return null
         }
 
-        const user = await getUser({ email: credentials.email })
+        const user = await getUser(credentials.email)
 
         const userExistsAndPasswordValid =
           user && (await bcrypt.compare(credentials.password, user.password))

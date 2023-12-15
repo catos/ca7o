@@ -69,7 +69,10 @@ export async function updateRecipe(formData: FormData) {
   }
 
   try {
-    await prisma.recipe.update({ where: { id: +id }, data })
+    await prisma.recipe.update({
+      where: { id: +id },
+      data,
+    })
 
     // TODO: revalidate multiple paths /recipes/:id and /admin/recipes/:id
     revalidatePath(`/admin/recipes/${id}`)
@@ -103,10 +106,8 @@ export async function createRecipe(formData: FormData) {
   }
 
   try {
-    const recipe = await prisma.recipe.create({ data })
-
-    // TODO: revalidate multiple paths /recipes/:id and /admin/recipes/:id
-    revalidatePath(`/admin/recipes/${recipe.id}`)
+    await prisma.recipe.create({ data })
+    revalidatePath("/admin/recipes")
   } catch (error) {
     handleDBError(error, "Failed to create recipe.")
   }

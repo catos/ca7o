@@ -1,38 +1,36 @@
 import Link from "next/link"
 import { notFound } from "next/navigation"
 
-import { getUser } from "@/data/user-service"
+import { getUser, updateUser } from "@/data/user-actions"
 
 import Button from "@/components/ui/button"
 import Input from "@/components/ui/input"
 
-import { update } from "../actions"
-
 interface IProps {
-  params: { id: number }
+  params: { email: string }
 }
 
 export default async function EditUserPage({ params }: IProps) {
-  const user = await getUser({ id: params.id })
+  const user = await getUser(decodeURIComponent(params.email))
+
   if (!user) {
     notFound()
   }
 
   return (
-    <form className="relative flex flex-col gap-4 p-4 mb-4" action={update}>
+    <form className="relative flex flex-col gap-4 p-4 mb-4" action={updateUser}>
       <div className="flex gap-8 items-center">
         <Button type="submit">Save & Continue</Button>
         <Link
           className="no-underline font-bold"
-          href={`/admin/users/${user.id}/delete`}
+          href={`/admin/users/${encodeURIComponent(user.email)}/delete`}
         >
           Delete
         </Link>
       </div>
 
-      <Input id="id" type="hidden" name="id" defaultValue={user.id} />
+      <input type="hidden" name="id" defaultValue={user.id} />
 
-      {/* TODO: user.name should not be nullable, prisma schema plz ? */}
       <Input
         required
         id="name"
@@ -40,7 +38,6 @@ export default async function EditUserPage({ params }: IProps) {
         name="name"
         label="Name"
         defaultValue={user.name ?? ""}
-        placeholder="Kent Brockman"
       />
       <Input
         required
@@ -49,8 +46,9 @@ export default async function EditUserPage({ params }: IProps) {
         name="email"
         label="Email"
         defaultValue={user.email}
-        placeholder="kent@brockman.com"
       />
+
+      {/* TODO: Add reset password functionality */}
       {/* <Input
         required
         id="password"

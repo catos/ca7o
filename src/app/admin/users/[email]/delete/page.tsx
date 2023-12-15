@@ -1,24 +1,26 @@
-import { getUser } from "@/data/user-service"
+import { deleteUser, getUser } from "@/data/user-actions"
 
 import Button from "@/components/ui/button"
-import Input from "@/components/ui/input"
 import Link from "@/components/ui/link"
 import Title from "@/components/ui/title"
 
-import { del } from "../../actions"
-
 interface IProps {
-  params: { id: number }
+  params: { email: string }
 }
 
-export default async function DeleteRecipe({ params }: IProps) {
-  const user = await getUser({ id: params.id })
+export default async function DeleteUser({ params }: IProps) {
+  const user = await getUser(decodeURIComponent(params.email))
 
-  if (!user) return null
+  if (!user)
+    return (
+      <Title type="h1" noMargin>
+        User not found
+      </Title>
+    )
 
   return (
-    <form action={del}>
-      <Input id="id" type="hidden" name="id" defaultValue={user.id} />
+    <form action={deleteUser}>
+      <input type="hidden" name="id" defaultValue={user.id} />
 
       <Title type="h3">Are you sure you want to delete this user ?</Title>
       <Title type="h1" noMargin>

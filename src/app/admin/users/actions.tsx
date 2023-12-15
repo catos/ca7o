@@ -11,7 +11,7 @@ import {
   deleteUser,
   getUser,
   updateUser,
-} from "@/data/user-service"
+} from "@/data/user-actions"
 
 /**
  * Create a new user

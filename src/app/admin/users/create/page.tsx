@@ -1,15 +1,15 @@
+import { createUser } from "@/data/user-actions"
+
 import Button from "@/components/ui/button"
 import Input from "@/components/ui/input"
 import Link from "@/components/ui/link"
 import Title from "@/components/ui/title"
 
-import { create } from "../actions"
-
 export default async function CreateUser() {
   return (
     <form
       className="relative flex flex-col gap-4 w-full bg-white shadow-md rounded px-8 py-8 mb-4"
-      action={create}
+      action={createUser}
     >
       <Title>Create user</Title>
       <Input

@@ -13,7 +13,6 @@ interface IProps {
 
 export default async function EditRecipePage({ params }: IProps) {
   const recipe = await getRecipe(+params.slug)
-
   if (!recipe) {
     notFound()
   }

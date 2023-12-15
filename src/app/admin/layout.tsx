@@ -4,6 +4,8 @@ import Link from "@/components/ui/link"
 import List from "@/components/ui/list"
 import ListItem from "@/components/ui/list-item"
 
+export const revalidate = 0
+
 // TODO: Move CRUDs to admin folder
 export default function AdminLayout({
   children,
