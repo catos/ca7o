@@ -1,16 +1,18 @@
-import Title from "@/components/ui/title"
-import { getPosts } from "@/data/post-service"
 import { authOptions } from "@/lib/auth"
 import { getServerSession } from "next-auth"
 
-export default async function Posts() {
+import { getTodos } from "@/data/todo-actions"
+
+import Title from "@/components/ui/title"
+
+export default async function Todos() {
   const session = await getServerSession(authOptions)
 
   if (!session) {
     return null
   }
 
-  const data = await getPosts(1)
+  const data = await getTodos(session.user.id)
 
   return (
     <>

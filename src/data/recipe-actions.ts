@@ -1,6 +1,7 @@
 "use server"
 
 import { authOptions } from "@/lib/auth"
+import { handleDBError } from "@/lib/error-handler"
 import prisma from "@/lib/prisma"
 import { getServerSession } from "next-auth"
 import { revalidatePath } from "next/cache"
@@ -20,8 +21,7 @@ export async function getRecipes() {
       },
     })
   } catch (error) {
-    console.error("Database error", error)
-    throw new Error("Failed to get recipes.")
+    handleDBError(error, "Failed to get recipes.")
   }
 }
 
@@ -41,8 +41,7 @@ export async function getRecipe(slug: number) {
       },
     })
   } catch (error) {
-    console.error("Database error", error)
-    throw new Error("Failed to get recipe.")
+    handleDBError(error, "Failed to get recipe.")
   }
 }
 
@@ -75,8 +74,7 @@ export async function updateRecipe(formData: FormData) {
     // TODO: revalidate multiple paths /recipes/:id and /admin/recipes/:id
     revalidatePath(`/admin/recipes/${id}`)
   } catch (error) {
-    console.error("Database error", error)
-    throw new Error("Failed to update recipe.")
+    handleDBError(error, "Failed to update recipe.")
   }
 
   redirect(`/admin/recipes/${id}`)
@@ -110,8 +108,7 @@ export async function createRecipe(formData: FormData) {
     // TODO: revalidate multiple paths /recipes/:id and /admin/recipes/:id
     revalidatePath(`/admin/recipes/${recipe.id}`)
   } catch (error) {
-    console.error("Database error", error)
-    throw new Error("Failed to create recipe.")
+    handleDBError(error, "Failed to create recipe.")
   }
   redirect("/admin/recipes/")
 }
@@ -133,8 +130,7 @@ export async function deleteRecipe(formData: FormData) {
     // TODO: revalidate multiple paths /recipes/:id and /admin/recipes/:id
     revalidatePath(`/admin/recipes/${id}`)
   } catch (error) {
-    console.error("Database error", error)
-    throw new Error("Failed to delete recipe.")
+    handleDBError(error, "Failed to delete recipe.")
   }
 
   redirect("/admin/recipes/")

@@ -46,7 +46,7 @@ export default function Nav() {
 
         <div className="flex text-base gap-2 items-center">
           <NavLink href="/recipes">Recipes</NavLink>
-          <NavLink href="/posts">Posts</NavLink>
+          <NavLink href="/todos">Todos</NavLink>
           <NavLink href="/about">About</NavLink>
         </div>
 

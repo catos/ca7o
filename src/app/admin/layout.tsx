@@ -16,6 +16,7 @@ export default function AdminLayout({
         <List className="pl-0 list-none">
           <AsideItem title="Home" href="/admin" icon="home" />
           <AsideItem title="Users" href="/admin/users" icon="users" />
+          <AsideItem title="Todos" href="/admin/todos" icon="todos" />
           <AsideItem title="Recipes" href="/admin/recipes" icon="document" />
         </List>
       </div>
