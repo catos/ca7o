@@ -58,6 +58,7 @@ export default async function EditRecipePage({ params }: IProps) {
       />
       <Textarea
         required
+        expandOnFocus
         id="description"
         name="description"
         label="Description"
@@ -67,6 +68,7 @@ export default async function EditRecipePage({ params }: IProps) {
       <div className="grid grid-cols-2 gap-8">
         <Textarea
           required
+          expandOnFocus
           id="ingredients"
           name="ingredients"
           label="Ingredients"
@@ -74,6 +76,7 @@ export default async function EditRecipePage({ params }: IProps) {
         />
         <Textarea
           required
+          expandOnFocus
           id="instructions"
           name="instructions"
           label="Instructions"

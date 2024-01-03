@@ -8,11 +8,7 @@ import Title from "@/components/ui/title"
 export const revalidate = 10
 
 export default async function RecipesPage() {
-  const recipes = await getRecipes()
-
-  if (!recipes) {
-    return null
-  }
+  const recipes = (await getRecipes()) ?? []
 
   return (
     <div className="relative flex flex-col gap-4">

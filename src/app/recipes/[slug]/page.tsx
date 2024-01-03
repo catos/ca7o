@@ -36,10 +36,7 @@ export default async function RecipesPage({ params }: IProps) {
             <Icon name="edit" />
           </Link>
           <div className="flex flex-col absolute right-0 bottom-0 left-0">
-            <Title
-              className="opacity-80 bg-primary-900 text-primary-100 p-4"
-              noMargin
-            >
+            <Title className="opacity-80 bg-primary-900 text-primary-100 p-4 m-0">
               {recipe.title}
             </Title>
             <div className="opacity-90 bg-primary-900 text-primary-100 p-4 px-4 py-2">

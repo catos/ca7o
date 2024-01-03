@@ -13,7 +13,7 @@ export default async function DeleteUser({ params }: IProps) {
 
   if (!user)
     return (
-      <Title type="h1" noMargin>
+      <Title type="h1" className="m-0">
         User not found
       </Title>
     )
@@ -23,7 +23,7 @@ export default async function DeleteUser({ params }: IProps) {
       <input type="hidden" name="id" defaultValue={user.id} />
 
       <Title type="h3">Are you sure you want to delete this user ?</Title>
-      <Title type="h1" noMargin>
+      <Title type="h1" className="m-0">
         {user.name}
       </Title>
       <Title type="h2">{user.email}</Title>

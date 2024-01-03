@@ -88,7 +88,6 @@ export async function createRecipe(formData: FormData) {
   if (!session || !session.user) {
     throw new Error("Not authenticated")
   }
-  const authorId = session.user.id
 
   // TODO: better validation
   const schema = z.object({
@@ -102,7 +101,7 @@ export async function createRecipe(formData: FormData) {
   const form = schema.parse(Object.fromEntries(formData))
   const data = {
     ...form,
-    authorId: +authorId,
+    authorId: +session.user.id,
   }
 
   try {
@@ -111,6 +110,8 @@ export async function createRecipe(formData: FormData) {
   } catch (error) {
     handleDBError(error, "Failed to create recipe.")
   }
+
+  // TODO: move redirect to caller ?
   redirect("/admin/recipes/")
 }
 

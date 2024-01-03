@@ -21,7 +21,7 @@ export default async function DeleteRecipe({ params }: IProps) {
     >
       <input type="hidden" name="id" value={recipe.id} />
 
-      <Title noMargin>Delete recipe: {recipe.title} ?</Title>
+      <Title className="m-0">Delete recipe: {recipe.title} ?</Title>
 
       <div className="flex gap-8 items-center justify-between absolute right-8 top-8">
         <Button type="submit">Delete</Button>

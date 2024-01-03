@@ -3,7 +3,7 @@ import React, { ReactNode } from "react"
 
 import Link from "@/components/ui/link"
 
-export default function Nav() {
+export default function Header() {
   return (
     <nav className="border-b border-primary-300">
       <div className="px-2 xl:p-0 container mx-auto flex items-center justify-between flex-wrap gap-2 h-16">

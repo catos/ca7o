@@ -1,22 +1,29 @@
-interface IInput extends React.HTMLAttributes<HTMLTextAreaElement> {
-  required?: boolean
-  name: string
-  label: string
-}
+import { twMerge } from "tailwind-merge"
 
-export default function Input(props: IInput) {
-  const { id, label, ...rest } = props
+// TODO: update interfaces to use this "format"
+type Props = {
+  name: string
+  expandOnFocus?: boolean
+  required?: boolean
+  label?: string
+} & React.HTMLAttributes<HTMLTextAreaElement>
+
+export default function Textarea(props: Props) {
+  const { id, label, expandOnFocus, ...rest } = props
 
   return (
     <div>
       <label
-        className="block text-primary-700 text-sm font-bold mb-2"
+        className="block text-primary-700 text-sm font-bold mb-2 cursor-pointer"
         htmlFor={id}
       >
         {label}
       </label>
       <textarea
-        className="appearance-none h-32 border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline focus:h-64"
+        className={twMerge(
+          "appearance-none h-32 border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline",
+          expandOnFocus && "focus:h-64"
+        )}
         id={id}
         {...rest}
       />

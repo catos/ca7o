@@ -1,8 +1,8 @@
+import Header from "@/components/header"
 import Providers from "@/components/providers"
 import { Inter, Roboto_Mono } from "next/font/google"
 
 import "./globals.css"
-import Nav from "./nav"
 
 const inter = Inter({
   subsets: ["latin"],
@@ -30,7 +30,7 @@ export default function RootLayout({
     <html lang="en" className={`${inter.variable} ${roboto_mono.variable}`}>
       <body className="bg-gray-100">
         <Providers>
-          <Nav />
+          <Header />
           <main className="container mx-auto bg-white flex p-4 min-h-screen flex-col">
             {children}
           </main>
