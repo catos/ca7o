@@ -1,10 +1,10 @@
 import { twMerge } from "tailwind-merge"
 
-interface IListItem extends React.HTMLAttributes<HTMLLIElement> {
+type Props = {
   children: React.ReactNode
-}
+} & React.HTMLAttributes<HTMLLIElement>
 
-export default function ListItem({ className, ...rest }: IListItem) {
+export default function ListItem({ className, ...rest }: Props) {
   const classes = twMerge(
     "p-2 hover:bg-primary-900 hover:bg-opacity-5 rounded",
     className

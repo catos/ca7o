@@ -9,7 +9,7 @@ import Title from "@/components/ui/title"
 
 export const revalidate = 60 * 60 * 24
 
-interface IProps {
+type Props = {
   params: { slug: string }
 }
 
@@ -21,7 +21,7 @@ interface IProps {
 
 // TODO: implement like | dislike: https://fireship.io/courses/nextjs/adv-actions/
 
-export default async function RecipesPage({ params }: IProps) {
+export default async function RecipesPage({ params }: Props) {
   const recipe = await getRecipe(+params.slug)
   if (!recipe) return null
 
@@ -33,7 +33,7 @@ export default async function RecipesPage({ params }: IProps) {
             className="absolute top-2 right-2 no-underline font-bold opacity-60 bg-primary-900 text-primary-100 rounded-full p-2"
             href={`/admin/recipes/${recipe.id}`}
           >
-            <Icon name="edit" />
+            <Icon className="w-4 h-4" name="edit" />
           </Link>
           <div className="flex flex-col absolute right-0 bottom-0 left-0">
             <Title className="opacity-80 bg-primary-900 text-primary-100 p-4 m-0">

@@ -3,7 +3,7 @@ import Image from "@/components/image"
 import Link from "@/components/ui/link"
 import Title from "@/components/ui/title"
 
-interface ICard {
+type Props = {
   image: string
   href: string
   title: string
@@ -20,7 +20,7 @@ function snip(title: string, length: number): string {
 }
 
 // TODO: make card generic again!!!?
-export default function Card({ image, href, title, description, tags }: ICard) {
+export default function Card({ image, href, title, description, tags }: Props) {
   return (
     <Link
       className="relative flex flex-col max-h-64 no-underline w-full rounded overflow-hidden shadow-lg hover:outline hover:outline-primary-600 hover:outline-2"

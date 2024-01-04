@@ -7,11 +7,11 @@ import Input from "@/components/ui/input"
 import Link from "@/components/ui/link"
 import Textarea from "@/components/ui/textarea"
 
-interface IProps {
+type Props = {
   params: { slug: string }
 }
 
-export default async function EditRecipePage({ params }: IProps) {
+export default async function EditRecipePage({ params }: Props) {
   const recipe = await getRecipe(+params.slug)
   if (!recipe) {
     notFound()

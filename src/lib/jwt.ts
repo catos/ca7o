@@ -1,16 +1,16 @@
 import { JwtPayload, sign, verify } from "jsonwebtoken"
 
-interface ISignOption {
+type SignOptionType = {
   expiresIn?: string | number
 }
 
-const DEFAULT_SIGN_OPTION: ISignOption = {
+const DEFAULT_SIGN_OPTION: SignOptionType = {
   expiresIn: "1h",
 }
 
 export function signJwtAccessToken(
   payload: JwtPayload,
-  options: ISignOption = DEFAULT_SIGN_OPTION
+  options: SignOptionType = DEFAULT_SIGN_OPTION
 ) {
   const key = process.env.JWT_SECRET
   const token = sign(payload, key!, options)

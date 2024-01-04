@@ -1,10 +1,10 @@
 import { twMerge } from "tailwind-merge"
 
-interface ITitle extends React.HTMLAttributes<HTMLHeadingElement> {
+type Props = {
   type?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6"
   children: React.ReactNode
   className?: string
-}
+} & React.HTMLAttributes<HTMLHeadingElement>
 
 const titleTypes = {
   h1: "text-3xl",
@@ -15,7 +15,7 @@ const titleTypes = {
   h6: "text-sm",
 }
 
-export default function Title({ type = "h1", children, className }: ITitle) {
+export default function Title({ type = "h1", children, className }: Props) {
   const classes = twMerge(
     "font-bold leading-none tracking-tight text-gray-900",
     titleTypes[type],

@@ -1,12 +1,12 @@
+import { TextareaHTMLAttributes } from "react"
 import { twMerge } from "tailwind-merge"
 
-// TODO: update interfaces to use this "format"
 type Props = {
   name: string
   expandOnFocus?: boolean
   required?: boolean
   label?: string
-} & React.HTMLAttributes<HTMLTextAreaElement>
+} & TextareaHTMLAttributes<HTMLTextAreaElement>
 
 export default function Textarea(props: Props) {
   const { id, label, expandOnFocus, ...rest } = props

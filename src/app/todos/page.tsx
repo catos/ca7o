@@ -3,6 +3,7 @@ import { getServerSession } from "next-auth"
 
 import { getTodos } from "@/data/todo-actions"
 
+import Link from "@/components/ui/link"
 import Title from "@/components/ui/title"
 
 import CreateForm from "./create-form"
@@ -12,10 +13,25 @@ export default async function Todos() {
   const session = await getServerSession(authOptions)
 
   if (!session) {
-    return null
+    return (
+      <p>
+        You must <Link href="/auth/sign-in">log in</Link> in to use TODOs
+      </p>
+    )
   }
 
   const data = await getTodos(session.user.id)
+  if (!data || data.length === 0) {
+    return (
+      <>
+        <CreateForm />
+        <div className="py-4 text-xl text-center">
+          No TODOs... TODO: start creating some!
+        </div>
+      </>
+    )
+  }
+
   const todos = data?.filter((p) => p.state === 0) ?? []
   const todones = data?.filter((p) => p.state > 0) ?? []
 

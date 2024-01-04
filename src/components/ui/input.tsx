@@ -1,9 +1,16 @@
+import { InputHTMLAttributes } from "react"
+import { twMerge } from "tailwind-merge"
+
 type Props = {
   label?: string
-} & React.HTMLProps<HTMLInputElement>
+} & InputHTMLAttributes<HTMLInputElement>
 
 export default function Input(props: Props) {
-  const { id, label, ...rest } = props
+  const { id, label, className, ...rest } = props
+  const classes = twMerge(
+    "appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline",
+    className
+  )
 
   return (
     <div>
@@ -15,11 +22,7 @@ export default function Input(props: Props) {
           {label}
         </label>
       )}
-      <input
-        className="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-        id={id}
-        {...rest}
-      />
+      <input className={classes} id={id} {...rest} />
     </div>
   )
 }

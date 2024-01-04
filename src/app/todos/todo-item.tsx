@@ -1,10 +1,14 @@
 "use client"
 
+import useForm from "@/lib/use-form"
+import useOutsideClick from "@/lib/use-outside-click"
 import { Todo } from "@prisma/client"
-import { ChangeEvent, FormEvent, SyntheticEvent, useState } from "react"
+import { SyntheticEvent, useState } from "react"
 import { twMerge } from "tailwind-merge"
 
 import { updateTodo } from "@/data/todo-actions"
+
+import Button from "@/components/ui/button"
 
 import DeleteForm from "./delete-form"
 import UpdateState from "./update-state"
@@ -15,50 +19,40 @@ type Props = {
 }
 
 export default function TodoItem({ todo, nextState = 0 }: Props) {
-  const [state, setState] = useState({
-    title: todo.title ?? "",
-    content: todo.content ?? "",
-  })
   const [isEditing, setIsEditing] = useState(false)
+  const ref = useOutsideClick<HTMLDivElement>(() => {
+    setIsEditing(false)
+    saveChanges()
+  })
+
+  const { values, handleSubmit, handleChange } = useForm({
+    initialValues: {
+      title: todo.title ?? "",
+      content: todo.content ?? "",
+    },
+    onSubmit: () => {
+      saveChanges()
+      setIsEditing(false)
+    },
+  })
+
   const isDone = todo.state > 0
   const showContent = (todo.content || isEditing) && !isDone
-
-  const handleChange = (
-    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    const { name, value } = e.target
-    setIsEditing(true)
-    setState((p) => ({
-      ...p,
-      [name]: value,
-    }))
-  }
 
   const saveChanges = () => {
     const formData = new FormData()
     formData.set("id", todo.id.toString())
-    formData.set("title", state.title)
-    formData.set("content", state.content)
+    formData.set("title", values.title)
+    formData.set("content", values.content)
     formData.set("state", todo.state.toString())
 
-    if (state.title !== todo.title || state.content !== todo.content) {
+    if (values.title !== todo.title || values.content !== todo.content) {
       updateTodo(formData)
     }
   }
 
   const handleFocus = (e: SyntheticEvent) => {
     setIsEditing(true)
-  }
-
-  const handleBlur = (e: SyntheticEvent) => {
-    saveChanges()
-    setIsEditing(false)
-  }
-
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    saveChanges()
-    setIsEditing(false)
   }
 
   return (
@@ -69,7 +63,7 @@ export default function TodoItem({ todo, nextState = 0 }: Props) {
       )}
       onSubmit={handleSubmit}
     >
-      <div className="flex-1 flex flex-col justify-center gap-1">
+      <div ref={ref} className="flex-1 flex flex-col justify-center gap-1">
         <input
           className={twMerge(
             "bg-transparent font-semibold",
@@ -78,9 +72,8 @@ export default function TodoItem({ todo, nextState = 0 }: Props) {
           )}
           name="title"
           type="text"
-          value={state.title ?? ""}
+          value={values.title ?? ""}
           onChange={handleChange}
-          onBlur={handleBlur}
           onFocus={handleFocus}
         />
         {showContent && (
@@ -91,12 +84,12 @@ export default function TodoItem({ todo, nextState = 0 }: Props) {
             )}
             name="content"
             onChange={handleChange}
-            onBlur={handleBlur}
             onFocus={handleFocus}
-            value={state.content ?? ""}
+            value={values.content ?? ""}
             placeholder="Add content here (optional)"
           />
         )}
+        {isEditing && <Button type="submit">Save</Button>}
       </div>
 
       <div className="flex-none flex gap-1 w-[52px]">

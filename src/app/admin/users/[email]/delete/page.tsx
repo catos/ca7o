@@ -4,11 +4,11 @@ import Button from "@/components/ui/button"
 import Link from "@/components/ui/link"
 import Title from "@/components/ui/title"
 
-interface IProps {
+type Props = {
   params: { email: string }
 }
 
-export default async function DeleteUser({ params }: IProps) {
+export default async function DeleteUser({ params }: Props) {
   const user = await getUser(decodeURIComponent(params.email))
 
   if (!user)

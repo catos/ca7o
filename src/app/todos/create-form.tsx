@@ -1,6 +1,9 @@
 "use client"
 
+import useForm from "@/lib/use-form"
+import useOutsideClick from "@/lib/use-outside-click"
 import { useState } from "react"
+import { twMerge } from "tailwind-merge"
 
 import { createTodo } from "@/data/todo-actions"
 
@@ -10,7 +13,7 @@ import Textarea from "@/components/ui/textarea"
 
 // TODO: type all return values
 type Status = "idle" | "pending" | "success" | "error"
-// TODO: create useQuery hook ?
+// TODO: create useQuery hook from this ?
 function useTodo() {
   const [status, setStatus] = useState<Status>("idle")
   const [message, setMessage] = useState<string | undefined>()
@@ -42,31 +45,57 @@ function useTodo() {
 export default function CreateForm() {
   const [expanded, setExpanded] = useState(false)
   const { status, message, mutate } = useTodo()
+  const ref = useOutsideClick<HTMLFormElement>(() => setExpanded(false))
+  const { values, handleSubmit, handleChange, reset } = useForm({
+    initialValues: {
+      title: "",
+      content: "",
+    },
+    onSubmit: (values: any) => {
+      setExpanded(false)
+      const formData = new FormData()
+      formData.set("title", values.title)
+      formData.set("content", values.content)
+      mutate(formData)
+      // TODO: check if mutation was successful first
+      reset()
+    },
+  })
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-
-    const formData = new FormData(e.currentTarget)
-    mutate(formData)
+  const handleFocus = () => {
+    setExpanded(true)
   }
 
-  if (expanded) {
-    return (
-      <form onSubmit={handleSubmit} className="flex flex-col gap-2">
-        <Input id="title" name="title" type="text" placeholder="Title" />
-        <Textarea
-          id="content"
-          name="content"
-          placeholder="Content (optional)"
-        />
-        <Button type="submit" disabled={status === "pending"}>
-          Create
-        </Button>
+  return (
+    <form ref={ref} onSubmit={handleSubmit} className="flex flex-col gap-2">
+      <Input
+        id="title"
+        name="title"
+        type="text"
+        placeholder="Start typing your TODO here..."
+        className={twMerge(
+          !expanded && "border-2 border-primary-400 rounded-md"
+        )}
+        onFocus={handleFocus}
+        value={values.title}
+        onChange={handleChange}
+      />
 
-        {message && <div>TODO: style me properly please - {message}</div>}
-      </form>
-    )
-  }
-
-  return <Button onClick={() => setExpanded(true)}>Create</Button>
+      {expanded && (
+        <>
+          <Textarea
+            id="content"
+            name="content"
+            placeholder="Add some content if you like"
+            value={values.content}
+            onChange={handleChange}
+          />
+          <Button type="submit" disabled={status === "pending"}>
+            Create
+          </Button>
+          {message && <div>TODO: style me properly please - {message}</div>}
+        </>
+      )}
+    </form>
+  )
 }

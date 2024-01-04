@@ -4,11 +4,11 @@ import Button from "@/components/ui/button"
 import Link from "@/components/ui/link"
 import Title from "@/components/ui/title"
 
-interface IProps {
+type Props = {
   params: { slug: string }
 }
 
-export default async function DeleteRecipe({ params }: IProps) {
+export default async function DeleteRecipe({ params }: Props) {
   const recipeId = +params.slug
 
   const recipe = await getRecipe(recipeId)

@@ -6,11 +6,11 @@ import { getUser, updateUser } from "@/data/user-actions"
 import Button from "@/components/ui/button"
 import Input from "@/components/ui/input"
 
-interface IProps {
+type Props = {
   params: { email: string }
 }
 
-export default async function EditUserPage({ params }: IProps) {
+export default async function EditUserPage({ params }: Props) {
   const user = await getUser(decodeURIComponent(params.email))
 
   if (!user) {

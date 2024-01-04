@@ -1,6 +1,7 @@
 import prisma from "@/lib/prisma"
 import bcrypt from "bcrypt"
 
+// TODO: brukes dette egentlig ?
 // TODO: rewrite and move this code to admin
 interface IRequestBody {
   name: string
