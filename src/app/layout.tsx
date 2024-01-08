@@ -31,7 +31,7 @@ export default function RootLayout({
       <body className="bg-gray-100">
         <Providers>
           <Header />
-          <main className="container mx-auto bg-white flex p-4 min-h-screen flex-col">
+          <main className="container mx-auto flex p-4 min-h-screen flex-col">
             {children}
           </main>
         </Providers>

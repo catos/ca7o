@@ -52,20 +52,20 @@ export default async function RecipesPage({ params }: Props) {
         </div>
       </div>
 
-      <div className="grid md:grid-cols-2 gap-4">
-        <div className="bg-white p-4">
-          <span className="uppercase text-primary-500 font-semibold">
+      <div className="flex flex-col gap-4 sm:flex-row">
+        <section className="rounded-lg sm:w-1/2 md:w-5/12 bg-white p-4">
+          <Heading as="h2" className="uppercase text-primary-500 font-semibold">
             ingredients
-          </span>
+          </Heading>
           <Markdown>{recipe.ingredients}</Markdown>
-        </div>
+        </section>
 
-        <div className="bg-white p-4">
-          <span className="uppercase text-primary-500 font-semibold">
+        <section className="rounded-lg sm:w-1/2 md:w-7/12 bg-white p-4">
+          <Heading as="h2" className="uppercase text-primary-500 font-semibold">
             instructions
-          </span>
+          </Heading>
           <Markdown>{recipe.instructions}</Markdown>
-        </div>
+        </section>
       </div>
     </div>
   )
