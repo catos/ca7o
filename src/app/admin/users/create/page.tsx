@@ -1,9 +1,9 @@
 import { createUser } from "@/data/user-actions"
 
 import Button from "@/components/ui/button"
+import Heading from "@/components/ui/heading"
 import Input from "@/components/ui/input"
 import Link from "@/components/ui/link"
-import Title from "@/components/ui/title"
 
 export default async function CreateUser() {
   return (
@@ -11,7 +11,7 @@ export default async function CreateUser() {
       className="relative flex flex-col gap-4 w-full bg-white shadow-md rounded px-8 py-8 mb-4"
       action={createUser}
     >
-      <Title>Create user</Title>
+      <Heading>Create user</Heading>
       <Input
         required
         id="name"

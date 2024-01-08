@@ -1,7 +1,7 @@
 import Image from "@/components/image"
 
+import Heading from "@/components/ui/heading"
 import Link from "@/components/ui/link"
-import Title from "@/components/ui/title"
 
 type Props = {
   image: string
@@ -32,9 +32,9 @@ export default function Card({ image, href, title, description, tags }: Props) {
         alt={title}
       />
       <div className="absolute bottom-0 left-0 right-0 h-24 flex items-center p-2 bg-primary-300 bg-opacity-50 overflow-hidden">
-        <Title type="h2" className="font-bold text-xl mb-0">
+        <Heading as="h2" className="font-bold text-xl mb-0">
           {snip(title, 50)}
-        </Title>
+        </Heading>
       </div>
     </Link>
   )

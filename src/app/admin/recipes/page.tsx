@@ -1,12 +1,9 @@
-import Icon from "@/components/icon"
 import toLocaleDate from "@/lib/to-locale-date"
 
 import { getRecipes } from "@/data/recipe-actions"
 
+import Heading from "@/components/ui/heading"
 import Link from "@/components/ui/link"
-import List from "@/components/ui/list"
-import ListItem from "@/components/ui/list-item"
-import Title from "@/components/ui/title"
 
 // TODO: can I set this more globally ?
 export const revalidate = 10
@@ -22,9 +19,9 @@ export default async function RecipesPage() {
     <div className="relative flex flex-col gap-4">
       {/* // TODO: create a session storage list of recently visited recipes */}
       <div>
-        <Title type="h2" className="mb-0 text-lg uppercase text-primary-600">
+        <Heading as="h2" className="mb-0 text-lg uppercase text-primary-600">
           Recipes...
-        </Title>
+        </Heading>
 
         <Link href="/admin/recipes/create">Create New</Link>
         {/* TODO: move styling to global.css or ui components */}

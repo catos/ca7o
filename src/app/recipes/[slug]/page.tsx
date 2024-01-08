@@ -4,8 +4,8 @@ import Markdown from "@/components/markdown"
 
 import { getRecipe, getRecipes } from "@/data/recipe-actions"
 
+import Heading from "@/components/ui/heading"
 import Link from "@/components/ui/link"
-import Title from "@/components/ui/title"
 
 export const revalidate = 60 * 60 * 24
 
@@ -36,9 +36,9 @@ export default async function RecipesPage({ params }: Props) {
             <Icon className="w-4 h-4" name="edit" />
           </Link>
           <div className="flex flex-col absolute right-0 bottom-0 left-0">
-            <Title className="opacity-80 bg-primary-900 text-primary-100 p-4 m-0">
+            <Heading className="opacity-80 bg-primary-900 text-primary-100 p-4 m-0">
               {recipe.title}
-            </Title>
+            </Heading>
             <div className="opacity-90 bg-primary-900 text-primary-100 p-4 px-4 py-2">
               <Markdown>{recipe.description}</Markdown>
             </div>

@@ -1,4 +1,4 @@
-import Title from "@/components/ui/title"
+import Heading from "@/components/ui/heading"
 
 export default function Home() {
   return (
@@ -15,7 +15,7 @@ export default function Home() {
         condimentum. Suspendisse at odio dui.
       </p>
 
-      <Title>H1 Title Lorem</Title>
+      <Heading>H1 Title Lorem</Heading>
       <p>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed
         faucibus sapien. Phasellus hendrerit sollicitudin sagittis. Morbi eu dui
@@ -24,7 +24,7 @@ export default function Home() {
         condimentum. Suspendisse at odio dui.
       </p>
 
-      <Title type="h2">H2 Lorem</Title>
+      <Heading as="h2">H2 Lorem</Heading>
       <p>
         Aenean interdum leo a leo viverra malesuada. Suspendisse potenti. Nunc
         fermentum eros lacinia nunc rutrum suscipit. Aenean accumsan rhoncus
@@ -35,7 +35,7 @@ export default function Home() {
         vel lacus mi. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
       </p>
 
-      <Title type="h3">H3 Lorem - Font sans</Title>
+      <Heading as="h3">H3 Lorem - Font sans</Heading>
       <p className="font-sans">
         Quisque posuere, metus eu cursus porttitor, purus augue elementum ante,
         et ornare mauris nulla ac est. Etiam et mauris euismod, elementum augue
@@ -48,7 +48,7 @@ export default function Home() {
         facilisis mi, et feugiat turpis.
       </p>
 
-      <Title type="h4">H4 Lorem - Font serif</Title>
+      <Heading as="h4">H4 Lorem - Font serif</Heading>
       <p className="font-serif">
         Proin sed nibh efficitur, iaculis nunc ut, aliquam erat. In quis finibus
         mauris. Maecenas quis elit sollicitudin, bibendum purus in, condimentum
@@ -62,7 +62,7 @@ export default function Home() {
         quis arcu sed nunc rutrum finibus.
       </p>
 
-      <Title type="h5">H5 Lorem - Font mono</Title>
+      <Heading as="h5">H5 Lorem - Font mono</Heading>
       <p className="font-mono">
         Phasellus bibendum enim vel nulla sollicitudin elementum. Nam odio
         turpis, interdum ac enim quis, accumsan hendrerit felis. Nunc maximus,
@@ -73,7 +73,7 @@ export default function Home() {
         eleifend malesuada.
       </p>
 
-      <Title type="h6">H6 Lorem</Title>
+      <Heading as="h6">H6 Lorem</Heading>
       <p>
         Nam in enim a dolor auctor maximus in a dui. Phasellus quis lorem
         tortor. Mauris quis varius felis, eget congue magna. Vestibulum mollis

@@ -3,8 +3,8 @@ import { getServerSession } from "next-auth"
 
 import { getTodos } from "@/data/todo-actions"
 
+import Heading from "@/components/ui/heading"
 import Link from "@/components/ui/link"
-import Title from "@/components/ui/title"
 
 import CreateForm from "./create-form"
 import TodoItem from "./todo-item"
@@ -39,18 +39,18 @@ export default async function Todos() {
     <>
       <CreateForm />
 
-      <Title type="h2" className="my-4">
+      <Heading as="h2" className="my-4">
         TODOs
-      </Title>
+      </Heading>
       <div className="grid grid-cols-1 gap-2">
         {todos?.map((todo) => (
           <TodoItem key={todo.id} todo={todo} nextState={1} />
         ))}
       </div>
 
-      <Title type="h2" className="my-4">
+      <Heading as="h2" className="my-4">
         TODONEs
-      </Title>
+      </Heading>
       <div className="flex flex-col gap-2">
         {todones?.map((todo) => (
           <TodoItem key={todo.id} todo={todo} />

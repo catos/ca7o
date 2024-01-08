@@ -1,10 +1,10 @@
 import { createRecipe } from "@/data/recipe-actions"
 
 import Button from "@/components/ui/button"
+import Heading from "@/components/ui/heading"
 import Input from "@/components/ui/input"
 import Link from "@/components/ui/link"
 import Textarea from "@/components/ui/textarea"
-import Title from "@/components/ui/title"
 
 export default async function CreateRecipe() {
   return (
@@ -12,7 +12,7 @@ export default async function CreateRecipe() {
       className="relative flex flex-col gap-4 w-full bg-white shadow-md rounded px-8 py-8 mb-4"
       action={createRecipe}
     >
-      <Title>Create recipe</Title>
+      <Heading>Create recipe</Heading>
       <Input
         required
         id="title"

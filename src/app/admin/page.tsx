@@ -1,7 +1,7 @@
 import { getServerSession } from "next-auth"
 import { redirect } from "next/navigation"
 
-import Title from "@/components/ui/title"
+import Heading from "@/components/ui/heading"
 
 export default async function Admin() {
   const session = await getServerSession()
@@ -11,7 +11,7 @@ export default async function Admin() {
 
   return (
     <div>
-      <Title>Admin</Title>
+      <Heading>Admin</Heading>
 
       <pre>{JSON.stringify(session, null, 2)}</pre>
     </div>

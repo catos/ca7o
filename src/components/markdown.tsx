@@ -1,8 +1,8 @@
 import { ReactMarkdown, ReactNode } from "react-markdown/lib/react-markdown"
 
+import Heading from "@/components/ui/heading"
 import List from "@/components/ui/list"
 import ListItem from "@/components/ui/list-item"
-import Title from "@/components/ui/title"
 
 export default function Markdown({ children }: { children: string | null }) {
   if (!children) return null
@@ -12,13 +12,13 @@ export default function Markdown({ children }: { children: string | null }) {
 
 const serializers = {
   h1: ({ children }: { children: ReactNode & ReactNode[] }) => {
-    return <Title>{children}</Title>
+    return <Heading>{children}</Heading>
   },
   h2: ({ children }: { children: ReactNode & ReactNode[] }) => {
-    return <Title type="h2">{children}</Title>
+    return <Heading as="h2">{children}</Heading>
   },
   h3: ({ children }: { children: ReactNode & ReactNode[] }) => {
-    return <Title type="h3">{children}</Title>
+    return <Heading as="h3">{children}</Heading>
   },
   ul: ({ children }: { children: ReactNode & ReactNode[] }) => (
     <List>{children}</List>
