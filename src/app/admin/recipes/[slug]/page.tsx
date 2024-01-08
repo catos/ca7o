@@ -34,7 +34,7 @@ export default async function EditRecipePage({ params }: Props) {
 
       <input type="hidden" name="id" value={recipe.id} />
 
-      {/* TODO: WTB a lib-func to format dates */}
+      {/* TODO: WTB a lib-func to format dates... */}
       <ul>
         <li>Created: {recipe.createdAt.toString()}</li>
         <li>Update: {recipe.updatedAt?.toString()}</li>
