@@ -58,8 +58,8 @@ export default function TodoItem({ todo, nextState = 0 }: Props) {
   return (
     <form
       className={twMerge(
-        "border rounded-md p-2 flex flex-col md:flex-row gap-2",
-        isEditing && "border-primary-900 bg-primary-200"
+        "border rounded-md p-4 flex flex-col md:flex-row gap-2 bg-white",
+        isEditing && "border-primary-900 "
       )}
       onSubmit={handleSubmit}
     >
