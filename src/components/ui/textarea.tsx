@@ -6,7 +6,6 @@ type Props = {
   expandOnFocus?: boolean
   required?: boolean
   label?: string
-  className?: string
 } & TextareaHTMLAttributes<HTMLTextAreaElement>
 
 export default function Textarea(props: Props) {
@@ -18,6 +17,12 @@ export default function Textarea(props: Props) {
     className
   )
 
+  const Textarea = <textarea className={classes} id={id} {...rest} />
+
+  if (!label) {
+    return Textarea
+  }
+
   return (
     <div>
       <label
@@ -26,7 +31,7 @@ export default function Textarea(props: Props) {
       >
         {label}
       </label>
-      <textarea className={classes} id={id} {...rest} />
+      {Textarea}
     </div>
   )
 }

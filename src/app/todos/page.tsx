@@ -36,26 +36,30 @@ export default async function Todos() {
   const todones = data?.filter((p) => p.state > 0) ?? []
 
   return (
-    <>
+    <div className="flex flex-col gap-4">
       <CreateForm />
 
-      <Heading as="h2" className="my-4">
-        TODOs
-      </Heading>
-      <div className="grid grid-cols-1 gap-2">
-        {todos?.map((todo) => (
-          <TodoItem key={todo.id} todo={todo} nextState={1} />
-        ))}
+      <div className="p-4 bg-white rounded-lg">
+        <Heading as="h2" className="my-4">
+          TODOs
+        </Heading>
+        <div className="grid grid-cols-1 gap-1 bg-white">
+          {todos?.map((todo) => (
+            <TodoItem key={todo.id} todo={todo} nextState={1} />
+          ))}
+        </div>
       </div>
 
-      <Heading as="h2" className="my-4">
-        TODONEs
-      </Heading>
-      <div className="flex flex-col gap-2">
-        {todones?.map((todo) => (
-          <TodoItem key={todo.id} todo={todo} />
-        ))}
+      <div className="p-4 bg-white rounded-lg">
+        <Heading as="h2" className="my-4">
+          TODONEs
+        </Heading>
+        <div className="flex flex-col gap-2">
+          {todones?.map((todo) => (
+            <TodoItem key={todo.id} todo={todo} />
+          ))}
+        </div>
       </div>
-    </>
+    </div>
   )
 }

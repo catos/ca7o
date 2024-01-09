@@ -13,7 +13,7 @@ export default function IconButton({ name, className, ...rest }: Props) {
   )
   return (
     <button className={classes} {...rest}>
-      <Icon className="w-4 h-4" name={name} />
+      <Icon name={name} />
     </button>
   )
 }

@@ -11,9 +11,11 @@ export type ChangeEventType = HTMLInputElement | { name?: string; value: any }
 function useForm<T>({
   initialValues,
   onSubmit,
+  onChange,
 }: {
   initialValues: T
   onSubmit: OnSubmitType
+  onChange?: (values: T, event: React.ChangeEvent<ChangeEventType>) => void
 }) {
   const [values, setValues] = React.useState<T>(initialValues)
   const [errors] = React.useState({})
@@ -34,6 +36,10 @@ function useForm<T>({
         ...values,
         [name]: value,
       })
+    }
+
+    if (onChange) {
+      onChange(values, event)
     }
   }
 
