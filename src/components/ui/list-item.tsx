@@ -6,7 +6,7 @@ type Props = {
 
 export default function ListItem({ className, ...rest }: Props) {
   const classes = twMerge(
-    "p-2 hover:bg-primary-900 hover:bg-opacity-5 rounded",
+    "p-1 hover:bg-primary-900 hover:bg-opacity-5 rounded",
     className
   )
 
