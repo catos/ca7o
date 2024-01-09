@@ -9,3 +9,24 @@ REF: (dynamic ui component exampple) https://github.com/catos/mdk-next/blob/main
 
 npx prisma migrate dev --name type-change
 npx prisma studio
+
+# CSS in 2023 - Tailwind vs MUI vs Bootstrap vs Chakra vs...
+
+https://www.youtube.com/watch?v=CQuTF-bkOgc
+
+CSS++
+
+- Tailwind
+- SASS
+
+Behaviour libraries:
+
+- Radix
+- HeadlessUI
+- React Aria
+
+Style systems:
+
+- DaisyUI
+- Bootstrap
+- TailwindUI
