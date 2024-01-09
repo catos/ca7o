@@ -6,10 +6,17 @@ type Props = {
   expandOnFocus?: boolean
   required?: boolean
   label?: string
+  className?: string
 } & TextareaHTMLAttributes<HTMLTextAreaElement>
 
 export default function Textarea(props: Props) {
-  const { id, label, expandOnFocus, ...rest } = props
+  const { id, label, className, expandOnFocus = false, ...rest } = props
+
+  const classes = twMerge(
+    "block w-full bg-white border border-gray-300 rounded py-2 px-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500",
+    expandOnFocus && "focus:shadow-outline",
+    className
+  )
 
   return (
     <div>
@@ -19,14 +26,7 @@ export default function Textarea(props: Props) {
       >
         {label}
       </label>
-      <textarea
-        className={twMerge(
-          "appearance-none h-32 border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline",
-          expandOnFocus && "focus:h-64"
-        )}
-        id={id}
-        {...rest}
-      />
+      <textarea className={classes} id={id} {...rest} />
     </div>
   )
 }

@@ -19,7 +19,7 @@ export default async function EditRecipePage({ params }: Props) {
 
   return (
     <form
-      className="relative flex flex-col gap-4 p-4 mb-4"
+      className="relative flex flex-col gap-4 p-4 h-full"
       action={updateRecipe}
     >
       <div className="flex gap-8 items-center">
@@ -58,17 +58,16 @@ export default async function EditRecipePage({ params }: Props) {
       />
       <Textarea
         required
-        expandOnFocus
         id="description"
         name="description"
         label="Description"
         defaultValue={recipe.description ?? ""}
       />
 
-      <div className="grid grid-cols-2 gap-8">
+      <div className="grid grid-cols-2 gap-8 h-96">
         <Textarea
+          className="h-auto"
           required
-          expandOnFocus
           id="ingredients"
           name="ingredients"
           label="Ingredients"
@@ -76,7 +75,6 @@ export default async function EditRecipePage({ params }: Props) {
         />
         <Textarea
           required
-          expandOnFocus
           id="instructions"
           name="instructions"
           label="Instructions"
