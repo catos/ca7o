@@ -1,9 +1,10 @@
 import Icon from "@/components/icon"
 import Image from "@/components/image"
-import Markdown from "@/components/markdown"
+import Markdown from "@/components/recipe/markdown"
 
 import { getRecipe, getRecipes } from "@/data/recipe-actions"
 
+import Badge from "@/components/ui/badge"
 import Heading from "@/components/ui/heading"
 import Link from "@/components/ui/link"
 
@@ -27,30 +28,32 @@ export default async function RecipesPage({ params }: Props) {
 
   return (
     <div className="flex flex-col gap-4">
-      <div>
-        <div className="relative">
-          <Link
-            className="absolute top-2 right-2 no-underline font-bold opacity-60 bg-primary-900 text-primary-100 rounded-full p-2"
-            href={`/admin/recipes/${recipe.id}`}
-          >
-            <Icon className="w-4 h-4" name="edit" />
-          </Link>
-          <div className="flex flex-col absolute right-0 bottom-0 left-0">
-            <Heading className="opacity-80 bg-primary-900 text-primary-100 p-4 m-0">
-              {recipe.title}
-            </Heading>
-            <div className="opacity-90 bg-primary-900 text-primary-100 p-4 px-4 py-2">
-              <Markdown>{recipe.description}</Markdown>
-            </div>
-          </div>
-
-          <Image
-            className="max-h-64 sm:max-h-96 object-cover"
-            src={recipe.image}
-            alt={recipe.title}
-          />
-        </div>
+      <div className="relative">
+        {/* TODO: move this */}
+        <Link
+          className="absolute top-2 right-2 no-underline font-bold opacity-60 bg-primary-900 text-primary-100 rounded-full p-2"
+          href={`/admin/recipes/${recipe.id}`}
+        >
+          <Icon className="w-4 h-4" name="edit" />
+        </Link>
+        <Image
+          className="max-h-64 sm:max-h-96 object-cover"
+          src={recipe.image}
+          alt={recipe.title}
+        />
       </div>
+
+      <section className="flex flex-col">
+        <Heading as="h1" className="px-4 m-0 text-center font-semibold">
+          {recipe.title}
+        </Heading>
+        <div>
+          <Badge>Fisk</Badge>
+          <Badge>Enkel</Badge>
+          <Badge>Sunn</Badge>
+        </div>
+        <div>Tags - Favorites - Skriv ut</div>
+      </section>
 
       <div className="flex flex-col gap-4 sm:flex-row">
         <section className="rounded-lg sm:w-1/2 md:w-5/12 bg-white p-4">

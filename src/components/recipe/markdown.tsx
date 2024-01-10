@@ -1,10 +1,11 @@
+import Image from "@/components/image"
 import { ReactMarkdown, ReactNode } from "react-markdown/lib/react-markdown"
 
 import Heading from "@/components/ui/heading"
 import List from "@/components/ui/list"
-import ListItem from "@/components/ui/list-item"
 
-import Timer from "./timer"
+import Timer from "../timer"
+import ListItem from "./list-item"
 
 export default function Markdown({ children }: { children: string | null }) {
   if (!children) return null
@@ -34,11 +35,12 @@ const serializers = {
       </Heading>
     )
   },
+  // TODO: move this to separate component since I did this with "li" ?
   ul: ({ children }: { children: ReactNode & ReactNode[] }) => (
-    <List>{children}</List>
+    <List className="list-none p-0">{children}</List>
   ),
-  li: ({ children }: { children: ReactNode & ReactNode[] }) => {
-    return <ListItem>{children}</ListItem>
+  li: (props: any) => {
+    return <ListItem {...props} />
   },
   p: ({ children }: any) => {
     return <p className="m-0">{children}</p>
@@ -56,8 +58,13 @@ const serializers = {
       </code>
     )
   },
-  img: ({ children, ...rest }: { children: ReactNode & ReactNode[] }) => {
+  //   img: ({ children, ...rest }: { children: ReactNode & ReactNode[] }) => {
+  img: ({ children, ...rest }: any) => {
     console.log(children, rest)
-    return <img src={rest.src} />
+    return (
+      <span className="relative">
+        <Image src={rest.src} alt={rest.alt} />
+      </span>
+    )
   },
 }
