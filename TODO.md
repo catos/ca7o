@@ -14,6 +14,10 @@ npx prisma studio
 
 https://www.youtube.com/watch?v=CQuTF-bkOgc
 
+# Check til å jumpstarte komponenter
+
+https://flowbite.com/
+
 CSS++
 
 - Tailwind

@@ -52,7 +52,7 @@ export default async function RecipesPage({ params }: Props) {
           <Badge>Enkel</Badge>
           <Badge>Sunn</Badge>
         </div>
-        <div>Tags - Favorites - Skriv ut</div>
+        <div>Favorites - Add to menu - Skriv ut</div>
       </section>
 
       <div className="flex flex-col gap-4 sm:flex-row">

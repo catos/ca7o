@@ -2,7 +2,8 @@
 
 import slugify from "@/lib/slugify"
 import { useState } from "react"
-import { twMerge } from "tailwind-merge"
+
+import Checkbox from "../ui/checkbox"
 
 export default function ListItem({
   index,
@@ -17,25 +18,17 @@ export default function ListItem({
   const handleChange = () => {
     setChecked(!checked)
   }
+
   return (
-    <div className="flex items-center">
-      <input
+    <div className="py-1">
+      <Checkbox
         id={id}
         type="checkbox"
         checked={checked}
         onChange={handleChange}
         name={id}
-        className="checkbox"
+        label={children}
       />
-      <label
-        htmlFor={id}
-        className={twMerge(
-          "p-2 text-base inline-block cursor-pointer whitespace-normal flex-grow",
-          checked ? "text-slate-500 line-through" : "inherit"
-        )}
-      >
-        {children}
-      </label>
     </div>
   )
 }
