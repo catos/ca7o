@@ -23,15 +23,7 @@ type Props = {
 export default function TodoItem({ todo, nextState = 0 }: Props) {
   let [isOpen, setIsOpen] = useState(false)
 
-  const closeModal = () => {
-    setIsOpen(false)
-  }
-
-  const openModal = () => {
-    setIsOpen(true)
-  }
-
-  const { values, handleSubmit, handleChange } = useForm({
+  const { values, register, handleSubmit } = useForm({
     initialValues: {
       title: todo.title ?? "",
       content: todo.content ?? "",
@@ -47,6 +39,15 @@ export default function TodoItem({ todo, nextState = 0 }: Props) {
   })
 
   const isDone = todo.state > 0
+
+  const closeModal = () => {
+    saveChanges()
+    setIsOpen(false)
+  }
+
+  const openModal = () => {
+    setIsOpen(true)
+  }
 
   const saveChanges = () => {
     const formData = new FormData()
@@ -81,16 +82,11 @@ export default function TodoItem({ todo, nextState = 0 }: Props) {
         <div className="flex-1 flex flex-col">
           <Input
             className="bg-transparent border-none font-semibold text-xl"
-            name="title"
-            type="text"
-            value={values.title ?? ""}
-            onChange={handleChange}
+            {...register("title")}
           />
           <Textarea
             className="bg-transparent border-none flex-1"
-            name="content"
-            onChange={handleChange}
-            value={values.content ?? ""}
+            {...register("content")}
             placeholder="Add content here (optional)"
           />
         </div>

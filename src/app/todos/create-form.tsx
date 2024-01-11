@@ -46,7 +46,7 @@ export default function CreateForm() {
   const [expanded, setExpanded] = useState(false)
   const { status, message, mutate } = useTodo()
   const ref = useOutsideClick<HTMLFormElement>(() => setExpanded(false))
-  const { values, handleSubmit, handleChange, reset } = useForm({
+  const { register, handleSubmit, reset } = useForm({
     initialValues: {
       title: "",
       content: "",
@@ -69,26 +69,19 @@ export default function CreateForm() {
   return (
     <form ref={ref} onSubmit={handleSubmit} className="flex flex-col gap-2">
       <Input
-        id="title"
-        name="title"
-        type="text"
+        {...register("title")}
         placeholder="Start typing your TODO here..."
         className={twMerge(
           !expanded && "border-2 border-primary-400 rounded-md"
         )}
         onFocus={handleFocus}
-        value={values.title}
-        onChange={handleChange}
       />
 
       {expanded && (
         <>
           <Textarea
-            id="content"
-            name="content"
+            {...register("content")}
             placeholder="Add some content if you like"
-            value={values.content}
-            onChange={handleChange}
           />
           <Button type="submit" disabled={status === "pending"}>
             Create

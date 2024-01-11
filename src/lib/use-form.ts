@@ -1,12 +1,15 @@
 import * as React from "react"
 
-// TODO: customFormHook: https://www.telerik.com/blogs/how-to-build-custom-forms-react-hooks
-export type OnSubmitType = (values: any, event: any, error: any) => void //Promise<void>
 export type StatusType = "idle" | "pending" | "rejected" | "success"
 export type ChangeEventType = HTMLInputElement | { name?: string; value: any }
 
 /**
- * TODO: remove | undefined (check login)
+ * Inspiration:
+ * - https://www.telerik.com/blogs/how-to-build-custom-forms-react-hooks
+ * - https://react-hook-form.com/get-started
+ *
+ * TODO: support validation ?
+ * TODO: add throttled onChange ?
  */
 function useForm<T>({
   initialValues,
@@ -14,7 +17,7 @@ function useForm<T>({
   onChange,
 }: {
   initialValues: T
-  onSubmit: OnSubmitType
+  onSubmit: (values: T, event: any, error: any) => void
   onChange?: (values: T, event: React.ChangeEvent<ChangeEventType>) => void
 }) {
   const [values, setValues] = React.useState<T>(initialValues)
@@ -25,21 +28,20 @@ function useForm<T>({
       event.preventDefault()
     }
 
-    // TODO: support validation ?
     onSubmit(values, event, errors)
   }
 
   const handleChange = (event: React.ChangeEvent<ChangeEventType>) => {
     const { name, value } = event.target
-    if (name && values) {
-      setValues({
-        ...values,
-        [name]: value,
-      })
+    if (!name || !value) {
+      return
     }
 
+    const _values = { ...values, [name]: value }
+    setValues(_values)
+
     if (onChange) {
-      onChange(values, event)
+      onChange(_values, event)
     }
   }
 
@@ -47,9 +49,19 @@ function useForm<T>({
     setValues(initialValues)
   }
 
+  const register = (name: string) => {
+    const key = name as keyof T
+    return {
+      id: name,
+      name,
+      onChange: handleChange,
+      value: values[key],
+    }
+  }
+
   return {
     values,
-    setValues,
+    register,
     handleSubmit,
     handleChange,
     reset,
