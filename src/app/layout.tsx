@@ -2,7 +2,7 @@ import Header from "@/components/header"
 import Providers from "@/components/providers"
 import { Inter, Roboto_Mono } from "next/font/google"
 
-import "./globals.css"
+import "../styles/globals.css"
 
 const inter = Inter({
   subsets: ["latin"],

@@ -1,7 +1,7 @@
 import { Dialog, Transition } from "@headlessui/react"
-import { Fragment, useState } from "react"
+import { Fragment } from "react"
 
-import Button from "./button"
+import { Button } from "./button"
 
 export default function Modal({
   isOpen,

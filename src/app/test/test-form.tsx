@@ -2,7 +2,7 @@
 
 import useForm from "@/lib/use-form"
 
-import Button from "@/components/ui/button"
+import { Button } from "@/components/ui/button"
 import Input from "@/components/ui/input"
 
 type FormType = {

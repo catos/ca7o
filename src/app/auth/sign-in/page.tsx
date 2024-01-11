@@ -3,7 +3,7 @@
 import { signIn } from "next-auth/react"
 import { useSearchParams } from "next/navigation"
 
-import Button from "@/components/ui/button"
+import { Button } from "@/components/ui/button"
 import Input from "@/components/ui/input"
 
 export default function SignIn() {

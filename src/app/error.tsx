@@ -3,7 +3,7 @@
 // Error components must be Client components
 import { useEffect } from "react"
 
-import Button from "@/components/ui/button"
+import { Button } from "@/components/ui/button"
 import Heading from "@/components/ui/heading"
 
 // TODO: implement error page for all routes

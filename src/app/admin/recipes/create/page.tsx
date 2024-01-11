@@ -1,6 +1,6 @@
 import { createRecipe } from "@/data/recipe-actions"
 
-import Button from "@/components/ui/button"
+import { Button } from "@/components/ui/button"
 import Heading from "@/components/ui/heading"
 import Input from "@/components/ui/input"
 import Link from "@/components/ui/link"

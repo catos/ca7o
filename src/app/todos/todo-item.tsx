@@ -7,7 +7,7 @@ import { twMerge } from "tailwind-merge"
 
 import { updateTodo } from "@/data/todo-actions"
 
-import Button from "@/components/ui/button"
+import { Button } from "@/components/ui/button"
 import Input from "@/components/ui/input"
 import Dialog from "@/components/ui/modal"
 import Textarea from "@/components/ui/textarea"

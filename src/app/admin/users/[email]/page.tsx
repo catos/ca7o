@@ -3,7 +3,7 @@ import { notFound } from "next/navigation"
 
 import { getUser, updateUser } from "@/data/user-actions"
 
-import Button from "@/components/ui/button"
+import { Button } from "@/components/ui/button"
 import Input from "@/components/ui/input"
 
 type Props = {

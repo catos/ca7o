@@ -3,8 +3,9 @@
 import Icon from "@/components/icon"
 import { signIn, signOut, useSession } from "next-auth/react"
 
-import Button from "@/components/ui/button"
 import Link from "@/components/ui/link"
+
+import { Button } from "./ui/button"
 
 export default function SigninButton() {
   const { data: session, status } = useSession()

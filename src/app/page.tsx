@@ -3,18 +3,6 @@ import Heading from "@/components/ui/heading"
 export default function Home() {
   return (
     <>
-      <h1>
-        H1 Lorem - TODO: consider just using globals.css for simple styling
-        instead of UI components
-      </h1>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed
-        faucibus sapien. Phasellus hendrerit sollicitudin sagittis. Morbi eu dui
-        turpis. Sed ac pretium orci, vel accumsan mi. Nam in mollis nisl.
-        Phasellus non dapibus dolor. Morbi tincidunt euismod nibh ut
-        condimentum. Suspendisse at odio dui.
-      </p>
-
       <Heading>H1 Title Lorem</Heading>
       <p>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed

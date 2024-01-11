@@ -4,7 +4,7 @@ import { Todo } from "@prisma/client"
 
 import { deleteTodo } from "@/data/todo-actions"
 
-import Button from "@/components/ui/button"
+import { Button } from "@/components/ui/button"
 
 export default function DeleteFrom({ todo }: { todo: Todo }) {
   const handleClick = () => {
