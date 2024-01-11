@@ -1,5 +1,6 @@
 "use client"
 
+import Icon from "@/components/icon"
 import { Todo } from "@prisma/client"
 
 import { deleteTodo } from "@/data/todo-actions"
@@ -12,8 +13,8 @@ export default function DeleteFrom({ todo }: { todo: Todo }) {
   }
 
   return (
-    <Button color="danger" onClick={handleClick}>
-      Delete
+    <Button variant="destructive" size="icon" onClick={handleClick}>
+      <Icon name="x" />
     </Button>
   )
 }

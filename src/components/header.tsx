@@ -22,7 +22,6 @@ export default function Header() {
 
         <div className="flex gap-4 ml-auto">
           <SigninButton />
-          <Icon name="shoppingCart" />
         </div>
       </div>
     </nav>

@@ -27,7 +27,9 @@ export default function SigninButton() {
         <Link className="no-underline" href="/admin">
           <Icon name="cog" />
         </Link>
-        <Button onClick={handleSignOut}>Sign out</Button>
+        <Button variant="outline" lollor="destructive" onClick={handleSignOut}>
+          Sign out
+        </Button>
       </div>
     )
   }

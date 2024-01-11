@@ -1,10 +1,11 @@
 "use client"
 
+import Icon from "@/components/icon"
 import { Todo } from "@prisma/client"
 
 import { updateState } from "@/data/todo-actions"
 
-import IconButton from "@/components/ui/icon-button"
+import { Button } from "@/components/ui/button"
 
 type Props = {
   todo: Todo
@@ -16,9 +17,8 @@ export default function UpdateState({ todo, value = 0 }: Props) {
     updateState(todo.id, value)
   }
   return (
-    <IconButton
-      onClick={handleClick}
-      name={todo.state === 0 ? "check" : "arrowUturnLeft"}
-    />
+    <Button size="icon" onClick={handleClick}>
+      <Icon name={todo.state === 0 ? "check" : "undo2"} />
+    </Button>
   )
 }
