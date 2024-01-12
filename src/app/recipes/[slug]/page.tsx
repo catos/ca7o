@@ -1,13 +1,19 @@
 import Icon from "@/components/icon"
 import Image from "@/components/image"
 import Markdown from "@/components/recipe/markdown"
-import { CookingPot } from "lucide-react"
+import { BookPlusIcon, CookingPot, PrinterIcon, StarIcon } from "lucide-react"
 
 import { getRecipe, getRecipes } from "@/data/recipe-actions"
 
-import Badge from "@/components/ui/badge"
+import { Badge } from "@/components/ui/badge"
 import Heading from "@/components/ui/heading"
 import Link from "@/components/ui/link"
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip"
 
 export const revalidate = 60 * 60 * 24
 
@@ -48,12 +54,37 @@ export default async function RecipesPage({ params }: Props) {
         <Heading as="h1" className="px-4 m-0 text-center font-semibold">
           {recipe.title}
         </Heading>
-        <div>
+        <div className="py-4 flex gap-2 justify-center">
           <Badge>Fisk</Badge>
           <Badge>Enkel</Badge>
           <Badge>Sunn</Badge>
         </div>
-        <div>Favorites - Add to menu - Skriv ut</div>
+        <div className="pb-4 flex gap-4 justify-center">
+          <Tooltip>
+            <TooltipTrigger>
+              <StarIcon />
+            </TooltipTrigger>
+            <TooltipContent>
+              <p>Legg til som favoritt</p>
+            </TooltipContent>
+          </Tooltip>
+          <Tooltip>
+            <TooltipTrigger>
+              <BookPlusIcon />
+            </TooltipTrigger>
+            <TooltipContent>
+              <p>Legg til oppskrift i meny</p>
+            </TooltipContent>
+          </Tooltip>
+          <Tooltip>
+            <TooltipTrigger>
+              <PrinterIcon />
+            </TooltipTrigger>
+            <TooltipContent>
+              <p>Skriv ut</p>
+            </TooltipContent>
+          </Tooltip>
+        </div>
       </section>
 
       <div className="flex flex-col gap-4 sm:flex-row">
