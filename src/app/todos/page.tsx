@@ -37,23 +37,14 @@ export default async function Todos() {
 
   return (
     <div className="flex flex-col gap-4">
-      <CreateForm />
-
-      <div className="p-4 bg-white rounded-lg">
-        <Heading as="h2" className="my-4">
-          TODOs
-        </Heading>
-        <div className="grid grid-cols-1 gap-1 bg-white">
+      <div className="flex flex-col gap-4 p-4 bg-white rounded-lg">
+        <CreateForm />
+        <Heading as="h2">TODOs</Heading>
+        <div className="flex flex-col gap-2 bg-white">
           {todos?.map((todo) => (
             <TodoItem key={todo.id} todo={todo} nextState={1} />
           ))}
         </div>
-      </div>
-
-      <div className="p-4 bg-white rounded-lg">
-        <Heading as="h2" className="my-4">
-          TODONEs
-        </Heading>
         <div className="flex flex-col gap-2">
           {todones?.map((todo) => (
             <TodoItem key={todo.id} todo={todo} />

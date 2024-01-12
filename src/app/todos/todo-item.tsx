@@ -21,8 +21,6 @@ type Props = {
 }
 
 export default function TodoItem({ todo, nextState = 0 }: Props) {
-  let [isOpen, setIsOpen] = useState(false)
-
   const { values, register, handleSubmit } = useForm({
     initialValues: {
       title: todo.title ?? "",
@@ -30,7 +28,6 @@ export default function TodoItem({ todo, nextState = 0 }: Props) {
     },
     onSubmit: () => {
       saveChanges()
-      closeModal()
     },
     onChange: () => {
       // TODO: need to throttle this
@@ -40,15 +37,13 @@ export default function TodoItem({ todo, nextState = 0 }: Props) {
 
   const isDone = todo.state > 0
 
-  const closeModal = () => {
-    saveChanges()
-    setIsOpen(false)
+  const handleOpenChange = (open: boolean) => {
+    if (!open) {
+      saveChanges()
+    }
   }
 
-  const openModal = () => {
-    setIsOpen(true)
-  }
-
+  // TODO: review/refactor, not sure how though
   const saveChanges = () => {
     const formData = new FormData()
     formData.set("id", todo.id.toString())
@@ -62,7 +57,7 @@ export default function TodoItem({ todo, nextState = 0 }: Props) {
   }
 
   return (
-    <Dialog>
+    <Dialog onOpenChange={handleOpenChange}>
       <DialogTrigger
         className={twMerge(
           "p-1 text-left cursor-pointer hover:bg-slate-100",
@@ -71,7 +66,7 @@ export default function TodoItem({ todo, nextState = 0 }: Props) {
       >
         {todo.title}
       </DialogTrigger>
-      <DialogContent>
+      <DialogContent onOpenAutoFocus={(e) => e.preventDefault()}>
         <form className="flex flex-col gap-2 h-96" onSubmit={handleSubmit}>
           <div className="flex-1 flex flex-col">
             <Input
@@ -92,7 +87,7 @@ export default function TodoItem({ todo, nextState = 0 }: Props) {
             <UpdateState todo={todo} value={nextState} />
             <DeleteForm todo={todo} />
             <div className="flex-1 text-right">
-              <Button type="submit">Save</Button>
+              <Button type="submit">Large</Button>
             </div>
           </div>
         </form>

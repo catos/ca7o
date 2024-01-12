@@ -8,6 +8,7 @@ export type ChangeEventType = HTMLInputElement | { name?: string; value: any }
  * - https://www.telerik.com/blogs/how-to-build-custom-forms-react-hooks
  * - https://react-hook-form.com/get-started
  *
+ * TODO: add status (idle, pending, rejected, success) on submit
  * TODO: support validation ?
  * TODO: add throttled onChange ?
  */
