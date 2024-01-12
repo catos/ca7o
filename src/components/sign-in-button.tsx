@@ -1,8 +1,10 @@
 "use client"
 
+import { getInitials } from "@/lib/get-initials"
 import { Settings as SettingsIcon } from "lucide-react"
 import { signIn, signOut, useSession } from "next-auth/react"
 
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import Link from "@/components/ui/link"
 
 import { Button } from "./ui/button"
@@ -23,7 +25,11 @@ export default function SigninButton() {
   if (status === "authenticated") {
     return (
       <div className="flex gap-4 items-center">
-        <span>{session.user.name}</span>
+        <Avatar className="w-8 h-8">
+          <AvatarImage src={session.user.avatar} />
+          <AvatarFallback>{getInitials(session.user.name)}</AvatarFallback>
+        </Avatar>
+
         <Link className="no-underline" href="/admin">
           <SettingsIcon />
         </Link>

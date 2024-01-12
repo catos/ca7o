@@ -39,6 +39,7 @@ export default async function EditUserPage({ params }: Props) {
         label="Name"
         defaultValue={user.name ?? ""}
       />
+
       <Input
         required
         id="email"
@@ -46,6 +47,15 @@ export default async function EditUserPage({ params }: Props) {
         name="email"
         label="Email"
         defaultValue={user.email}
+      />
+
+      <Input
+        required
+        id="avatar"
+        type="text"
+        name="avatar"
+        label="Avatar"
+        defaultValue={user.avatar ?? ""}
       />
 
       {/* TODO: Add reset password functionality */}

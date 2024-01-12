@@ -48,6 +48,7 @@ export async function updateUser(formData: FormData) {
     id: z.string(),
     name: z.string(),
     email: z.string(),
+    avatar: z.string(),
   })
 
   const form = schema.parse(Object.fromEntries(formData))
