@@ -58,9 +58,8 @@ const serializers = {
       </code>
     )
   },
-  //   img: ({ children, ...rest }: { children: ReactNode & ReactNode[] }) => {
+  // TODO: types ... img: ({ children, ...rest }: { children: ReactNode & ReactNode[] }) => {
   img: ({ children, ...rest }: any) => {
-    console.log(children, rest)
     return (
       <span className="relative">
         <Image src={rest.src} alt={rest.alt} />

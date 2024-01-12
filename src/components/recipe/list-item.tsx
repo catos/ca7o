@@ -1,9 +1,12 @@
 "use client"
 
 import slugify from "@/lib/slugify"
+import { cn } from "@/lib/utils"
 import { useState } from "react"
+import { twMerge } from "tailwind-merge"
 
-import Checkbox from "../ui/checkbox"
+import { Checkbox } from "@/components/ui/checkbox"
+import { Label } from "@/components/ui/label"
 
 export default function ListItem({
   index,
@@ -20,15 +23,14 @@ export default function ListItem({
   }
 
   return (
-    <div className="py-1">
-      <Checkbox
-        id={id}
-        type="checkbox"
-        checked={checked}
-        onChange={handleChange}
-        name={id}
-        label={children}
-      />
+    <div className="py-2 flex items-center space-x-2">
+      <Checkbox id={id} checked={checked} onCheckedChange={handleChange} />
+      <Label
+        className={twMerge("font-normal", checked && "line-through")}
+        htmlFor={id}
+      >
+        {children}
+      </Label>
     </div>
   )
 }
