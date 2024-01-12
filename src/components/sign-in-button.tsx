@@ -1,6 +1,6 @@
 "use client"
 
-import Icon from "@/components/icon"
+import { Settings as SettingsIcon } from "lucide-react"
 import { signIn, signOut, useSession } from "next-auth/react"
 
 import Link from "@/components/ui/link"
@@ -25,9 +25,9 @@ export default function SigninButton() {
       <div className="flex gap-4 items-center">
         <span>{session.user.name}</span>
         <Link className="no-underline" href="/admin">
-          <Icon name="cog" />
+          <SettingsIcon />
         </Link>
-        <Button variant="outline" lollor="destructive" onClick={handleSignOut}>
+        <Button variant="outline" onClick={handleSignOut}>
           Sign out
         </Button>
       </div>

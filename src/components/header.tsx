@@ -3,7 +3,6 @@ import React, { ReactNode } from "react"
 
 import Link from "@/components/ui/link"
 
-import Icon from "./icon"
 import Logo from "./logo"
 
 export default function Header() {

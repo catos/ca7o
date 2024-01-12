@@ -8,8 +8,8 @@ import { twMerge } from "tailwind-merge"
 import { updateTodo } from "@/data/todo-actions"
 
 import { Button } from "@/components/ui/button"
+import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog"
 import Input from "@/components/ui/input"
-import Dialog from "@/components/ui/modal"
 import Textarea from "@/components/ui/textarea"
 
 import DeleteForm from "./delete-form"
@@ -62,46 +62,41 @@ export default function TodoItem({ todo, nextState = 0 }: Props) {
   }
 
   return (
-    <Dialog
-      isOpen={isOpen}
-      closeModal={closeModal}
-      openModal={openModal}
-      toggler={
-        <div
-          className={twMerge(
-            "p-1 cursor-pointer hover:bg-slate-100",
-            isDone && "line-through text-gray-500"
-          )}
-          onClick={openModal}
-        >
-          {todo.title}
-        </div>
-      }
-    >
-      <form className="p-4 flex flex-col gap-2 h-96" onSubmit={handleSubmit}>
-        <div className="flex-1 flex flex-col">
-          <Input
-            className="bg-transparent border-none font-semibold text-xl"
-            {...register("title")}
-          />
-          <Textarea
-            className="bg-transparent border-none flex-1"
-            {...register("content")}
-            placeholder="Add content here (optional)"
-          />
-        </div>
-        <div className="flex justify-end text-sm text-primary-500">
-          Sist oppdatert: {todo.updatedAt.toLocaleString("no-NO")}
-        </div>
-        <div className="mt-4 flex gap-4">
-          {/* TODO: naming!!! what to call all this, and the files ... */}
-          <UpdateState todo={todo} value={nextState} />
-          <DeleteForm todo={todo} />
-          <div className="flex-1 text-right">
-            <Button type="submit">Save</Button>
+    <Dialog>
+      <DialogTrigger
+        className={twMerge(
+          "p-1 text-left cursor-pointer hover:bg-slate-100",
+          isDone && "line-through text-gray-500"
+        )}
+      >
+        {todo.title}
+      </DialogTrigger>
+      <DialogContent>
+        <form className="flex flex-col gap-2 h-96" onSubmit={handleSubmit}>
+          <div className="flex-1 flex flex-col">
+            <Input
+              className="bg-transparent border-none font-semibold text-xl"
+              {...register("title")}
+            />
+            <Textarea
+              className="bg-transparent border-none flex-1"
+              {...register("content")}
+              placeholder="Add content here (optional)"
+            />
           </div>
-        </div>
-      </form>
+          <div className="flex justify-end text-sm text-primary-500">
+            Sist oppdatert: {todo.updatedAt.toLocaleString("no-NO")}
+          </div>
+          <div className="mt-4 flex gap-4">
+            {/* TODO: naming!!! what to call all this, and the files ... */}
+            <UpdateState todo={todo} value={nextState} />
+            <DeleteForm todo={todo} />
+            <div className="flex-1 text-right">
+              <Button type="submit">Save</Button>
+            </div>
+          </div>
+        </form>
+      </DialogContent>
     </Dialog>
   )
 }

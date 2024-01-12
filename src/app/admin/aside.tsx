@@ -1,6 +1,12 @@
 "use client"
 
-import Icon from "@/components/icon"
+import {
+  BookTextIcon,
+  ChevronLeftIcon,
+  ChevronRightIcon,
+  HomeIcon,
+  UsersIcon,
+} from "lucide-react"
 import { useState } from "react"
 import { twJoin } from "tailwind-merge"
 
@@ -13,17 +19,17 @@ const asideData = [
   {
     title: "Home",
     href: "/admin",
-    icon: "home",
+    icon: <HomeIcon />,
   },
   {
     title: "Users",
     href: "/admin/users",
-    icon: "users",
+    icon: <UsersIcon />,
   },
   {
     title: "Recipes",
     href: "/admin/recipes",
-    icon: "document",
+    icon: <BookTextIcon />,
   },
 ]
 
@@ -36,10 +42,7 @@ export default function Aside() {
         className="flex items-center gap-2 p-2 no-underline"
         onClick={() => setExpanded(!expanded)}
       >
-        <Icon
-          className="font-bold"
-          name={expanded ? "chevronDoubleLeft" : "chevronDoubleRight"}
-        />
+        {expanded ? <ChevronLeftIcon /> : <ChevronRightIcon />}
         {expanded && <span className="font-bold">Admin</span>}
       </Button>
 
@@ -50,7 +53,7 @@ export default function Aside() {
               className="flex items-center gap-2 p-2 no-underline"
               href={href}
             >
-              <Icon className="" name={icon} />
+              {icon}
               {expanded && <span>{title}</span>}
             </Link>
           </ListItem>

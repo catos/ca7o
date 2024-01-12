@@ -2,6 +2,7 @@
 
 import Icon from "@/components/icon"
 import { Todo } from "@prisma/client"
+import { CheckIcon, UndoIcon } from "lucide-react"
 
 import { updateState } from "@/data/todo-actions"
 
@@ -18,7 +19,7 @@ export default function UpdateState({ todo, value = 0 }: Props) {
   }
   return (
     <Button size="icon" onClick={handleClick}>
-      <Icon name={todo.state === 0 ? "check" : "undo2"} />
+      {todo.state === 0 ? <CheckIcon /> : <UndoIcon />}
     </Button>
   )
 }

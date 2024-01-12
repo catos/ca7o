@@ -1,7 +1,7 @@
 "use client"
 
-import Icon from "@/components/icon"
 import { Todo } from "@prisma/client"
+import { TrashIcon } from "lucide-react"
 
 import { deleteTodo } from "@/data/todo-actions"
 
@@ -14,7 +14,7 @@ export default function DeleteFrom({ todo }: { todo: Todo }) {
 
   return (
     <Button variant="destructive" size="icon" onClick={handleClick}>
-      <Icon name="x" />
+      <TrashIcon />
     </Button>
   )
 }

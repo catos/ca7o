@@ -1,6 +1,7 @@
 import Icon from "@/components/icon"
 import Image from "@/components/image"
 import Markdown from "@/components/recipe/markdown"
+import { CookingPot } from "lucide-react"
 
 import { getRecipe, getRecipes } from "@/data/recipe-actions"
 
@@ -34,7 +35,7 @@ export default async function RecipesPage({ params }: Props) {
           className="absolute top-2 right-2 no-underline font-bold opacity-60 bg-primary-900 text-primary-100 rounded-full p-2"
           href={`/admin/recipes/${recipe.id}`}
         >
-          <Icon className="w-4 h-4" name="edit" />
+          <CookingPot />
         </Link>
         <Image
           className="max-h-64 sm:max-h-96 object-cover"
