@@ -1,13 +1,17 @@
 "use client"
 
 import { getInitials } from "@/lib/get-initials"
-import { Settings as SettingsIcon } from "lucide-react"
 import { signIn, signOut, useSession } from "next-auth/react"
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import { Button } from "@/components/ui/button"
+import Heading from "@/components/ui/heading"
 import Link from "@/components/ui/link"
-
-import { Button } from "./ui/button"
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover"
 
 export default function SigninButton() {
   const { data: session, status } = useSession()
@@ -20,25 +24,40 @@ export default function SigninButton() {
     signIn()
   }
 
-  if (status === "loading") return <Button>...</Button>
+  const { avatar, name } = session?.user ?? { avatar: "", name: "A A" }
 
+  // TODO: WTB full width popover on mobile
   if (status === "authenticated") {
     return (
-      <div className="flex gap-4 items-center">
-        <Avatar className="w-8 h-8">
-          <AvatarImage src={session.user.avatar} />
-          <AvatarFallback>{getInitials(session.user.name)}</AvatarFallback>
-        </Avatar>
+      <Popover>
+        <PopoverTrigger>
+          <Avatar className="w-8 h-8 hover:ring-2 ring-primary">
+            <AvatarImage src={avatar} />
+            <AvatarFallback>{getInitials(name)}</AvatarFallback>
+          </Avatar>
+        </PopoverTrigger>
+        <PopoverContent className="mx-4">
+          <div className="flex flex-col gap-1 items-center">
+            <div>Logget inn som</div>
+            <Heading as="h3">{name}</Heading>
 
-        <Link className="no-underline" href="/admin">
-          <SettingsIcon />
-        </Link>
-        <Button variant="outline" onClick={handleSignOut}>
-          Sign out
-        </Button>
-      </div>
+            <Link className="flex gap-2 no-underline" href="/profile">
+              Profile
+            </Link>
+
+            <Link className="flex gap-2 no-underline" href="/admin">
+              Admin
+            </Link>
+
+            <Button variant="outline" onClick={handleSignOut}>
+              Logg ut
+            </Button>
+          </div>
+        </PopoverContent>
+      </Popover>
     )
   }
 
+  // TODO: Replace this with avatar or something else when we have it working properly ...
   return <Button onClick={handleSignIn}>Sign in</Button>
 }

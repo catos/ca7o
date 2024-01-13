@@ -1,4 +1,5 @@
 import Image from "@/components/image"
+import { twMerge } from "tailwind-merge"
 
 import Heading from "@/components/ui/heading"
 import Link from "@/components/ui/link"
@@ -19,11 +20,10 @@ function snip(title: string, length: number): string {
   return title
 }
 
-// TODO: make card generic again!!!?
-export default function Card({ image, href, title, description, tags }: Props) {
+export default function Card({ image, href, title }: Props) {
   return (
     <Link
-      className="relative flex flex-col max-h-64 no-underline w-full rounded overflow-hidden shadow-lg hover:outline hover:outline-primary-600 hover:outline-2"
+      className="relative flex flex-col max-h-64 no-underline w-full rounded overflow-hidden shadow-lg hover:outline hover:outline-primary-700 hover:outline-2"
       href={href}
     >
       <Image
@@ -31,11 +31,31 @@ export default function Card({ image, href, title, description, tags }: Props) {
         src={image}
         alt={title}
       />
-      <div className="absolute bottom-0 left-0 right-0 h-24 flex items-center p-2 bg-primary-300 bg-opacity-50 overflow-hidden">
-        <Heading as="h2" className="font-bold text-xl mb-0">
-          {snip(title, 50)}
-        </Heading>
-      </div>
+      <CardHeading title={title} />
     </Link>
+  )
+}
+
+function CardHeading({ title }: { title: string }) {
+  let size = "text-2xl"
+
+  if (title.length > 15) {
+    size = "text-xl"
+  }
+
+  if (title.length > 30) {
+    size = "text-lg"
+  }
+
+  return (
+    <Heading
+      as="h2"
+      className={twMerge(
+        "absolute bottom-0 left-0 right-0 h-24 flex flex-1 items-center px-4 bg-slate-900 bg-opacity-75 overflow-hidden font-semibold text-white mb-0",
+        size
+      )}
+    >
+      {snip(title, 50)}
+    </Heading>
   )
 }
