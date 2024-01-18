@@ -1,11 +1,21 @@
 "use client"
 
 import { getInitials } from "@/lib/get-initials"
+import {
+  BookIcon,
+  CheckIcon,
+  FlaskConicalIcon,
+  LogOutIcon,
+  SettingsIcon,
+  StarIcon,
+} from "lucide-react"
 import { signIn, signOut, useSession } from "next-auth/react"
+import { LinkProps } from "next/link"
+import { usePathname } from "next/navigation"
+import React, { useEffect } from "react"
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Button } from "@/components/ui/button"
-import Heading from "@/components/ui/heading"
 import Link from "@/components/ui/link"
 import {
   Popover,
@@ -13,19 +23,30 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover"
 
+function useCloseOnPathChange() {
+  const [open, setOpen] = React.useState(false)
+  const pathname = usePathname()
+  useEffect(() => {
+    setOpen(false)
+  }, [pathname])
+
+  return { open, setOpen }
+}
+
 export default function SigninButton() {
+  const { open, setOpen } = useCloseOnPathChange()
   const { data: session, status } = useSession()
 
   const handleSignIn = () => {
     signIn()
   }
 
-  const { avatar, name } = session?.user ?? { avatar: "", name: "A A" }
+  const { avatar, name, email } = session?.user ?? { avatar: "", name: "A A" }
 
   // TODO: WTB full width popover on mobile
   if (status === "authenticated") {
     return (
-      <Popover>
+      <Popover open={open} onOpenChange={setOpen}>
         <PopoverTrigger>
           <Avatar className="w-8 h-8 hover:ring-2 ring-primary">
             <AvatarImage src={avatar} />
@@ -33,34 +54,51 @@ export default function SigninButton() {
           </Avatar>
         </PopoverTrigger>
         <PopoverContent className="mx-4">
-          <div className="flex flex-col gap-2">
-            <div className="text-foreground opacity-50">Logget inn som</div>
-            <Heading as="h3">{name}</Heading>
+          <div className="w-full flex flex-col gap-2">
+            <NavLink href="/profile">
+              <Avatar className="w-8 h-8">
+                <AvatarImage src={avatar} />
+                <AvatarFallback>{getInitials(name)}</AvatarFallback>
+              </Avatar>
+              <span className="text-lg font-semibold">Profil</span>
+            </NavLink>
 
-            <hr className="w-full my-2" />
+            <NavLink href="/favorites">
+              <StarIcon />
+              <span>Favoritter</span>
+            </NavLink>
 
-            <div className="flex-1 flex flex-col gap-2">
-              <Link
-                className="p-2 no-underline hover:bg-primary/10"
-                href="/profile"
-              >
-                Profile
-              </Link>
+            <NavLink href="/menus">
+              <BookIcon />
+              <span className="line-through">Menyer</span>
+            </NavLink>
 
-              <Link
-                className="p-2 no-underline hover:bg-primary/10"
-                href="/admin"
-              >
-                Admin
-              </Link>
+            <NavLink href="/todos">
+              <CheckIcon />
+              <span>Todos</span>
+            </NavLink>
 
-              <Link
-                className="p-2 no-underline hover:bg-primary/10"
-                href="/sign-out"
-              >
-                Logg ut
-              </Link>
-            </div>
+            <NavLink href="/admin">
+              <SettingsIcon />
+              <span>Admin</span>
+            </NavLink>
+
+            <NavLink href="/test">
+              <FlaskConicalIcon />
+              <span>Test</span>
+            </NavLink>
+
+            <hr className="border-primary-300" />
+
+            <NavLink
+              href="/"
+              onClick={(_) => {
+                signOut({ callbackUrl: "/" })
+              }}
+            >
+              <LogOutIcon />
+              <span>Logg ut</span>
+            </NavLink>
           </div>
         </PopoverContent>
       </Popover>
@@ -69,4 +107,12 @@ export default function SigninButton() {
 
   // TODO: Replace this with avatar or something else when we have it working properly ...
   return <Button onClick={handleSignIn}>Sign in</Button>
+}
+
+function NavLink(
+  props: LinkProps & React.LinkHTMLAttributes<HTMLAnchorElement>
+) {
+  const classes = "p-2 no-underline hover:underline flex gap-2 items-center"
+
+  return <Link className={classes} {...props} />
 }
