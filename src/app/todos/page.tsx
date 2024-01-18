@@ -37,7 +37,7 @@ export default async function Todos() {
 
   return (
     <div className="flex flex-col gap-4">
-      <div className="flex flex-col gap-4 p-4 bg-white rounded-lg">
+      <div className="flex flex-col gap-4 p-4 bg-white rounded-md">
         <CreateForm />
         <Heading as="h2">TODOs</Heading>
         <div className="flex flex-col gap-2 bg-white">

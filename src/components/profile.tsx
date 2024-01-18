@@ -107,7 +107,7 @@ export default function Profile() {
 
   return (
     <Button variant="link" className="text-base" onClick={handleSignIn}>
-      Sign in
+      Logg inn
     </Button>
   )
 }
