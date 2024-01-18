@@ -1,4 +1,4 @@
-import SigninButton from "@/components/sign-in-button"
+import Profile from "@/components/profile"
 import React, { ReactNode } from "react"
 
 import Link from "@/components/ui/link"
@@ -19,7 +19,7 @@ export default function Header() {
         </div>
 
         <div className="flex gap-4 ml-auto">
-          <SigninButton />
+          <Profile />
         </div>
       </div>
     </nav>
@@ -29,10 +29,7 @@ export default function Header() {
 // TODO: add active state - https://nextjs.org/docs/app/building-your-application/routing/linking-and-navigating
 function HeaderLink({ href, children }: { href: string; children: ReactNode }) {
   return (
-    <Link
-      className="no-underline font-semibold hover:bg-primary/5 px-3 py-2 rounded inline-block"
-      href={href}
-    >
+    <Link className="no-underline font-semibold px-3 py-2" href={href}>
       {children}
     </Link>
   )

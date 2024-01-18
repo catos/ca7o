@@ -33,7 +33,7 @@ function useCloseOnPathChange() {
   return { open, setOpen }
 }
 
-export default function SigninButton() {
+export default function Profile() {
   const { open, setOpen } = useCloseOnPathChange()
   const { data: session, status } = useSession()
 
@@ -105,8 +105,11 @@ export default function SigninButton() {
     )
   }
 
-  // TODO: Replace this with avatar or something else when we have it working properly ...
-  return <Button onClick={handleSignIn}>Sign in</Button>
+  return (
+    <Button variant="link" className="text-base" onClick={handleSignIn}>
+      Sign in
+    </Button>
+  )
 }
 
 function NavLink(
