@@ -9,7 +9,7 @@ export default function Header() {
   return (
     <nav className="bg-background border-b border-primary-300">
       <div className="px-4 container mx-auto flex items-center justify-between flex-wrap gap-2 h-16">
-        <Link className=" hover:bg-primary/5 p-2 mr-1 rounded-full" href="/">
+        <Link className="hover:bg-primary/5 p-2 mr-1 rounded-full" href="/">
           <Logo />
         </Link>
 
