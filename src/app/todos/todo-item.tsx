@@ -1,8 +1,8 @@
 "use client"
 
+import { useDebounce } from "@/lib/use-debounce"
 import useForm from "@/lib/use-form"
 import { Todo } from "@prisma/client"
-import { useState } from "react"
 import { twMerge } from "tailwind-merge"
 
 import { updateTodo } from "@/data/todo-actions"
@@ -21,6 +21,19 @@ type Props = {
 }
 
 export default function TodoItem({ todo, nextState = 0 }: Props) {
+  // TODO: review/refactor, not sure how though
+  const saveChanges = useDebounce(() => {
+    const formData = new FormData()
+    formData.set("id", todo.id.toString())
+    formData.set("title", values.title)
+    formData.set("content", values.content)
+    formData.set("state", todo.state.toString())
+
+    if (values.title !== todo.title || values.content !== todo.content) {
+      updateTodo(formData)
+    }
+  })
+
   const { values, register, handleSubmit } = useForm({
     initialValues: {
       title: todo.title ?? "",
@@ -30,8 +43,7 @@ export default function TodoItem({ todo, nextState = 0 }: Props) {
       saveChanges()
     },
     onChange: () => {
-      // TODO: need to throttle this
-      // saveChanges()
+      saveChanges()
     },
   })
 
@@ -40,19 +52,6 @@ export default function TodoItem({ todo, nextState = 0 }: Props) {
   const handleOpenChange = (open: boolean) => {
     if (!open) {
       saveChanges()
-    }
-  }
-
-  // TODO: review/refactor, not sure how though
-  const saveChanges = () => {
-    const formData = new FormData()
-    formData.set("id", todo.id.toString())
-    formData.set("title", values.title)
-    formData.set("content", values.content)
-    formData.set("state", todo.state.toString())
-
-    if (values.title !== todo.title || values.content !== todo.content) {
-      updateTodo(formData)
     }
   }
 
