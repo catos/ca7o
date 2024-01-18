@@ -14,7 +14,7 @@ export default async function RecipesPage() {
     <div className="relative flex flex-col gap-4">
       {/* // TODO: create a session storage list of recently visited recipes */}
       <div>
-        <Heading as="h2" className="mb-0 text-lg uppercase text-primary-600">
+        <Heading as="h2" className="mb-0 text-lg uppercase text-foreground/50">
           Nylig besøkt
         </Heading>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
@@ -30,7 +30,7 @@ export default async function RecipesPage() {
         </div>
       </div>
       <div>
-        <Heading as="h2" className="mb-0 text-lg uppercase text-primary-600">
+        <Heading as="h2" className="mb-0 text-lg uppercase text-foreground/50">
           Promotert
         </Heading>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
@@ -47,7 +47,7 @@ export default async function RecipesPage() {
       </div>
 
       <div>
-        <Heading as="h2" className="mb-0 text-lg uppercase text-primary-600">
+        <Heading as="h2" className="mb-0 text-lg uppercase text-foreground/50">
           Arkivet
         </Heading>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">

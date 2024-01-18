@@ -16,10 +16,6 @@ import {
 export default function SigninButton() {
   const { data: session, status } = useSession()
 
-  const handleSignOut = () => {
-    signOut({ callbackUrl: "/" })
-  }
-
   const handleSignIn = () => {
     signIn()
   }
@@ -37,21 +33,34 @@ export default function SigninButton() {
           </Avatar>
         </PopoverTrigger>
         <PopoverContent className="mx-4">
-          <div className="flex flex-col gap-1 items-center">
-            <div>Logget inn som</div>
+          <div className="flex flex-col gap-2">
+            <div className="text-foreground opacity-50">Logget inn som</div>
             <Heading as="h3">{name}</Heading>
 
-            <Link className="flex gap-2 no-underline" href="/profile">
-              Profile
-            </Link>
+            <hr className="w-full my-2" />
 
-            <Link className="flex gap-2 no-underline" href="/admin">
-              Admin
-            </Link>
+            <div className="flex-1 flex flex-col gap-2">
+              <Link
+                className="p-2 no-underline hover:bg-primary/10"
+                href="/profile"
+              >
+                Profile
+              </Link>
 
-            <Button variant="outline" onClick={handleSignOut}>
-              Logg ut
-            </Button>
+              <Link
+                className="p-2 no-underline hover:bg-primary/10"
+                href="/admin"
+              >
+                Admin
+              </Link>
+
+              <Link
+                className="p-2 no-underline hover:bg-primary/10"
+                href="/sign-out"
+              >
+                Logg ut
+              </Link>
+            </div>
           </div>
         </PopoverContent>
       </Popover>

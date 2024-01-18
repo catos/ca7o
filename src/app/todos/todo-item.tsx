@@ -79,7 +79,7 @@ export default function TodoItem({ todo, nextState = 0 }: Props) {
               placeholder="Add content here (optional)"
             />
           </div>
-          <div className="flex justify-end text-sm text-primary-500">
+          <div className="flex justify-end text-sm text-foreground/50">
             Sist oppdatert: {todo.updatedAt.toLocaleString("no-NO")}
           </div>
           <div className="mt-4 flex gap-4">

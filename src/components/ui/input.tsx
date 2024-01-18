@@ -22,7 +22,7 @@ export default function Input(props: Props) {
     <div>
       {label && (
         <label
-          className="block text-primary-700 text-sm font-bold mb-2 cursor-pointer"
+          className="block text-foreground/80 text-sm font-bold mb-2 cursor-pointer"
           htmlFor={id}
         >
           {label}

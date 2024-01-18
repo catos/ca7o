@@ -38,7 +38,7 @@ export default async function RecipesPage({ params }: Props) {
       <div className="relative">
         {/* TODO: move this */}
         <Link
-          className="absolute top-2 right-2 no-underline font-bold opacity-60 bg-primary-900 text-primary-100 rounded-full p-2"
+          className="absolute top-2 right-2 no-underline font-bold opacity-60 bg-background rounded-full p-2"
           href={`/admin/recipes/${recipe.id}`}
         >
           <CookingPot />
@@ -89,14 +89,14 @@ export default async function RecipesPage({ params }: Props) {
 
       <div className="flex flex-col gap-4 sm:flex-row">
         <section className="rounded-lg sm:w-1/2 md:w-5/12 bg-white p-4">
-          <Heading as="h2" className="uppercase text-primary-500 text-lg">
+          <Heading as="h2" className="uppercase text-foreground/50 text-lg">
             Ingrendienser
           </Heading>
           <Markdown>{recipe.ingredients}</Markdown>
         </section>
 
         <section className="rounded-lg sm:w-1/2 md:w-7/12 bg-white p-4">
-          <Heading as="h2" className="uppercase text-primary-500 text-lg">
+          <Heading as="h2" className="uppercase text-foreground/50 text-lg">
             Slik gjør du
           </Heading>
           <Markdown>{recipe.instructions}</Markdown>
