@@ -112,7 +112,10 @@ export default function SigninButton() {
 function NavLink(
   props: LinkProps & React.LinkHTMLAttributes<HTMLAnchorElement>
 ) {
-  const classes = "p-2 no-underline hover:underline flex gap-2 items-center"
-
-  return <Link className={classes} {...props} />
+  return (
+    <Link
+      className="p-2 no-underline hover:underline flex gap-2 items-center"
+      {...props}
+    />
+  )
 }
