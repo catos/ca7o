@@ -7,16 +7,15 @@ import Logo from "./logo"
 
 export default function Header() {
   return (
-    <nav className="border-b border-primary-300">
+    <nav className="bg-background border-b border-primary-300">
       <div className="px-4 container mx-auto flex items-center justify-between flex-wrap gap-2 h-16">
-        <Link href="/">
+        <Link className=" hover:bg-primary/5 p-2 mr-1 rounded-full" href="/">
           <Logo />
         </Link>
 
         <div className="flex text-base gap-2 items-center">
-          <NavLink href="/recipes">Recipes</NavLink>
-          <NavLink href="/todos">Todos</NavLink>
-          <NavLink href="/about">About</NavLink>
+          <HeaderLink href="/recipes">Oppskrifter</HeaderLink>
+          <HeaderLink href="/about">Om oss</HeaderLink>
         </div>
 
         <div className="flex gap-4 ml-auto">
@@ -27,10 +26,11 @@ export default function Header() {
   )
 }
 
-function NavLink({ href, children }: { href: string; children: ReactNode }) {
+// TODO: add active state - https://nextjs.org/docs/app/building-your-application/routing/linking-and-navigating
+function HeaderLink({ href, children }: { href: string; children: ReactNode }) {
   return (
     <Link
-      className="no-underline font-semibold hover:bg-primary-200 px-2 py-1 rounded inline-block"
+      className="no-underline font-semibold hover:bg-primary/5 px-3 py-2 rounded inline-block"
       href={href}
     >
       {children}
