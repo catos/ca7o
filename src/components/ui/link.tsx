@@ -8,7 +8,7 @@ type Props = {
 
 export default function Link({ className, ...rest }: Props) {
   const classes = twMerge(
-    "underline text-slate-600 hover:text-slate-800",
+    "underline text-primary underline-offset-4 hover:underline hover:text-primary/80",
     className
   )
   return <NextLink className={classes} {...rest} />
