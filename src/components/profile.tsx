@@ -106,7 +106,11 @@ export default function Profile() {
   }
 
   return (
-    <Button variant="link" className="text-base" onClick={handleSignIn}>
+    <Button
+      variant="link"
+      className="text-base font-semibold"
+      onClick={handleSignIn}
+    >
       Logg inn
     </Button>
   )

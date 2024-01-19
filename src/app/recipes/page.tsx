@@ -15,7 +15,7 @@ export default async function RecipesPage() {
       {/* // TODO: create a session storage list of recently visited recipes */}
       <div>
         <Heading as="h2" className="mb-0 text-lg uppercase text-foreground/50">
-          Nylig besøkt
+          Favoritter
         </Heading>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
           {recipes.map((recipe) => (
@@ -31,7 +31,7 @@ export default async function RecipesPage() {
       </div>
       <div>
         <Heading as="h2" className="mb-0 text-lg uppercase text-foreground/50">
-          Promotert
+          Nylig lagt til
         </Heading>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
           {recipes.map((recipe) => (
@@ -48,7 +48,7 @@ export default async function RecipesPage() {
 
       <div>
         <Heading as="h2" className="mb-0 text-lg uppercase text-foreground/50">
-          Arkivet
+          Anbefalt
         </Heading>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
           {recipes.map((recipe) => (
