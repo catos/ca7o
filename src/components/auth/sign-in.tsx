@@ -32,7 +32,7 @@ export default function SignIn() {
 
   return (
     <div className="flex justify-center">
-      <section className="rounded-md sm:w-1/2 md:w-5/12 bg-white p-4 mt-8">
+      <section className="rounded-md sm:w-2/3 md:w-1/2 bg-white p-4 mt-8">
         <form
           onSubmit={handleSubmit}
           className="relative flex flex-col gap-4 p-4 mb-4"

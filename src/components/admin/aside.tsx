@@ -34,7 +34,7 @@ const asideData = [
 ]
 
 export default function Aside() {
-  const [expanded, setExpanded] = useState(true)
+  const [expanded, setExpanded] = useState(false)
 
   return (
     <div className="relative h-screen p-2 border-r">

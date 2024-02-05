@@ -73,7 +73,7 @@ export default function TodoItem({ todo, nextState = 0 }: Props) {
               {...register("title")}
             />
             <Textarea
-              className="bg-transparent border-none flex-1"
+              className="bg-transparent border-none flex-1 h-full"
               {...register("content")}
               placeholder="Add content here (optional)"
             />

@@ -37,6 +37,7 @@ export default function Profile() {
   const { open, setOpen } = useCloseOnPathChange()
   const { data: session, status } = useSession()
 
+  console.log(session?.user.avatar)
   const handleSignIn = () => {
     signIn()
   }

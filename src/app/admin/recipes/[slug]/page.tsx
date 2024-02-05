@@ -22,7 +22,7 @@ export default async function EditRecipePage({ params }: Props) {
       className="relative flex flex-col gap-4 p-4 h-full"
       action={updateRecipe}
     >
-      <div className="flex gap-8 items-center">
+      <div className="flex gap-4 items-center">
         <Button type="submit">Save</Button>
         <Link
           className="no-underline font-bold"
@@ -30,16 +30,17 @@ export default async function EditRecipePage({ params }: Props) {
         >
           Delete
         </Link>
-        <div className="ml-auto flex gap-4">
-          <span>
-            <strong>Created: </strong>
-            {recipe.createdAt.toLocaleString("no-NO")}
-          </span>
-          <span>
-            <strong>Updated: </strong>
-            {recipe.updatedAt?.toLocaleString("no-NO")}
-          </span>
-        </div>
+      </div>
+
+      <div className="flex gap-4">
+        <span>
+          <strong>Created: </strong>
+          {recipe.createdAt.toLocaleString("no-NO")}
+        </span>
+        <span>
+          <strong>Updated: </strong>
+          {recipe.updatedAt?.toLocaleString("no-NO")}
+        </span>
       </div>
 
       <input type="hidden" name="id" value={recipe.id} />
@@ -70,7 +71,6 @@ export default async function EditRecipePage({ params }: Props) {
 
       <div className="grid grid-cols-2 gap-8 h-96">
         <Textarea
-          className="h-auto"
           required
           id="ingredients"
           name="ingredients"
@@ -78,7 +78,6 @@ export default async function EditRecipePage({ params }: Props) {
           defaultValue={recipe.ingredients ?? ""}
         />
         <Textarea
-          className="h-auto"
           required
           id="instructions"
           name="instructions"
