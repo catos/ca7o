@@ -9,6 +9,7 @@ import Link from "@/components/ui/link"
 import CreateForm from "./create-form"
 import TodoItem from "./todo-item"
 
+// TODO: move TODO-components to components-folder
 export default async function Todos() {
   const session = await getServerSession(authOptions)
 
@@ -46,9 +47,7 @@ export default async function Todos() {
           ))}
         </div>
         <div className="flex flex-col gap-2">
-          {todones?.map((todo) => (
-            <TodoItem key={todo.id} todo={todo} />
-          ))}
+          {todones?.map((todo) => <TodoItem key={todo.id} todo={todo} />)}
         </div>
       </div>
     </div>

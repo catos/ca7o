@@ -1,9 +1,8 @@
-import Icon from "@/components/icon"
 import Image from "@/components/image"
 import Markdown from "@/components/recipe/markdown"
 import { BookPlusIcon, CookingPot, PrinterIcon, StarIcon } from "lucide-react"
 
-import { getRecipe, getRecipes } from "@/data/recipe-actions"
+import { getRecipe } from "@/data/recipe-actions"
 
 import { Badge } from "@/components/ui/badge"
 import Heading from "@/components/ui/heading"
@@ -11,7 +10,6 @@ import Link from "@/components/ui/link"
 import {
   Tooltip,
   TooltipContent,
-  TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip"
 

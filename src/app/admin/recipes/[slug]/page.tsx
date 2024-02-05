@@ -30,15 +30,19 @@ export default async function EditRecipePage({ params }: Props) {
         >
           Delete
         </Link>
+        <div className="ml-auto flex gap-4">
+          <span>
+            <strong>Created: </strong>
+            {recipe.createdAt.toLocaleString("no-NO")}
+          </span>
+          <span>
+            <strong>Updated: </strong>
+            {recipe.updatedAt?.toLocaleString("no-NO")}
+          </span>
+        </div>
       </div>
 
       <input type="hidden" name="id" value={recipe.id} />
-
-      {/* TODO: WTB a lib-func to format dates... */}
-      <ul>
-        <li>Created: {recipe.createdAt.toString()}</li>
-        <li>Update: {recipe.updatedAt?.toString()}</li>
-      </ul>
 
       <Input
         required
@@ -74,6 +78,7 @@ export default async function EditRecipePage({ params }: Props) {
           defaultValue={recipe.ingredients ?? ""}
         />
         <Textarea
+          className="h-auto"
           required
           id="instructions"
           name="instructions"
