@@ -11,13 +11,8 @@ import { z } from "zod"
 export async function getRecipes() {
   try {
     return await prisma.recipe.findMany({
-      include: {
-        author: {
-          select: {
-            name: true,
-            email: true,
-          },
-        },
+      orderBy: {
+        updatedAt: "desc",
       },
     })
   } catch (error) {
