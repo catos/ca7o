@@ -1,36 +1,39 @@
-"use client"
+// TODO: remove ?
+export default function foo() { return null }
 
-import slugify from "@/lib/slugify"
-import { cn } from "@/lib/utils"
-import { useState } from "react"
-import { twMerge } from "tailwind-merge"
+// "use client"
 
-import { Checkbox } from "@/components/ui/checkbox"
-import { Label } from "@/components/ui/label"
+// import slugify from "@/lib/slugify"
+// import { cn } from "@/lib/utils"
+// import { useState } from "react"
+// import { twMerge } from "tailwind-merge"
 
-export default function ListItem({
-  index,
-  children,
-}: {
-  index: any
-  children: any
-}) {
-  const [checked, setChecked] = useState(false)
+// import { Checkbox } from "@/components/ui/checkbox"
+// import { Label } from "@/components/ui/label"
 
-  const id = `${index}-${slugify(children[0])}`
-  const handleChange = () => {
-    setChecked(!checked)
-  }
+// export default function ListItem({
+//   index,
+//   children,
+// }: {
+//   index: any
+//   children: any
+// }) {
+//   const [checked, setChecked] = useState(false)
 
-  return (
-    <div className="py-2 flex items-center space-x-2">
-      <Checkbox id={id} checked={checked} onCheckedChange={handleChange} />
-      <Label
-        className={twMerge("font-normal", checked && "line-through")}
-        htmlFor={id}
-      >
-        {children}
-      </Label>
-    </div>
-  )
-}
+//   const id = `${index}-${slugify(children[0])}`
+//   const handleChange = () => {
+//     setChecked(!checked)
+//   }
+
+//   return (
+//     <div className="py-2 flex items-center space-x-2">
+//       <Checkbox id={id} checked={checked} onCheckedChange={handleChange} />
+//       <Label
+//         className={twMerge("font-normal", checked && "line-through")}
+//         htmlFor={id}
+//       >
+//         {children}
+//       </Label>
+//     </div>
+//   )
+// }

@@ -35,8 +35,7 @@ export default async function RecipesPage({ params }: Props) {
 
   return (
     <div className="flex flex-col gap-4">
-      <div className="relative">
-        {/* TODO: move this */}
+      <section className="relative">
         <Link
           className="absolute top-2 right-2 no-underline font-bold opacity-60 bg-background rounded-full p-2"
           href={`/admin/recipes/${recipe.id}`}
@@ -48,7 +47,7 @@ export default async function RecipesPage({ params }: Props) {
           src={recipe.image}
           alt={recipe.title}
         />
-      </div>
+      </section>
 
       <section className="flex flex-col">
         <Heading as="h1" className="px-4 m-0 text-center font-semibold">

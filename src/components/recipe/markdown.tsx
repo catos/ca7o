@@ -1,50 +1,62 @@
 import Image from "@/components/image"
-import { ReactMarkdown, ReactNode } from "react-markdown/lib/react-markdown"
 
 import Heading from "@/components/ui/heading"
 import List from "@/components/ui/list"
+import ListItem from "@/components/ui/list-item"
 
 import Timer from "../timer"
-import ListItem from "./list-item"
 
-export default function Markdown({ children }: { children: string | null }) {
+import Markdown from "react-markdown"
+
+export default function MarkdownLol({ children }: { children: string | null }) {
   if (!children) return null
 
-  return <ReactMarkdown components={serializers}>{children}</ReactMarkdown>
+  return <Markdown components={serializers}>{children}</Markdown>
 }
 
 const serializers = {
-  h1: ({ children }: { children: ReactNode & ReactNode[] }) => {
+  h1: (props: any) => {
+    const { children } = props
     return (
       <Heading as="h3" className="mt-2 mb-0">
         {children}
       </Heading>
     )
   },
-  h2: ({ children }: { children: ReactNode & ReactNode[] }) => {
+
+  h2: (props: any) => {
+    const { children } = props
     return (
       <Heading as="h4" className="mt-2 mb-0">
         {children}
       </Heading>
     )
   },
-  h3: ({ children }: { children: ReactNode & ReactNode[] }) => {
+
+  h3: (props: any) => {
+    const { children } = props
     return (
       <Heading as="h5" className="mt-2 mb-0">
         {children}
       </Heading>
     )
   },
-  // TODO: move this to separate component since I did this with "li" ?
-  ul: ({ children }: { children: ReactNode & ReactNode[] }) => (
-    <List className="list-none p-0">{children}</List>
-  ),
-  li: (props: any) => {
-    return <ListItem {...props} />
+
+  ul: (props: any) => {
+    const { children } = props
+
+    return <List>{children}</List>
   },
+
+  li: (props: any) => {
+    const { children } = props
+    return <ListItem>{children}</ListItem>
+  },
+
   p: ({ children }: any) => {
     return <p className="m-0">{children}</p>
   },
+
   code: (props: any) => {
     const { children, className, node, ...rest } = props
 
@@ -58,12 +70,20 @@ const serializers = {
       </code>
     )
   },
-  // TODO: types ... img: ({ children, ...rest }: { children: ReactNode & ReactNode[] }) => {
+
   img: ({ children, ...rest }: any) => {
     return (
       <span className="relative">
         <Image src={rest.src} alt={rest.alt} />
       </span>
+    )
+  },
+
+  link: ({ href, children, ...rest }: any) => {
+    return (
+      <a href={href} className="text-red-900" {...rest}>
+        {children}
+      </a>
     )
   },
 }
