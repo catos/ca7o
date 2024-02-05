@@ -4,6 +4,9 @@ import { Inter, Roboto_Mono } from "next/font/google"
 
 import "../styles/globals.css"
 
+// TODO: does this work ? for all nested pages?
+export const revalidate = 3600
+
 const inter = Inter({
   subsets: ["latin"],
   display: "swap",
