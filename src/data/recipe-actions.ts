@@ -33,6 +33,12 @@ export async function getRecipe(slug: number) {
             email: true,
           },
         },
+        favorites: {
+          select: {
+            id: true,
+            userId: true,
+          },
+        },
       },
     })
   } catch (error) {

@@ -1,6 +1,6 @@
 import Image from "@/components/image"
 import Markdown from "@/components/recipe/markdown"
-import { BookPlusIcon, CookingPot, PrinterIcon, StarIcon } from "lucide-react"
+import { BookPlusIcon, CookingPot, PrinterIcon } from "lucide-react"
 
 import { getRecipe } from "@/data/recipe-actions"
 
@@ -12,6 +12,7 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from "@/components/ui/tooltip"
+import ToggleFavorite from "@/components/recipe/toggle-favorite"
 
 export const revalidate = 60 * 60 * 24
 
@@ -29,7 +30,10 @@ type Props = {
 
 export default async function RecipesPage({ params }: Props) {
   const recipe = await getRecipe(+params.slug)
-  if (!recipe) return null
+
+  if (!recipe) {
+    return null
+  }
 
   return (
     <div className="flex flex-col gap-4">
@@ -57,14 +61,7 @@ export default async function RecipesPage({ params }: Props) {
           <Badge>Sunn</Badge>
         </div>
         <div className="pb-4 flex gap-4 justify-center">
-          <Tooltip>
-            <TooltipTrigger>
-              <StarIcon />
-            </TooltipTrigger>
-            <TooltipContent>
-              <p>Legg til som favoritt</p>
-            </TooltipContent>
-          </Tooltip>
+          <ToggleFavorite recipe={recipe} />
           <Tooltip>
             <TooltipTrigger>
               <BookPlusIcon />
@@ -86,15 +83,15 @@ export default async function RecipesPage({ params }: Props) {
 
       <div className="flex flex-col gap-4 sm:flex-row">
         <section className="rounded-md sm:w-1/2 md:w-5/12 bg-white p-4">
-          <Heading as="h2" className="uppercase text-foreground/50 text-lg">
+          <Heading as="h2" className="uppercase text-foreground/50 text-base">
             Ingrendienser
           </Heading>
           <Markdown>{recipe.ingredients}</Markdown>
         </section>
 
         <section className="rounded-md sm:w-1/2 md:w-7/12 bg-white p-4">
-          <Heading as="h2" className="uppercase text-foreground/50 text-lg">
-            Slik gjør du
+          <Heading as="h2" className="uppercase text-foreground/50 text-base">
+            Fremgangsmåte
           </Heading>
           <Markdown>{recipe.instructions}</Markdown>
         </section>

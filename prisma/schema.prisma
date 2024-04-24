@@ -8,13 +8,14 @@ datasource db {
 }
 
 model User {
-    id       Int      @id @default(autoincrement())
-    email    String   @unique
-    avatar   String?
-    name     String?
-    password String
-    recipes  Recipe[]
-    todos    Todo[]
+    id        Int        @id @default(autoincrement())
+    email     String     @unique
+    avatar    String?
+    name      String?
+    password  String
+    recipes   Recipe[]
+    todos     Todo[]
+    favorites Favorite[]
 }
 
 model Todo {
@@ -29,14 +30,23 @@ model Todo {
 }
 
 model Recipe {
-    id           Int       @id @default(autoincrement())
+    id           Int        @id @default(autoincrement())
     title        String
     description  String?
     ingredients  String?
     instructions String?
     authorId     Int?
     image        String
-    createdAt    DateTime  @default(now())
-    updatedAt    DateTime? @updatedAt
-    author       User?     @relation(fields: [authorId], references: [id])
+    createdAt    DateTime   @default(now())
+    updatedAt    DateTime?  @updatedAt
+    author       User?      @relation(fields: [authorId], references: [id])
+    favorites    Favorite[]
+}
+
+model Favorite {
+    id       Int    @id @default(autoincrement())
+    userId   Int
+    recipeId Int
+    user     User   @relation(fields: [userId], references: [id])
+    recipe   Recipe @relation(fields: [recipeId], references: [id])
 }
