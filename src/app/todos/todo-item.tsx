@@ -20,6 +20,7 @@ type Props = {
   nextState?: number
 }
 
+// TODO: move all components to components-folder
 export default function TodoItem({ todo, nextState = 0 }: Props) {
   // TODO: review/refactor, not sure how though
   const saveChanges = useDebounce(() => {
