@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation"
 
-import { getRecipe, updateRecipe } from "@/data/recipe-actions"
+import { getRecipe, updateRecipe } from "@/data/recipe.actions"
 
 import { Button } from "@/components/ui/button"
 import Input from "@/components/ui/input"
@@ -8,11 +8,11 @@ import Link from "@/components/ui/link"
 import Textarea from "@/components/ui/textarea"
 
 type Props = {
-  params: { slug: string }
+  params: { id: string }
 }
 
 export default async function EditRecipePage({ params }: Props) {
-  const recipe = await getRecipe(+params.slug)
+  const recipe = await getRecipe(+params.id)
   if (!recipe) {
     notFound()
   }
@@ -35,11 +35,11 @@ export default async function EditRecipePage({ params }: Props) {
       <div className="flex gap-4">
         <span>
           <strong>Created: </strong>
-          {recipe.createdAt.toLocaleString("no-NO")}
+          {recipe.created_at.toLocaleString()}
         </span>
         <span>
           <strong>Updated: </strong>
-          {recipe.updatedAt?.toLocaleString("no-NO")}
+          {recipe.updated_at?.toLocaleString()}
         </span>
       </div>
 

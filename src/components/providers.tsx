@@ -1,7 +1,5 @@
 "use client"
 
-import { SessionProvider } from "next-auth/react"
-
 import { TooltipProvider } from "@/components/ui/tooltip"
 
 type Props = {
@@ -9,9 +7,5 @@ type Props = {
 }
 
 export default function Providers({ children }: Props) {
-  return (
-    <SessionProvider>
-      <TooltipProvider>{children}</TooltipProvider>
-    </SessionProvider>
-  )
+  return <TooltipProvider>{children}</TooltipProvider>
 }

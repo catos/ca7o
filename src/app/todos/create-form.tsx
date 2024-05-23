@@ -5,7 +5,7 @@ import useOutsideClick from "@/lib/use-outside-click"
 import { useState } from "react"
 import { twMerge } from "tailwind-merge"
 
-import { createTodo } from "@/data/todo-actions"
+// import { createTodo } from "@/data/todo-actions"
 
 import { Button } from "@/components/ui/button"
 import Input from "@/components/ui/input"
@@ -21,7 +21,7 @@ function useTodo() {
   const mutate = async (formData: FormData) => {
     setStatus("pending")
     try {
-      await createTodo(formData)
+      //   await createTodo(formData)
       setMessage(message)
       setStatus("success")
     } catch (error) {

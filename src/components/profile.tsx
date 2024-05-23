@@ -9,7 +9,6 @@ import {
   SettingsIcon,
   StarIcon,
 } from "lucide-react"
-import { signIn, signOut, useSession } from "next-auth/react"
 import { LinkProps } from "next/link"
 import { usePathname } from "next/navigation"
 import React, { useEffect } from "react"
@@ -22,6 +21,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover"
+import { type User } from "@supabase/supabase-js"
 
 function useCloseOnPathChange() {
   const [open, setOpen] = React.useState(false)
@@ -33,18 +33,16 @@ function useCloseOnPathChange() {
   return { open, setOpen }
 }
 
-export default function Profile() {
+export default function Profile({ user }: { user: User | null }) {
   const { open, setOpen } = useCloseOnPathChange()
-  const { data: session, status } = useSession()
 
-  const handleSignIn = () => {
-    signIn()
-  }
-
-  const { avatar, name, email } = session?.user ?? { avatar: "", name: "A A" }
+  // TODO: load these values from profile
+  const name = user?.email ?? "N A"
+  const avatar =
+    "https://volslymfkdeblzqdnfkp.supabase.co/storage/v1/object/public/avatars/ed5e39dc-409e-4671-91fc-8d86ac626e2b-0.21225383379750484.png"
 
   // TODO: WTB full width popover on mobile
-  if (status === "authenticated") {
+  if (Boolean(user)) {
     return (
       <Popover open={open} onOpenChange={setOpen}>
         <PopoverTrigger>
@@ -90,15 +88,16 @@ export default function Profile() {
 
             <hr className="border-primary-300" />
 
-            <NavLink
-              href="/"
-              onClick={(_) => {
-                signOut({ callbackUrl: "/" })
-              }}
+            <form
+              className="p-2 flex gap-2 items-center"
+              action="/auth/signout"
+              method="post"
             >
               <LogOutIcon />
-              <span>Logg ut</span>
-            </NavLink>
+              <Button variant="link" type="submit" className="px-0 text-base">
+                Logg ut
+              </Button>
+            </form>
           </div>
         </PopoverContent>
       </Popover>
@@ -106,13 +105,9 @@ export default function Profile() {
   }
 
   return (
-    <Button
-      variant="link"
-      className="text-base font-semibold"
-      onClick={handleSignIn}
-    >
+    <Link className="no-underline font-semibold px-3 py-2" href="/login">
       Logg inn
-    </Button>
+    </Link>
   )
 }
 

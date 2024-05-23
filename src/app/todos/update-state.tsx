@@ -3,7 +3,7 @@
 import { Todo } from "@prisma/client"
 import { CheckIcon, UndoIcon } from "lucide-react"
 
-import { updateState } from "@/data/todo-actions"
+// import { updateState } from "@/data/todo-actions"
 
 import { Button } from "@/components/ui/button"
 import {
@@ -19,7 +19,8 @@ type Props = {
 
 export default function UpdateState({ todo, value = 0 }: Props) {
   const handleClick = () => {
-    updateState(todo.id, value)
+    // updateState(todo.id, value)
+    console.log("TODO: updateState")
   }
   return (
     <Tooltip>

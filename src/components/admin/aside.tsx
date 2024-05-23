@@ -5,7 +5,6 @@ import {
   ChevronLeftIcon,
   ChevronRightIcon,
   HomeIcon,
-  UsersIcon,
 } from "lucide-react"
 import { useState } from "react"
 import { twJoin } from "tailwind-merge"
@@ -20,11 +19,6 @@ const asideData = [
     title: "Home",
     href: "/admin",
     icon: <HomeIcon />,
-  },
-  {
-    title: "Users",
-    href: "/admin/users",
-    icon: <UsersIcon />,
   },
   {
     title: "Recipes",

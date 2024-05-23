@@ -2,7 +2,7 @@ import Image from "@/components/image"
 import Markdown from "@/components/recipe/markdown"
 import { BookPlusIcon, CookingPot, PrinterIcon } from "lucide-react"
 
-import { getRecipe } from "@/data/recipe-actions"
+import { getRecipe } from "@/data/recipe.actions"
 
 import { Badge } from "@/components/ui/badge"
 import Heading from "@/components/ui/heading"
@@ -12,12 +12,12 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from "@/components/ui/tooltip"
-import ToggleFavorite from "@/components/recipe/toggle-favorite"
+// import ToggleFavorite from "@/components/recipe/toggle-favorite"
 
 export const revalidate = 60 * 60 * 24
 
 type Props = {
-  params: { slug: string }
+  params: { id: string }
 }
 
 // TODO: implement dynamic metadata
@@ -29,7 +29,7 @@ type Props = {
 // TODO: implement like | dislike: https://fireship.io/courses/nextjs/adv-actions/
 
 export default async function RecipesPage({ params }: Props) {
-  const recipe = await getRecipe(+params.slug)
+  const recipe = await getRecipe(+params.id)
 
   if (!recipe) {
     return null
@@ -61,7 +61,7 @@ export default async function RecipesPage({ params }: Props) {
           <Badge>Sunn</Badge>
         </div>
         <div className="pb-4 flex gap-4 justify-center">
-          <ToggleFavorite recipe={recipe} />
+          {/* <ToggleFavorite recipe={recipe} /> */}
           <Tooltip>
             <TooltipTrigger>
               <BookPlusIcon />

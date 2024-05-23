@@ -1,15 +1,15 @@
-import { deleteRecipe, getRecipe } from "@/data/recipe-actions"
+import { deleteRecipe, getRecipe } from "@/data/recipe.actions"
 
 import { Button } from "@/components/ui/button"
 import Heading from "@/components/ui/heading"
 import Link from "@/components/ui/link"
 
 type Props = {
-  params: { slug: string }
+  params: { id: string }
 }
 
 export default async function DeleteRecipe({ params }: Props) {
-  const recipeId = +params.slug
+  const recipeId = +params.id
 
   const recipe = await getRecipe(recipeId)
   if (!recipe) return null

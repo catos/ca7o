@@ -5,7 +5,7 @@ import useForm from "@/lib/use-form"
 import { Todo } from "@prisma/client"
 import { twMerge } from "tailwind-merge"
 
-import { updateTodo } from "@/data/todo-actions"
+// import { updateTodo } from "@/data/todo-actions"
 
 import { Button } from "@/components/ui/button"
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog"
@@ -31,7 +31,8 @@ export default function TodoItem({ todo, nextState = 0 }: Props) {
     formData.set("state", todo.state.toString())
 
     if (values.title !== todo.title || values.content !== todo.content) {
-      updateTodo(formData)
+      //   updateTodo(formData)
+      console.log("TODO: update todo")
     }
   })
 

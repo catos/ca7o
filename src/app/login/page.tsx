@@ -1,8 +1,3 @@
-"use client"
-
-import { signIn } from "next-auth/react"
-import { useSearchParams } from "next/navigation"
-
 import { Button } from "@/components/ui/button"
 import { Checkbox } from "@/components/ui/checkbox"
 import Heading from "@/components/ui/heading"
@@ -10,42 +5,23 @@ import Input from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import Link from "@/components/ui/link"
 
-export default function SignIn() {
-  const searchParams = useSearchParams()
-  const callbackUrl = searchParams.get("callbackUrl")
+import { signIn, signUp } from "@/data/auth.actions"
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-
-    const formData = new FormData(e.currentTarget)
-
-    const email = formData.get("email")
-    const password = formData.get("password")
-
-    await signIn("credentials", {
-      email: email,
-      password: password,
-      redirect: true,
-      callbackUrl: callbackUrl ?? "/",
-    })
-  }
-
+export default function LoginPage() {
   return (
     <div className="flex justify-center">
       <section className="rounded-md sm:w-2/3 md:w-1/2 bg-white p-4 mt-8">
-        <form
-          onSubmit={handleSubmit}
-          className="relative flex flex-col gap-4 p-4 mb-4"
-        >
-          <Heading className="mb-4">Sign In</Heading>
-          <Input required id="email" type="email" name="email" label="Email" />
+        <form className="relative flex flex-col gap-4 p-4 mb-4">
+          <Heading className="mb-4">Logg inn</Heading>
+
+          <Input required id="email" type="email" name="email" label="E-post" />
 
           <Input
             required
             id="password"
             type="password"
             name="password"
-            label="Password"
+            label="Passord"
           />
 
           <div className="flex justify-between py-2">
@@ -57,8 +33,8 @@ export default function SignIn() {
             </span>
           </div>
 
-          <Button type="submit">Logg inn</Button>
-          <Button variant="outline" type="submit" disabled>
+          <Button formAction={signIn}>Logg inn</Button>
+          <Button variant="outline" formAction={signUp}>
             Registrer deg
           </Button>
 

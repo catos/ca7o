@@ -1,6 +1,6 @@
 import Card from "@/components/recipe/card"
 
-import { getRecipes } from "@/data/recipe-actions"
+import { getRecipes } from "@/data/recipe.actions"
 
 import Heading from "@/components/ui/heading"
 
@@ -9,6 +9,10 @@ export const revalidate = 10
 
 export default async function RecipesPage() {
   const recipes = (await getRecipes()) ?? []
+
+  if (!recipes) {
+    return null
+  }
 
   return (
     <div className="relative flex flex-col gap-4">

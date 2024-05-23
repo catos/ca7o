@@ -1,4 +1,4 @@
-import { createRecipe } from "@/data/recipe-actions"
+import { createRecipe } from "@/data/recipe.actions"
 
 import { Button } from "@/components/ui/button"
 import Heading from "@/components/ui/heading"

@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: ["images.matprat.no"],
+    domains: ["images.matprat.no", "volslymfkdeblzqdnfkp.supabase.co"],
   },
 }
 

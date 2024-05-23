@@ -1,6 +1,6 @@
 import toLocaleDate from "@/lib/to-locale-date"
 
-import { getRecipes } from "@/data/recipe-actions"
+import { getRecipes } from "@/data/recipe.actions"
 
 import Heading from "@/components/ui/heading"
 import { Button } from "@/components/ui/button"
@@ -36,11 +36,17 @@ export default async function RecipesPage() {
         <tbody>
           {recipes.map((recipe) => (
             <tr key={recipe.id} className="bg-white border-b hover:bg-gray-50">
-              <td className="p-4">
-                <Link href={`/admin/recipes/${recipe.id}`}>{recipe.title}</Link>
+              <td>
+                <Link className="p-4 flex" href={`/admin/recipes/${recipe.id}`}>
+                  {recipe.title}
+                </Link>
               </td>
-              <td className="p-4">{toLocaleDate(recipe.createdAt)}</td>
-              <td className="p-4">{toLocaleDate(recipe.updatedAt)}</td>
+              <td className="p-4 text-right">
+                {toLocaleDate(recipe.created_at)}
+              </td>
+              <td className="p-4 text-right">
+                {toLocaleDate(recipe.updated_at)}
+              </td>
             </tr>
           ))}
         </tbody>

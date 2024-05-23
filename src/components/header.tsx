@@ -4,8 +4,15 @@ import React, { ReactNode } from "react"
 import Link from "@/components/ui/link"
 
 import Logo from "./logo"
+import { createClient } from "@/utils/supabase/server"
+import { getProfile } from "@/data/profile.actions"
 
-export default function Header() {
+export default async function Header() {
+  const supabase = createClient()
+  const {
+    data: { user },
+  } = await supabase.auth.getUser()
+
   return (
     <nav className="bg-background border-b border-primary-300">
       <div className="px-4 container mx-auto flex items-center justify-between flex-wrap gap-2 h-16">
@@ -19,7 +26,7 @@ export default function Header() {
         </div>
 
         <div className="flex gap-4 ml-auto">
-          <Profile />
+          <Profile user={user} />
         </div>
       </div>
     </nav>
