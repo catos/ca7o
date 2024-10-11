@@ -26,7 +26,7 @@ export async function getRecipes(limit: number = 100) {
   return []
 }
 
-export async function getRecipe(id: number) {
+export async function getRecipe(id: string) {
   try {
     const supabase = createClient()
     const { data, error } = await supabase
@@ -71,8 +71,8 @@ export async function updateRecipe(formData: FormData) {
 
     const supabase = createClient()
 
-    const { error } = await supabase.from("recipes").update(form).eq("id", +id)
-
+    const { error } = await supabase.from("recipes").update(form).eq("id", id)
+    console.log("updateRecipe", form, error)
     if (error) {
       throw error
     }
@@ -130,7 +130,7 @@ export async function deleteRecipe(formData: FormData) {
     const id = formData.get("id") as string
 
     const supabase = createClient()
-    await supabase.from("recipes").delete().eq("id", +id)
+    await supabase.from("recipes").delete().eq("id", id)
 
     revalidatePath(`/admin/recipes/${id}`)
   } catch (error) {

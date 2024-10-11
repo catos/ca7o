@@ -9,10 +9,12 @@ type Props = {
 }
 
 export default async function DeleteRecipe({ params }: Props) {
-  const recipeId = +params.id
+  const recipeId = params.id
 
   const recipe = await getRecipe(recipeId)
-  if (!recipe) return null
+  if (!recipe) {
+    return null
+  }
 
   return (
     <form

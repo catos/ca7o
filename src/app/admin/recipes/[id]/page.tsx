@@ -12,7 +12,7 @@ type Props = {
 }
 
 export default async function EditRecipePage({ params }: Props) {
-  const recipe = await getRecipe(+params.id)
+  const recipe = await getRecipe(params.id)
   if (!recipe) {
     notFound()
   }
@@ -24,8 +24,9 @@ export default async function EditRecipePage({ params }: Props) {
     >
       <div className="flex gap-4 items-center">
         <Button type="submit">Save</Button>
+        <Link href={`/recipes/${recipe.id}`}>Go to recipe</Link>
         <Link
-          className="no-underline font-bold"
+          className="no-underline font-bold ml-auto"
           href={`/admin/recipes/${recipe.id}/delete`}
         >
           Delete
