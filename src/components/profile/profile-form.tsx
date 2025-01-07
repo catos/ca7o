@@ -3,16 +3,15 @@ import { useCallback, useEffect, useState } from "react"
 import { createClient } from "@/utils/supabase/client"
 import { type User } from "@supabase/supabase-js"
 import Avatar from "./avatar"
-import { Tables } from "@/utils/supabase/database.types"
+import { Tables } from "@/types/database"
 
 interface IProfile
   extends Omit<Tables<"profiles">, "created_at" | "updated_at"> {}
 
 export default function ProfileForm({ user }: { user: User | null }) {
+  console.log("ProfileForm")
   const supabase = createClient()
   const [loading, setLoading] = useState(true)
-  //   const [fullname, setFullname] = useState<string | null>(null)
-  //   const [avatar, setAvatarUrl] = useState<string | null>(null)
   const [profile, setProfile] = useState<IProfile | null>(null)
 
   const userId = user?.id
@@ -26,8 +25,8 @@ export default function ProfileForm({ user }: { user: User | null }) {
 
       const { data, error, status } = await supabase
         .from("profiles")
-        .select(`id, user_id, fullname, avatar`)
-        .eq("user_id", userId)
+        .select()
+        .eq("id", userId)
         .single()
 
       if (error && status !== 406) {
@@ -37,8 +36,6 @@ export default function ProfileForm({ user }: { user: User | null }) {
       console.log("profile: ", data, userId)
 
       if (data) {
-        // setFullname(data.fullname)
-        // setAvatarUrl(data.avatar)
         setProfile(data)
       }
     } catch (error) {
@@ -53,10 +50,10 @@ export default function ProfileForm({ user }: { user: User | null }) {
   }, [userId, getProfile])
 
   async function updateProfile({
-    fullname,
+    name,
     avatar,
   }: {
-    fullname: string | null
+    name: string | null
     avatar: string | null
   }) {
     if (!userId || !profile) {
@@ -70,7 +67,7 @@ export default function ProfileForm({ user }: { user: User | null }) {
         id: profile.id,
         user_id: userId as string,
         updated_at: new Date().toISOString(),
-        fullname,
+        name,
         avatar,
       })
       if (error) {
@@ -93,28 +90,29 @@ export default function ProfileForm({ user }: { user: User | null }) {
 
   return (
     <div className="form-widget">
-      {/* <Avatar
+      <Avatar
         uid={user?.id ?? null}
-        url={profile.avatar}
+        url={profile.avatar_url}
         size={150}
         onUpload={(url) => {
+          console.log("huh ?", url)
           //   setAvatarUrl(url)
-          setProfile({ ...profile, avatar: url })
-          updateProfile({ fullname: profile.fullname, avatar: url })
+          //   setProfile({ ...profile, avatar: url })
+          //   updateProfile({ name: profile.name, avatar: url })
         }}
-      /> */}
-      <span>avatar: {profile.avatar}</span>
+      />
+      <span>avatar: {profile.avatar_url}</span>
       <div>
         <label htmlFor="email">Email</label>
         <input id="email" type="text" value={user?.email} disabled />
       </div>
       <div>
-        <label htmlFor="fullName">Full Name</label>
+        <label htmlFor="name">Full Name</label>
         <input
-          id="fullName"
+          id="name"
           type="text"
-          value={profile.fullname || ""}
-          onChange={(e) => setProfile({ ...profile, fullname: e.target.value })}
+          value={profile.name || ""}
+          onChange={(e) => setProfile({ ...profile, name: e.target.value })}
         />
       </div>
 
@@ -123,8 +121,8 @@ export default function ProfileForm({ user }: { user: User | null }) {
           className="button primary block"
           onClick={() =>
             updateProfile({
-              fullname: profile.fullname,
-              avatar: profile.avatar,
+              name: profile.name,
+              avatar: profile.avatar_url,
             })
           }
           disabled={loading}

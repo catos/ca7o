@@ -24,7 +24,7 @@ export async function update(formData: FormData) {
       user_id: user.id,
       updated_at: new Date().toISOString(),
       fullname: formData.get("fullname") as string,
-      avatar: formData.get("avatar") as string,
+      avatar_url: formData.get("avatar") as string,
     }
 
     const { error } = await supabase.from("profiles").update(data).eq("id", id)
@@ -46,7 +46,7 @@ export async function getProfile(userId: string) {
     const { data, error, status } = await supabase
       .from("profiles")
       .select()
-      .eq("user_id", userId)
+      .eq("id", userId)
       .single()
 
     if (error && status !== 406) {

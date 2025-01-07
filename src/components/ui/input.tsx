@@ -6,13 +6,16 @@ type Props = {
 } & InputHTMLAttributes<HTMLInputElement>
 
 export default function Input(props: Props) {
-  const { id, label, className, ...rest } = props
+  const { id, label, className, readOnly, ...rest } = props
   const classes = twMerge(
     "appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-gray-500",
+    readOnly && "text-foreground/50",
     className
   )
 
-  const Input = <input className={classes} id={id} {...rest} />
+  const Input = (
+    <input className={classes} id={id} readOnly={readOnly} {...rest} />
+  )
 
   if (!label) {
     return Input

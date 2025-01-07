@@ -9,177 +9,116 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
-      Favorite: {
+      countries: {
         Row: {
           id: number
-          recipeId: number
-          userId: number
+          name: string
         }
         Insert: {
-          id?: number
-          recipeId: number
-          userId: number
+          id?: never
+          name: string
         }
         Update: {
-          id?: number
-          recipeId?: number
-          userId?: number
+          id?: never
+          name?: string
+        }
+        Relationships: []
+      }
+      notes: {
+        Row: {
+          content: string
+          created_at: string
+          id: string
+          parent_id: string | null
+          state: number
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          content: string
+          created_at?: string
+          id?: string
+          parent_id?: string | null
+          state?: number
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          content?: string
+          created_at?: string
+          id?: string
+          parent_id?: string | null
+          state?: number
+          updated_at?: string
+          user_id?: string
         }
         Relationships: [
           {
-            foreignKeyName: "Favorite_recipeId_fkey"
-            columns: ["recipeId"]
+            foreignKeyName: "notes_user_id_fkey"
+            columns: ["user_id"]
             isOneToOne: false
-            referencedRelation: "recipes"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "Favorite_userId_fkey"
-            columns: ["userId"]
-            isOneToOne: false
-            referencedRelation: "User"
+            referencedRelation: "profiles"
             referencedColumns: ["id"]
           },
         ]
       }
       profiles: {
         Row: {
-          avatar: string | null
-          created_at: string | null
-          fullname: string | null
-          id: number
-          updated_at: string | null
-          user_id: string | null
+          avatar_url: string | null
+          created_at: string
+          id: string
+          name: string | null
+          username: string | null
         }
         Insert: {
-          avatar?: string | null
-          created_at?: string | null
-          fullname?: string | null
-          id?: number
-          updated_at?: string | null
-          user_id?: string | null
+          avatar_url?: string | null
+          created_at?: string
+          id?: string
+          name?: string | null
+          username?: string | null
         }
         Update: {
-          avatar?: string | null
-          created_at?: string | null
-          fullname?: string | null
-          id?: number
-          updated_at?: string | null
-          user_id?: string | null
+          avatar_url?: string | null
+          created_at?: string
+          id?: string
+          name?: string | null
+          username?: string | null
         }
-        Relationships: [
-          {
-            foreignKeyName: "profiles_user_id_fkey"
-            columns: ["user_id"]
-            isOneToOne: false
-            referencedRelation: "users"
-            referencedColumns: ["id"]
-          },
-        ]
+        Relationships: []
       }
       recipes: {
         Row: {
           created_at: string
           description: string | null
-          id: number
+          id: string
           image: string
-          ingredients: string | null
-          instructions: string | null
+          ingredients: string
+          instructions: string
           title: string
           updated_at: string | null
-          user_id: string | null
+          user_id: string
         }
         Insert: {
           created_at: string
           description?: string | null
-          id?: number
+          id?: string
           image: string
-          ingredients?: string | null
-          instructions?: string | null
+          ingredients: string
+          instructions: string
           title: string
           updated_at?: string | null
-          user_id?: string | null
+          user_id?: string
         }
         Update: {
           created_at?: string
           description?: string | null
-          id?: number
+          id?: string
           image?: string
-          ingredients?: string | null
-          instructions?: string | null
+          ingredients?: string
+          instructions?: string
           title?: string
           updated_at?: string | null
-          user_id?: string | null
-        }
-        Relationships: [
-          {
-            foreignKeyName: "recipes_user_id_fkey"
-            columns: ["user_id"]
-            isOneToOne: false
-            referencedRelation: "users"
-            referencedColumns: ["id"]
-          },
-        ]
-      }
-      Todo: {
-        Row: {
-          authorId: number | null
-          content: string | null
-          createdAt: string
-          id: number
-          state: number
-          title: string | null
-          updatedAt: string
-        }
-        Insert: {
-          authorId?: number | null
-          content?: string | null
-          createdAt?: string
-          id?: number
-          state?: number
-          title?: string | null
-          updatedAt: string
-        }
-        Update: {
-          authorId?: number | null
-          content?: string | null
-          createdAt?: string
-          id?: number
-          state?: number
-          title?: string | null
-          updatedAt?: string
-        }
-        Relationships: [
-          {
-            foreignKeyName: "Todo_authorId_fkey"
-            columns: ["authorId"]
-            isOneToOne: false
-            referencedRelation: "User"
-            referencedColumns: ["id"]
-          },
-        ]
-      }
-      User: {
-        Row: {
-          avatar: string | null
-          email: string
-          id: number
-          name: string | null
-          password: string
-        }
-        Insert: {
-          avatar?: string | null
-          email: string
-          id?: number
-          name?: string | null
-          password: string
-        }
-        Update: {
-          avatar?: string | null
-          email?: string
-          id?: number
-          name?: string | null
-          password?: string
+          user_id?: string
         }
         Relationships: []
       }
@@ -279,4 +218,19 @@ export type Enums<
   ? Database[PublicEnumNameOrOptions["schema"]]["Enums"][EnumName]
   : PublicEnumNameOrOptions extends keyof PublicSchema["Enums"]
     ? PublicSchema["Enums"][PublicEnumNameOrOptions]
+    : never
+
+export type CompositeTypes<
+  PublicCompositeTypeNameOrOptions extends
+    | keyof PublicSchema["CompositeTypes"]
+    | { schema: keyof Database },
+  CompositeTypeName extends PublicCompositeTypeNameOrOptions extends {
+    schema: keyof Database
+  }
+    ? keyof Database[PublicCompositeTypeNameOrOptions["schema"]]["CompositeTypes"]
+    : never = never,
+> = PublicCompositeTypeNameOrOptions extends { schema: keyof Database }
+  ? Database[PublicCompositeTypeNameOrOptions["schema"]]["CompositeTypes"][CompositeTypeName]
+  : PublicCompositeTypeNameOrOptions extends keyof PublicSchema["CompositeTypes"]
+    ? PublicSchema["CompositeTypes"][PublicCompositeTypeNameOrOptions]
     : never
