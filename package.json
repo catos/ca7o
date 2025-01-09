@@ -19,7 +19,7 @@
     "@radix-ui/react-popover": "^1.0.7",
     "@radix-ui/react-slot": "^1.0.2",
     "@radix-ui/react-tooltip": "^1.0.7",
-    "@supabase/ssr": "^0.3.0",
+    "@supabase/ssr": "^0.5.2",
     "@supabase/supabase-js": "^2.43.1",
     "autoprefixer": "10.4.17",
     "bcrypt": "^5.1.1",
