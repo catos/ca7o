@@ -1,11 +1,10 @@
 "use client"
 
-import Label from "@/components/ui/label"
+import { Label } from "@/components/ui/label"
 import Link from "@/components/ui/link"
 import Textarea from "@/components/ui/textarea"
 import { Tables } from "@/types/database"
 import Input from "@/components/ui/input"
-import { useFormStatus } from "react-dom"
 import { SubmitButton } from "./submit-button"
 
 type Props = {
@@ -14,8 +13,6 @@ type Props = {
 }
 
 export function RecipeForm({ action, recipe }: Props) {
-  const { pending } = useFormStatus()
-  console.log("pending", pending)
   const defaultValues = {
     title: "TODO: Default title for testing!",
     image: "https://placehold.co/600x400",
@@ -27,35 +24,7 @@ export function RecipeForm({ action, recipe }: Props) {
 
   return (
     <form className="relative flex flex-col gap-4 p-4 h-full" action={action}>
-      <div className="flex gap-4 items-center">
-        <SubmitButton>Save</SubmitButton>
-
-        {recipe && (
-          <>
-            <Link href={`/recipes/${recipe.id}`}>Go to recipe</Link>
-            <Link
-              className="no-underline font-bold ml-auto"
-              href={`/admin/recipes/${recipe.id}/delete`}
-            >
-              Delete
-            </Link>
-          </>
-        )}
-      </div>
-
-      {recipe && (
-        <div className="flex gap-4">
-          <span>
-            <strong>Created: </strong>
-            {recipe.created_at.toLocaleString()}
-          </span>
-          <span>
-            <strong>Updated: </strong>
-            {recipe.updated_at?.toLocaleString()}
-          </span>
-          <input type="hidden" name="id" value={recipe.id} />
-        </div>
-      )}
+      {recipe && <input type="hidden" name="id" value={recipe.id} />}
 
       <Input
         required
@@ -105,6 +74,10 @@ export function RecipeForm({ action, recipe }: Props) {
             defaultValue={data.instructions}
           />
         </div>
+      </div>
+
+      <div className="ml-auto">
+        <SubmitButton>Save</SubmitButton>
       </div>
     </form>
   )

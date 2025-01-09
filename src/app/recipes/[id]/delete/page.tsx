@@ -27,10 +27,7 @@ export default async function DeleteRecipe({ params }: Props) {
 
       <div className="flex gap-8 items-center justify-between absolute right-8 top-8">
         <Button type="submit">Delete</Button>
-        <Link
-          className="no-underline font-bold"
-          href={`/admin/recipes/${recipeId}`}
-        >
+        <Link className="no-underline font-bold" href={`/recipes/${recipeId}`}>
           Cancel
         </Link>
       </div>
