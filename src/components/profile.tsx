@@ -105,7 +105,10 @@ export default function Profile({ user }: { user: User | null }) {
   }
 
   return (
-    <Link className="no-underline font-semibold px-3 py-2" href="/login">
+    <Link
+      className="text-foreground hover:text-foreground/80 no-underline font-semibold px-3 py-2"
+      href="/login"
+    >
       Logg inn
     </Link>
   )

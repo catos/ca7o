@@ -5,7 +5,6 @@ import Link from "@/components/ui/link"
 
 import Logo from "./logo"
 import { createClient } from "@/utils/supabase/server"
-import { getProfile } from "@/data/profile.actions"
 
 export default async function Header() {
   const supabase = createClient()
@@ -36,7 +35,10 @@ export default async function Header() {
 // TODO: add active state - https://nextjs.org/docs/app/building-your-application/routing/linking-and-navigating
 function HeaderLink({ href, children }: { href: string; children: ReactNode }) {
   return (
-    <Link className="no-underline font-semibold px-3 py-2" href={href}>
+    <Link
+      className="no-underline text-foreground hover:text-foreground/80 font-semibold px-3 py-2"
+      href={href}
+    >
       {children}
     </Link>
   )
