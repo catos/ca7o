@@ -7,8 +7,7 @@ import { updateSession } from "@/utils/supabase/middleware"
 import { cookies } from "next/headers"
 
 export async function middleware(request: NextRequest) {
-  //   cookies().getAll() // Keep cookies in the JS execution context for Next.js build
-  //   return await updateSession(request)
+  return await updateSession(request)
 }
 
 export const config = {

@@ -1,4 +1,27 @@
-// "use server"
+"use server"
+
+import { handleDBError } from "@/lib/error-handler"
+import { createClient } from "@/utils/supabase/server"
+
+export async function getNotes(userId: string) {
+  try {
+    const supabase = createClient()
+    const { data, error } = await supabase
+      .from("notes")
+      .select()
+      .order("updated_at", { ascending: false })
+
+    if (error) {
+      throw error
+    }
+
+    return data ?? []
+  } catch (error) {
+    handleDBError(error, "Failed to get notes.")
+  }
+
+  return []
+}
 
 // import { authOptions } from "@/lib/auth"
 // import { handleDBError } from "@/lib/error-handler"

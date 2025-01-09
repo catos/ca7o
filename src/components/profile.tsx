@@ -71,9 +71,9 @@ export default function Profile({ user }: { user: User | null }) {
               <span className="line-through">Menyer</span>
             </NavLink>
 
-            <NavLink href="/todos">
+            <NavLink href="/notes">
               <CheckIcon />
-              <span>Todos</span>
+              <span>Notes</span>
             </NavLink>
 
             <NavLink href="/admin">
