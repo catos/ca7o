@@ -8,7 +8,7 @@ export function SubmitButton({ children }: { children: React.ReactNode }) {
   const { pending } = useFormStatus()
   return (
     <Button type="submit" disabled={pending}>
-      {pending ? <LoaderCircle /> : children}
+      {pending ? <LoaderCircle className="animate-spin" /> : children}
     </Button>
   )
 }

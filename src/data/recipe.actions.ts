@@ -72,12 +72,10 @@ export async function updateRecipe(formData: FormData) {
     const supabase = createClient()
 
     const { error } = await supabase.from("recipes").update(form).eq("id", id)
-    console.log("updateRecipe", form, error)
     if (error) {
       throw error
     }
 
-    revalidatePath(`/recipes/${id}`)
     revalidatePath(`/recipes/${id}`)
   } catch (error) {
     handleDBError(error, "Failed to update recipe.")
