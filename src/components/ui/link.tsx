@@ -1,10 +1,11 @@
 import NextLink, { LinkProps } from "next/link"
+import { AnchorHTMLAttributes } from "react"
 import { twMerge } from "tailwind-merge"
 
 type Props = {
   className?: string
 } & LinkProps &
-  React.AnchorHTMLAttributes<HTMLAnchorElement>
+  AnchorHTMLAttributes<HTMLAnchorElement>
 
 export default function Link({ className, href, ...rest }: Props) {
   const classes = twMerge(

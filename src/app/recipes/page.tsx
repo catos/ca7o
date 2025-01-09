@@ -8,10 +8,14 @@ import Heading from "@/components/ui/heading"
 export const revalidate = 10
 
 export default async function RecipesPage() {
-  const recipes = (await getRecipes()) ?? []
+  const recipes = await getRecipes()
 
   if (!recipes) {
-    return null
+    return (
+      <div className="relative flex flex-col gap-4">
+        <Heading>No recipes found... try adding one ?</Heading>
+      </div>
+    )
   }
 
   return (

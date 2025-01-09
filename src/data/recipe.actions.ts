@@ -48,7 +48,7 @@ export async function getRecipe(id: string) {
 }
 
 export async function updateRecipe(formData: FormData) {
-  let redirectUrl = "/admin/recipes/"
+  let redirectUrl = "/recipes/"
 
   try {
     if (!formData.has("id")) {
@@ -57,7 +57,7 @@ export async function updateRecipe(formData: FormData) {
 
     const id = formData.get("id") as string
     if (id) {
-      redirectUrl = `/admin/recipes/${id}`
+      redirectUrl = `/recipes/${id}`
     }
 
     const form = {
@@ -77,17 +77,17 @@ export async function updateRecipe(formData: FormData) {
       throw error
     }
 
-    revalidatePath(`/admin/recipes/${id}`)
+    revalidatePath(`/recipes/${id}`)
     revalidatePath(`/recipes/${id}`)
   } catch (error) {
     handleDBError(error, "Failed to update recipe.")
   }
 
-  redirect(redirectUrl)
+  // redirect(redirectUrl)
 }
 
 export async function createRecipe(formData: FormData) {
-  let redirectUrl = "/admin/recipes/"
+  let redirectUrl = "/recipes/"
   try {
     const form = {
       title: formData.get("title") as string,
@@ -110,10 +110,10 @@ export async function createRecipe(formData: FormData) {
     }
 
     if (data) {
-      redirectUrl = `/admin/recipes/${data.id}`
+      redirectUrl = `/recipes/${data.id}`
     }
 
-    revalidatePath("/admin/recipes/")
+    revalidatePath("/recipes/")
   } catch (error) {
     handleDBError(error, "Failed to create recipe.")
   }
@@ -132,10 +132,10 @@ export async function deleteRecipe(formData: FormData) {
     const supabase = createClient()
     await supabase.from("recipes").delete().eq("id", id)
 
-    revalidatePath(`/admin/recipes/${id}`)
+    revalidatePath(`/recipes/${id}`)
   } catch (error) {
     handleDBError(error, "Failed to delete recipe.")
   }
 
-  redirect("/admin/recipes/")
+  redirect("/recipes/")
 }

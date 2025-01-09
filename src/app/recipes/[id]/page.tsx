@@ -40,7 +40,7 @@ export default async function RecipesPage({ params }: Props) {
       <section className="relative">
         <Link
           className="absolute top-2 right-2 no-underline font-bold opacity-60 bg-background rounded-full p-2"
-          href={`/admin/recipes/${recipe.id}`}
+          href={`/recipes/${recipe.id}/edit`}
         >
           <CookingPot />
         </Link>
@@ -81,15 +81,15 @@ export default async function RecipesPage({ params }: Props) {
         </div>
       </section>
 
-      <div className="flex flex-col gap-4 sm:flex-row">
-        <section className="rounded-md sm:w-1/2 md:w-5/12 bg-white p-4">
+      <div className="flex flex-col gap-4 md:flex-row">
+        <section className="rounded-md md:w-5/12 bg-white p-4">
           <Heading as="h2" className="uppercase text-foreground/50 text-base">
             Ingrendienser
           </Heading>
           <Markdown>{recipe.ingredients}</Markdown>
         </section>
 
-        <section className="rounded-md sm:w-1/2 md:w-7/12 bg-white p-4">
+        <section className="rounded-md md:w-7/12 bg-white p-4">
           <Heading as="h2" className="uppercase text-foreground/50 text-base">
             Fremgangsmåte
           </Heading>
