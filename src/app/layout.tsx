@@ -1,3 +1,4 @@
+import { SpeedInsights } from "@vercel/speed-insights/next"
 import Header from "@/components/header"
 import Providers from "@/components/providers"
 import { Inter, Roboto_Mono } from "next/font/google"
@@ -39,6 +40,7 @@ export default function RootLayout({
             {children}
           </main>
         </Providers>
+        <SpeedInsights />
       </body>
     </html>
   )
