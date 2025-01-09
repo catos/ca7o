@@ -29,6 +29,9 @@ export default async function Admin() {
         <li>
           <Link href="https://tailwindcss.com/docs">Tailwind docs</Link>
         </li>
+        <li>
+          <Link href="https://lucide.dev/icons/">Lucide icons</Link>
+        </li>
       </ul>
     </div>
   )

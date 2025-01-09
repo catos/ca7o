@@ -3,6 +3,7 @@ import Card from "@/components/recipe/card"
 import { getRecipes } from "@/data/recipe.actions"
 
 import Heading from "@/components/ui/heading"
+import Link from "@/components/ui/link"
 
 // TODO: can I set this more globally ?
 export const revalidate = 10
@@ -20,6 +21,7 @@ export default async function RecipesPage() {
 
   return (
     <div className="relative flex flex-col gap-4">
+      <Link href="/recipes/create">Create recipe</Link>
       {/* // TODO: create a session storage list of recently visited recipes */}
       <div>
         <Heading as="h2" className="mb-0 text-lg uppercase text-foreground/50">
