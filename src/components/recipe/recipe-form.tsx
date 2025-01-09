@@ -20,7 +20,7 @@ export function RecipeForm({ action, recipe }: Props) {
     ingredients: "...",
     instructions: "...",
   }
-  const data = { ...recipe, ...defaultValues }
+  const data = { ...defaultValues, ...recipe }
 
   return (
     <form className="relative flex flex-col gap-4 p-4 h-full" action={action}>
@@ -49,7 +49,7 @@ export function RecipeForm({ action, recipe }: Props) {
           required
           id="description"
           name="description"
-          defaultValue={data.description}
+          defaultValue={data.description ?? ""}
           className="h-24"
         />
       </div>

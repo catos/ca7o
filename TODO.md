@@ -1,16 +1,18 @@
-TODO: auth without next-auth (https://supabase.com/docs/guides/getting-started/tutorials/with-nextjs?queryGroups=language&language=ts)
-TODO: Auth - register (https://supabase.com/docs/guides/getting-started/tutorials/with-nextjs?queryGroups=language&language=ts#proof-key-for-code-exchange-pkce)
-TODO: .env ... c'moooon
-TODO: make default image better
-TODO: https://supabase.com/docs/guides/auth/auth-helpers/nextjs#manual-configuration
-TODO: formdata validation (without external lib)
-
 REF: https://flowbite.com/docs/components/accordion/
 REF: (naming and categorising components) https://bulma.io/documentation/elements/title/
 REF: (dynamic ui component exampple) https://github.com/catos/mdk-next/blob/main/components/ui/button.tsx
 
-npx prisma migrate dev --name type-change
-npx prisma studio
+# TODOs
+
+- Remove prisma
+- Remove shadcn and related dependencies
+- Upgrade to next 15
+- Update UI a little with a nice theme
+- Create recipes seed
+- Implement notes
+- Add login with providers
+- Upload images to supabase
+- Form validation without external lib
 
 # Check til å jumpstarte komponenter
 
