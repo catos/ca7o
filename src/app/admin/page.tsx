@@ -8,18 +8,15 @@ export default async function Admin() {
       {/* <pre>{JSON.stringify(session, null, 2)}</pre> */}
       <ul>
         <li>
-          <Link
-            href="https://vercel.com/catos-projects-1ae1051f/ca7o-f8cy"
-            target="_blank"
-          >
+          <Link href="https://vercel.com/catos-projects-1ae1051f/ca7o-f8cy">
             Vercel hosting
           </Link>
         </li>
         <li>
-          <Link
-            href="https://supabase.com/dashboard/project/volslymfkdeblzqdnfkp"
-            target="_blank"
-          >
+          <Link href="https://nextjs.org/docs">Next.js docs</Link>
+        </li>
+        <li>
+          <Link href="https://supabase.com/dashboard/project/volslymfkdeblzqdnfkp">
             Supabase backend
           </Link>
         </li>

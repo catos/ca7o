@@ -6,7 +6,7 @@ REF: (dynamic ui component exampple) https://github.com/catos/mdk-next/blob/main
 
 - Remove prisma
 - Remove shadcn and related dependencies
-- Upgrade to next 15
+- Upgrade to next 15 (ncu -i --format group)
 - Update UI a little with a nice theme
 - Create recipes seed
 - Implement notes
