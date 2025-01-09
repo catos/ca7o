@@ -6,7 +6,7 @@ import { redirect } from "next/navigation"
 
 export async function update(formData: FormData) {
   try {
-    const id = formData.get("id") as number | null
+    const id = formData.get("id") as string
     if (id === null) {
       throw new Error("Profile not found!")
     }
