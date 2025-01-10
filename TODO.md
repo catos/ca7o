@@ -9,10 +9,15 @@ REF: (dynamic ui component exampple) https://github.com/catos/mdk-next/blob/main
 - Upgrade to next 15 (ncu -i --format group)
 - Update UI a little with a nice theme
 - Create recipes seed
-- Implement notes
 - Add login with providers
 - Upload images to supabase
 - Form validation without external lib
+
+## Notes
+
+## Wesketch Deux
+
+## Calculators (Factorio/Satisfactory)
 
 # Check til å jumpstarte komponenter
 

@@ -1,6 +1,5 @@
 "use client"
 
-import { Todo } from "@prisma/client"
 import { TooltipTrigger } from "@radix-ui/react-tooltip"
 import { TrashIcon } from "lucide-react"
 
@@ -8,8 +7,13 @@ import { TrashIcon } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
 import { Tooltip, TooltipContent } from "@/components/ui/tooltip"
+import { Tables } from "@/types/database"
 
-export default function DeleteFrom({ todo }: { todo: Todo }) {
+type Props = {
+  note: Tables<"notes">
+}
+
+export function DeleteForm({ note }: Props) {
   const handleClick = () => {
     // deleteTodo(todo.id)
     console.log("TODO: delete todo")
@@ -23,7 +27,7 @@ export default function DeleteFrom({ todo }: { todo: Todo }) {
         </Button>
       </TooltipTrigger>
       <TooltipContent>
-        <p>Slett TODO</p>
+        <p>Slett note</p>
       </TooltipContent>
     </Tooltip>
   )

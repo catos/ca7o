@@ -1,6 +1,5 @@
 "use client"
 
-import { Todo } from "@prisma/client"
 import { CheckIcon, UndoIcon } from "lucide-react"
 
 // import { updateState } from "@/data/todo-actions"
@@ -11,13 +10,14 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from "@/components/ui/tooltip"
+import { Tables } from "@/types/database"
 
 type Props = {
-  todo: Todo
+  note: Tables<"notes">
   value?: number
 }
 
-export default function UpdateState({ todo, value = 0 }: Props) {
+export default function UpdateState({ note, value = 0 }: Props) {
   const handleClick = () => {
     // updateState(todo.id, value)
     console.log("TODO: updateState")
@@ -26,12 +26,12 @@ export default function UpdateState({ todo, value = 0 }: Props) {
     <Tooltip>
       <TooltipTrigger asChild>
         <Button size="icon" onClick={handleClick}>
-          {todo.state === 0 ? <CheckIcon /> : <UndoIcon />}
+          {note.state === 0 ? <CheckIcon /> : <UndoIcon />}
         </Button>
       </TooltipTrigger>
       <TooltipContent>
         <p>
-          {todo.state === 0 ? "Marker som ferdig" : "Flytt tilbake til TODO"}
+          {note.state === 0 ? "Marker som ferdig" : "Flytt tilbake til TODO"}
         </p>
       </TooltipContent>
     </Tooltip>

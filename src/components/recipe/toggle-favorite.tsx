@@ -1,7 +1,6 @@
 // "use client"
 
 // import { createFavorite, deleteFavorite } from "@/data/favorite-actions"
-// import { Recipe } from "@prisma/client"
 // import {
 //   Tooltip,
 //   TooltipTrigger,

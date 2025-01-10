@@ -26,7 +26,6 @@ export async function getNotes(userId: string) {
 // import { authOptions } from "@/lib/auth"
 // import { handleDBError } from "@/lib/error-handler"
 // import prisma from "@/lib/prisma"
-// import { Todo } from "@prisma/client"
 // import { getServerSession } from "next-auth"
 // import { revalidatePath } from "next/cache"
 // import { redirect } from "next/navigation"
