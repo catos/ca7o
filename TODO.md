@@ -4,7 +4,8 @@ REF: (dynamic ui component exampple) https://github.com/catos/mdk-next/blob/main
 
 # TODOs
 
-- Remove shadcn and related dependencies
+- Fix all broken code
+- Remove "class-variance-authority" (badge.tsx & utils.ts) if I find a better way to do it without other deps
 - Upgrade to next 15 (ncu -i --format group)
 - Update UI a little with a nice theme
 - Create recipes seed

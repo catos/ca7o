@@ -1,12 +1,10 @@
 "use client"
 
-import { TooltipTrigger } from "@radix-ui/react-tooltip"
 import { TrashIcon } from "lucide-react"
 
 // import { deleteTodo } from "@/data/todo-actions"
 
 import { Button } from "@/components/ui/button"
-import { Tooltip, TooltipContent } from "@/components/ui/tooltip"
 import { Tables } from "@/types/database"
 
 type Props = {
@@ -20,15 +18,15 @@ export function DeleteForm({ note }: Props) {
   }
 
   return (
-    <Tooltip>
-      <TooltipTrigger asChild>
-        <Button variant="destructive" size="icon" onClick={handleClick}>
-          <TrashIcon />
-        </Button>
-      </TooltipTrigger>
-      <TooltipContent>
-        <p>Slett note</p>
-      </TooltipContent>
-    </Tooltip>
+    // <Tooltip>
+    //   <TooltipTrigger asChild>
+    <Button onClick={handleClick}>
+      <TrashIcon />
+    </Button>
+    //   </TooltipTrigger>
+    //   <TooltipContent>
+    //     <p>Slett note</p>
+    //   </TooltipContent>
+    // </Tooltip>
   )
 }

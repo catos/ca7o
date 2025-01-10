@@ -7,11 +7,6 @@ import { getRecipe } from "@/data/recipe.actions"
 import { Badge } from "@/components/ui/badge"
 import Heading from "@/components/ui/heading"
 import Link from "@/components/ui/link"
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipTrigger,
-} from "@/components/ui/tooltip"
 // import ToggleFavorite from "@/components/recipe/toggle-favorite"
 
 export const revalidate = 60 * 60 * 24
@@ -62,22 +57,8 @@ export default async function RecipesPage({ params }: Props) {
         </div>
         <div className="pb-4 flex gap-4 justify-center">
           {/* <ToggleFavorite recipe={recipe} /> */}
-          <Tooltip>
-            <TooltipTrigger>
-              <BookPlusIcon />
-            </TooltipTrigger>
-            <TooltipContent>
-              <p>Legg til oppskrift i meny</p>
-            </TooltipContent>
-          </Tooltip>
-          <Tooltip>
-            <TooltipTrigger>
-              <PrinterIcon />
-            </TooltipTrigger>
-            <TooltipContent>
-              <p>Skriv ut</p>
-            </TooltipContent>
-          </Tooltip>
+          <div>Legg til oppskrift i meny</div>
+          <div>Skriv ut</div>
         </div>
       </section>
 

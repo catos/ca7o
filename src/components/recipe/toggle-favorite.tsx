@@ -1,11 +1,6 @@
 // "use client"
 
 // import { createFavorite, deleteFavorite } from "@/data/favorite-actions"
-// import {
-//   Tooltip,
-//   TooltipTrigger,
-//   TooltipContent,
-// } from "@radix-ui/react-tooltip"
 // import { StarIcon } from "lucide-react"
 
 // export default function ToggleFavorite({ recipe }: { recipe: Recipe }) {

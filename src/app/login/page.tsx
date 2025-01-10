@@ -34,7 +34,7 @@ export default function LoginPage() {
           </div>
 
           <Button formAction={signIn}>Logg inn</Button>
-          <Button variant="outline" formAction={signUp}>
+          <Button variant="outlined" formAction={signUp}>
             Registrer deg
           </Button>
 
