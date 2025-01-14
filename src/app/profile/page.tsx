@@ -1,6 +1,9 @@
+import { Avatar } from "@/components/ui/avatar"
 import { Button } from "@/components/ui/button"
+import { Heading } from "@/components/ui/heading"
 import { Input } from "@/components/ui/input"
 import { getProfile, update } from "@/data/profile.actions"
+import { getInitials } from "@/lib/get-initials"
 import { createClient } from "@/utils/supabase/server"
 import Image from "next/image"
 import { redirect } from "next/navigation"
@@ -18,22 +21,23 @@ export default async function Profile() {
 
   const profile = await getProfile(user.id)
 
-  // TODO: fix
-  const avatarUrl =
-    "https://volslymfkdeblzqdnfkp.supabase.co/storage/v1/object/public/avatars/ed5e39dc-409e-4671-91fc-8d86ac626e2b-0.21225383379750484.png"
+  // TODO: temporary solution
+  if (!user) {
+    return redirect("/login")
+  }
 
-  const alt = profile?.name ?? user.email
-  console.log("Profile ", profile, user.id)
+  const name = user.user_metadata.full_name ?? user.app_metadata.email
 
   return (
     <div>
       <div>
-        {avatarUrl && (
-          <Image src={avatarUrl} alt={alt ?? ""} width={100} height={100} />
-        )}
-        <div>
-          <span>{user.email}</span>
-        </div>
+        <Avatar
+          fallback={getInitials(name)}
+          src={user.user_metadata.avatar_url}
+          className="w-32 h-32 hover:ring-2 ring-primary"
+        />
+        <Heading className="m-0">{user.user_metadata.full_name}</Heading>
+        <Heading as="h2">{user.email}</Heading>
       </div>
       <form action={update} className="relative flex flex-col gap-4 p-4 mb-4">
         <Input name="id" hidden defaultValue={user.id} />

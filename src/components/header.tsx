@@ -15,8 +15,7 @@ export default async function Header() {
 
   // TODO: temporary solution
   const name = user?.email ?? "N A"
-  const avatar =
-    "https://volslymfkdeblzqdnfkp.supabase.co/storage/v1/object/public/avatars/ed5e39dc-409e-4671-91fc-8d86ac626e2b-0.21225383379750484.png"
+  console.log(user)
 
   return (
     <nav className="bg-background border-b border-primary-300">
@@ -31,12 +30,13 @@ export default async function Header() {
         </div>
 
         <div className="flex gap-4 ml-auto">
-          {/* <Profile user={user} /> */}
-          <Avatar
-            fallback={getInitials(name)}
-            src={avatar}
-            className="w-8 h-8 hover:ring-2 ring-primary"
-          />
+          <Link href="/profile">
+            <Avatar
+              fallback={getInitials(name)}
+              src={user?.user_metadata.avatar_url}
+              className="w-8 h-8 hover:ring-2 ring-primary"
+            />
+          </Link>
         </div>
       </div>
     </nav>

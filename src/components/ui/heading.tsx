@@ -10,7 +10,7 @@ const titleTypes = {
   h1: "text-4xl font-extrabold",
   h2: "text-3xl font-semibold mt-10",
   h3: "text-2xl font-semibold mt-8",
-  h4: "text-xl",
+  h4: "text-xl mt-6",
 }
 
 export function Heading({ as = "h1", children, className }: Props) {
