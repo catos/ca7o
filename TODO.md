@@ -4,10 +4,11 @@ REF: (dynamic ui component exampple) https://github.com/catos/mdk-next/blob/main
 
 # TODOs
 
-- Fix all broken code
-- Remove "class-variance-authority" (badge.tsx & utils.ts) if I find a better way to do it without other deps
+- Update UI a little with a nice theme (https://dribbble.com/tags/recipe-website#)
 - Upgrade to next 15 (ncu -i --format group)
-- Update UI a little with a nice theme
+- Remove "class-variance-authority" (badge.tsx & utils.ts) if I find a better way to do it without other deps
+- Fix all broken code
+- Palette: https://coolors.co/palette/264653-2a9d8f-e9c46a-f4a261-e76f51
 - Create recipes seed
 - Add login with providers
 - Upload images to supabase

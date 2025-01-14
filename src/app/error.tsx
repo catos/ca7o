@@ -4,7 +4,7 @@
 import { useEffect } from "react"
 
 import { Button } from "@/components/ui/button"
-import Heading from "@/components/ui/heading"
+import { Heading } from "@/components/ui/heading"
 
 // TODO: implement error page for all routes
 export default function Error({

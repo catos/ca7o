@@ -2,8 +2,8 @@ import Card from "@/components/recipe/card"
 
 import { getRecipes } from "@/data/recipe.actions"
 
-import Heading from "@/components/ui/heading"
-import Link from "@/components/ui/link"
+import { Heading } from "@/components/ui/heading"
+import { Link } from "@/components/ui/link"
 
 // TODO: can I set this more globally ?
 export const revalidate = 10

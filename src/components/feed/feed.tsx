@@ -1,6 +1,6 @@
 import Parser from "rss-parser"
-import Heading from "@/components/ui/heading"
-import Link from "@/components/ui/link"
+import { Heading } from "@/components/ui/heading"
+import { Link } from "@/components/ui/link"
 import toLocaleDate from "@/lib/to-locale-date"
 import FeedXml from "./feed-xml"
 

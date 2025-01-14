@@ -8,8 +8,8 @@ import { twMerge } from "tailwind-merge"
 // import { createTodo } from "@/data/todo-actions"
 
 import { Button } from "@/components/ui/button"
-import Input from "@/components/ui/input"
-import Textarea from "@/components/ui/textarea"
+import { Input } from "@/components/ui/input"
+import { Textarea } from "@/components/ui/textarea"
 
 // TODO: type all return values
 type Status = "idle" | "pending" | "success" | "error"

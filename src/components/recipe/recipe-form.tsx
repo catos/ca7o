@@ -1,10 +1,9 @@
 "use client"
 
 import { Label } from "@/components/ui/label"
-import Link from "@/components/ui/link"
-import Textarea from "@/components/ui/textarea"
+import { Textarea } from "@/components/ui/textarea"
 import { Tables } from "@/types/database"
-import Input from "@/components/ui/input"
+import { Input } from "@/components/ui/input"
 import { SubmitButton } from "./submit-button"
 
 type Props = {

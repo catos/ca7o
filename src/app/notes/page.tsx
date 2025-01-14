@@ -1,4 +1,4 @@
-import Heading from "@/components/ui/heading"
+import { Heading } from "@/components/ui/heading"
 import { getNotes } from "@/data/note-actions"
 import { createClient } from "@/utils/supabase/server"
 import { redirect } from "next/navigation"

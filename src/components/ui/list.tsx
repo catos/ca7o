@@ -4,7 +4,7 @@ type Props = {
   children: React.ReactNode
 } & React.HTMLAttributes<HTMLUListElement>
 
-export default function List({ children, className, ...rest }: Props) {
+export function List({ children, className, ...rest }: Props) {
   const classes = twMerge("flex flex-col gap-0 pl-4 list-disc", className)
 
   return (

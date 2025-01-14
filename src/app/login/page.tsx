@@ -1,9 +1,9 @@
 import { Button } from "@/components/ui/button"
 import { Checkbox } from "@/components/ui/checkbox"
-import Heading from "@/components/ui/heading"
-import Input from "@/components/ui/input"
+import { Heading } from "@/components/ui/heading"
+import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import Link from "@/components/ui/link"
+import { Link } from "@/components/ui/link"
 
 import { signIn, signUp } from "@/data/auth.actions"
 

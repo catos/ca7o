@@ -4,6 +4,14 @@
 
 @layer base {
   :root {
+    --pblue: 197 37% 24%;
+    --pblue-foreground: 210 40% 98%;
+    --pgreen: 173 58% 39%;
+    --pyellow: 43 74% 66%;
+    --porange: 27 87% 67%;
+    --pred: 12 76% 61%;
+    --pred-foreground: 210 40% 98%;
+
     --link: 197 89.1% 36.1%;
 
     --background: 0 0% 100%;

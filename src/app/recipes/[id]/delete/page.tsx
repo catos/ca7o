@@ -1,8 +1,8 @@
 import { deleteRecipe, getRecipe } from "@/data/recipe.actions"
 
 import { Button } from "@/components/ui/button"
-import Heading from "@/components/ui/heading"
-import Link from "@/components/ui/link"
+import { Heading } from "@/components/ui/heading"
+import { Link } from "@/components/ui/link"
 
 type Props = {
   params: { id: string }

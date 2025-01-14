@@ -1,7 +1,7 @@
 import { Avatar } from "@/components/ui/avatar"
 import React, { ReactNode } from "react"
 
-import Link from "@/components/ui/link"
+import { Link } from "@/components/ui/link"
 
 import Logo from "./logo"
 import { createClient } from "@/utils/supabase/server"

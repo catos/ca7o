@@ -1,12 +1,12 @@
 import Image from "@/components/image"
 import Markdown from "@/components/recipe/markdown"
-import { BookPlusIcon, CookingPot, PrinterIcon } from "lucide-react"
+import { CookingPot } from "lucide-react"
 
 import { getRecipe } from "@/data/recipe.actions"
 
 import { Badge } from "@/components/ui/badge"
-import Heading from "@/components/ui/heading"
-import Link from "@/components/ui/link"
+import { Heading } from "@/components/ui/heading"
+import { Link } from "@/components/ui/link"
 // import ToggleFavorite from "@/components/recipe/toggle-favorite"
 
 export const revalidate = 60 * 60 * 24

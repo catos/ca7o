@@ -10,9 +10,9 @@ import { useState } from "react"
 import { twJoin } from "tailwind-merge"
 
 import { Button } from "@/components/ui/button"
-import Link from "@/components/ui/link"
-import List from "@/components/ui/list"
-import ListItem from "@/components/ui/list-item"
+import { Link } from "@/components/ui/link"
+import { List } from "@/components/ui/list"
+import { ListItem } from "@/components/ui/list-item"
 
 const asideData = [
   {

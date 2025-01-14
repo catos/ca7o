@@ -1,5 +1,5 @@
-import Heading from "@/components/ui/heading"
-import Link from "@/components/ui/link"
+import { Heading } from "@/components/ui/heading"
+import { Link } from "@/components/ui/link"
 
 export default async function Admin() {
   return (

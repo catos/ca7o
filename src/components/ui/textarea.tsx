@@ -7,7 +7,7 @@ type Props = {
   required?: boolean
 } & TextareaHTMLAttributes<HTMLTextAreaElement>
 
-export default function Textarea(props: Props) {
+export function Textarea(props: Props) {
   const { id, className, expandOnFocus = false, ...rest } = props
 
   const classes = twMerge(

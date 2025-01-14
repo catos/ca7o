@@ -19,6 +19,18 @@ const config = {
     },
     extend: {
       colors: {
+        pblue: {
+          DEFAULT: "hsl(var(--pblue))",
+          foreground: "hsl(var(--pblue-foreground))",
+        },
+        pgreen: "hsl(var(--pgreen))",
+        pyellow: "hsl(var(--pyellow))",
+        porange: "hsl(var(--porange))",
+        pred: {
+          DEFAULT: "hsl(var(--pred))",
+          foreground: "hsl(var(--pred-foreground))",
+        },
+
         link: "hsl(var(--link))",
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",

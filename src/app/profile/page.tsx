@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button"
-import Input from "@/components/ui/input"
+import { Input } from "@/components/ui/input"
 import { getProfile, update } from "@/data/profile.actions"
 import { createClient } from "@/utils/supabase/server"
 import Image from "next/image"
