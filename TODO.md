@@ -14,6 +14,10 @@ REF: (dynamic ui component exampple) https://github.com/catos/mdk-next/blob/main
 - Upload images to supabase
 - Form validation without external lib
 
+## Fancy navigateable scroll bar for page
+
+https://kobez.dev/blog/creating-custom-remark-plugins
+
 ## Notes
 
 ## Wesketch Deux
