@@ -11,8 +11,6 @@ import { twJoin } from "tailwind-merge"
 
 import { Button } from "@/components/ui/button"
 import { Link } from "@/components/ui/link"
-import { List } from "@/components/ui/list"
-import { ListItem } from "@/components/ui/list-item"
 
 const asideData = [
   {
@@ -40,9 +38,9 @@ export default function Aside() {
         {expanded && <span className="font-bold">Admin</span>}
       </Button>
 
-      <List className={twJoin("pl-0 list-none", expanded && "md:w-48")}>
+      <ul className={twJoin("pl-0 list-none", expanded && "md:w-48")}>
         {asideData.map(({ title, href, icon }) => (
-          <ListItem key={href} className="p-0">
+          <li key={href} className="p-0">
             <Link
               className="flex items-center gap-2 p-2 no-underline"
               href={href}
@@ -50,9 +48,9 @@ export default function Aside() {
               {icon}
               {expanded && <span>{title}</span>}
             </Link>
-          </ListItem>
+          </li>
         ))}
-      </List>
+      </ul>
     </div>
   )
 }
