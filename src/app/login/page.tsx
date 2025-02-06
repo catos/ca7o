@@ -5,7 +5,7 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Link } from "@/components/ui/link"
 
-import { signIn, signUp } from "@/data/auth.actions"
+import { signIn, signInWithGithub, signUp } from "@/data/auth.actions"
 
 export default function LoginPage() {
   return (
@@ -42,6 +42,9 @@ export default function LoginPage() {
             Denne site er så eksklusiv at du må kjenne fyren som lager den for å
             få tilgang... Sorry!
           </p>
+        </form>
+        <form>
+          <Button formAction={signInWithGithub}>Logg inn med GitHub</Button>
         </form>
       </section>
     </div>

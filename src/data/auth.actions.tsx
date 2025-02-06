@@ -26,6 +26,30 @@ export async function signIn(formData: FormData) {
   redirect("/")
 }
 
+export async function signInWithGithub() {
+  // TODO: Implement redirect URL if needed
+  // returnUrl: string = "/"
+  // redirectTo: `${process.env.NEXT_PUBLIC_SITE_URL}/auth/callback?next=${returnUrl}`,
+  const supabase = createClient()
+
+  const { data, error } = await supabase.auth.signInWithOAuth({
+    provider: "github",
+    options: {
+      redirectTo: `${process.env.NEXT_PUBLIC_SITE_URL}/auth/callback`,
+    },
+  })
+
+  if (error) {
+    redirect("/error")
+  }
+
+  if (data.url) {
+    redirect(data.url) // use the redirect API for your server framework
+  }
+
+  redirect("/auth/no-error-and-no-url")
+}
+
 export async function signUp(formData: FormData) {
   const supabase = createClient()
 
