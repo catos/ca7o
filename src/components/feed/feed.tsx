@@ -1,5 +1,4 @@
 import Parser from "rss-parser"
-import { Heading } from "@/components/ui/heading"
 import { Link } from "@/components/ui/link"
 import toLocaleDate from "@/lib/to-locale-date"
 import FeedXml from "./feed-xml"
@@ -12,9 +11,7 @@ export default async function Feed({ url }: { url: string }) {
 
   return (
     <div className="bg-white p-4">
-      <Heading as="h2" className="mb-4">
-        {feed.title}
-      </Heading>
+      <h2 className="mb-4">{feed.title}</h2>
       {take10.map((item) => (
         <div key={item.title} className="flex flex-col gap-1 mb-4">
           {item.link ? (

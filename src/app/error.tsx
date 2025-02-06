@@ -4,7 +4,6 @@
 import { useEffect } from "react"
 
 import { Button } from "@/components/ui/button"
-import { Heading } from "@/components/ui/heading"
 
 // TODO: implement error page for all routes
 export default function Error({
@@ -20,7 +19,7 @@ export default function Error({
 
   return (
     <div className="container p-4 text-center bg-white">
-      <Heading>Error Boundary from root</Heading>
+      <h1>Error Boundary from root</h1>
       <Button onClick={() => reset()}>Try again</Button>
     </div>
   )

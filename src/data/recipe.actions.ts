@@ -88,13 +88,15 @@ export async function updateRecipe(formData: FormData) {
 export async function createRecipe(formData: FormData) {
   let redirectUrl = "/recipes/"
   try {
+    const date = new Date().toISOString()
     const form = {
       title: formData.get("title") as string,
       image: formData.get("image") as string,
       description: formData.get("description") as string,
       ingredients: formData.get("ingredients") as string,
       instructions: formData.get("instructions") as string,
-      created_at: new Date().toISOString(),
+      created_at: date,
+      updated_at: date,
     }
 
     const supabase = createClient()

@@ -32,11 +32,14 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className={`${inter.variable} ${roboto_mono.variable}`}>
-      <body className="bg-gray-100">
+    <html
+      lang="en"
+      className={`dark ${inter.variable} ${roboto_mono.variable}`}
+    >
+      <body className="bg-background text-foreground">
         <Providers>
           <Header />
-          <main className="container mx-auto p-4 flex flex-col flex-1">
+          <main className="mx-auto min-h-screen max-w-6xl overflow-hidden p-4 md:p-6">
             {children}
           </main>
         </Providers>

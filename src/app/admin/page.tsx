@@ -1,10 +1,9 @@
-import { Heading } from "@/components/ui/heading"
 import { Link } from "@/components/ui/link"
 
 export default async function Admin() {
   return (
     <div className="p-4">
-      <Heading>Admin</Heading>
+      <h1>Admin</h1>
       {/* <pre>{JSON.stringify(session, null, 2)}</pre> */}
       <ul>
         <li>

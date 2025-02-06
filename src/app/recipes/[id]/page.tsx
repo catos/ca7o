@@ -1,13 +1,11 @@
 import Image from "@/components/image"
 import Markdown from "@/components/recipe/markdown"
-import { CookingPot } from "lucide-react"
+import { CookingPot, HeartIcon, PrinterIcon, StarIcon } from "lucide-react"
 
 import { getRecipe } from "@/data/recipe.actions"
 
-import { Badge } from "@/components/ui/badge"
-import { Heading } from "@/components/ui/heading"
 import { Link } from "@/components/ui/link"
-// import ToggleFavorite from "@/components/recipe/toggle-favorite"
+import { Button } from "@/components/ui/button"
 
 export const revalidate = 60 * 60 * 24
 
@@ -31,49 +29,51 @@ export default async function RecipesPage({ params }: Props) {
   }
 
   return (
-    <div className="flex flex-col gap-4">
+    <div className="-mt-4 flex flex-col gap-4 md:gap-6">
       <section className="relative">
         <Link
-          className="absolute top-2 right-2 no-underline font-bold opacity-60 bg-background rounded-full p-2"
+          className="absolute right-2 top-2 rounded-full bg-background p-2 font-bold no-underline opacity-60"
           href={`/recipes/${recipe.id}/edit`}
         >
           <CookingPot />
         </Link>
         <Image
-          className="max-h-64 sm:max-h-96 object-cover"
+          className="max-h-64 w-full object-cover sm:max-h-96"
           src={recipe.image}
           alt={recipe.title}
         />
       </section>
 
       <section className="flex flex-col">
-        <Heading as="h1" className="px-4 m-0 text-center font-semibold">
-          {recipe.title}
-        </Heading>
-        <div className="py-4 flex gap-2 justify-center">
-          <Badge>Fisk</Badge>
-          <Badge>Enkel</Badge>
-          <Badge>Sunn</Badge>
-        </div>
-        <div className="pb-4 flex gap-4 justify-center">
-          {/* <ToggleFavorite recipe={recipe} /> */}
-          <div>Legg til oppskrift i meny</div>
-          <div>Skriv ut</div>
-        </div>
+        <h1 className="m-0 px-4 text-center font-semibold">{recipe.title}</h1>
       </section>
 
-      <div className="flex flex-col gap-4 md:flex-row">
-        <section className="rounded-md md:w-5/12 bg-white p-4">
-          <Heading as="h2" className="uppercase text-foreground/50 text-base">
-            Ingrendienser
-          </Heading>
+      {recipe.description && (
+        <section>
+          <Markdown>{recipe.description}</Markdown>
+        </section>
+      )}
+
+      <section className="flex justify-center gap-4">
+        <span>
+          <StarIcon />
+        </span>
+        <Button variant="button-icon">
+          <HeartIcon />
+        </Button>
+        <span>
+          <PrinterIcon />
+        </span>
+      </section>
+
+      <div className="flex flex-col gap-4 sm:flex-row">
+        <section className="min-h-64 rounded-md sm:w-1/2 md:w-5/12">
+          <h2 className="text-base uppercase text-muted">Ingrendienser</h2>
           <Markdown>{recipe.ingredients}</Markdown>
         </section>
 
-        <section className="rounded-md md:w-7/12 bg-white p-4">
-          <Heading as="h2" className="uppercase text-foreground/50 text-base">
-            Fremgangsmåte
-          </Heading>
+        <section className="min-h-64 rounded-md sm:w-1/2 md:w-7/12">
+          <h2 className="text-base uppercase text-muted">Fremgangsmåte</h2>
           <Markdown>{recipe.instructions}</Markdown>
         </section>
       </div>

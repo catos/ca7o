@@ -2,8 +2,8 @@ import Card from "@/components/recipe/card"
 
 import { getRecipes } from "@/data/recipe.actions"
 
-import { Heading } from "@/components/ui/heading"
 import { Link } from "@/components/ui/link"
+import { CirclePlusIcon } from "lucide-react"
 
 // TODO: can I set this more globally ?
 export const revalidate = 10
@@ -14,64 +14,31 @@ export default async function RecipesPage() {
   if (!recipes) {
     return (
       <div className="relative flex flex-col gap-4">
-        <Heading>No recipes found... try adding one ?</Heading>
+        <h1>No recipes found... try adding one ?</h1>
       </div>
     )
   }
 
   return (
-    <div className="relative flex flex-col gap-4">
-      <Link href="/recipes/create">Create recipe</Link>
-      {/* // TODO: create a session storage list of recently visited recipes */}
-      <div>
-        <Heading as="h2" className="mb-0 text-lg uppercase text-foreground/50">
-          Favoritter
-        </Heading>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
-          {recipes.map((recipe) => (
-            <Card
-              key={recipe.id}
-              image={recipe.image}
-              href={`/recipes/${recipe.id}`}
-              title={recipe.title}
-              description={recipe.description}
-            />
-          ))}
-        </div>
-      </div>
-      <div>
-        <Heading as="h2" className="mb-0 text-lg uppercase text-foreground/50">
-          Nylig lagt til
-        </Heading>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
-          {recipes.map((recipe) => (
-            <Card
-              key={recipe.id}
-              image={recipe.image}
-              href={`/recipes/${recipe.id}`}
-              title={recipe.title}
-              description={recipe.description}
-            />
-          ))}
-        </div>
-      </div>
+    <>
+      <section className="flex">
+        <Link className="ml-auto" href="/recipes/create">
+          <CirclePlusIcon />
+        </Link>
+      </section>
 
-      <div>
-        <Heading as="h2" className="mb-0 text-lg uppercase text-foreground/50">
-          Anbefalt
-        </Heading>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
-          {recipes.map((recipe) => (
-            <Card
-              key={recipe.id}
-              image={recipe.image}
-              href={`/recipes/${recipe.id}`}
-              title={recipe.title}
-              description={recipe.description}
-            />
-          ))}
-        </div>
-      </div>
-    </div>
+      {/* // TODO: create a session storage list of recently visited recipes */}
+      <section className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
+        {recipes.map((recipe) => (
+          <Card
+            key={recipe.id}
+            image={recipe.image}
+            href={`/recipes/${recipe.id}`}
+            title={recipe.title}
+            description={recipe.description}
+          />
+        ))}
+      </section>
+    </>
   )
 }

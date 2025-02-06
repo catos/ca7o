@@ -1,7 +1,6 @@
 import Image from "@/components/image"
 import { twMerge } from "tailwind-merge"
 
-import { Heading } from "@/components/ui/heading"
 import { Link } from "@/components/ui/link"
 
 type Props = {
@@ -23,11 +22,11 @@ function snip(title: string, length: number): string {
 export default function Card({ image, href, title }: Props) {
   return (
     <Link
-      className="relative flex flex-col max-h-64 no-underline w-full rounded overflow-hidden shadow-lg hover:outline hover:outline-primary-700 hover:outline-2"
+      className="hover:outline-primary-700 relative flex max-h-64 w-full flex-col overflow-hidden rounded no-underline shadow-lg hover:outline hover:outline-2"
       href={href}
     >
       <Image
-        className="h-64 object-cover bg-primary-300"
+        className="bg-primary-300 h-64 object-cover"
         src={image}
         alt={title}
       />
@@ -48,14 +47,13 @@ function CardHeading({ title }: { title: string }) {
   }
 
   return (
-    <Heading
-      as="h2"
+    <h2
       className={twMerge(
-        "absolute bottom-0 left-0 right-0 h-24 flex flex-1 items-center px-4 bg-slate-900 bg-opacity-75 overflow-hidden font-semibold text-white mb-0",
+        "absolute bottom-0 left-0 right-0 mb-0 flex h-24 flex-1 items-center overflow-hidden bg-slate-900 bg-opacity-75 px-4 text-xl font-semibold leading-6 text-white",
         size
       )}
     >
       {snip(title, 50)}
-    </Heading>
+    </h2>
   )
 }

@@ -8,10 +8,7 @@ type Props = {
   AnchorHTMLAttributes<HTMLAnchorElement>
 
 export function Link({ className, href, ...rest }: Props) {
-  const classes = twMerge(
-    "font-medium underline underline-offset-4 hover:foreground/80",
-    className
-  )
+  const classes = twMerge(className)
 
   return <NextLink className={classes} href={href} {...rest} />
 }

@@ -3,19 +3,14 @@ import { twMerge } from "tailwind-merge"
 
 type Props = {
   label?: string
+  error?: string
 } & InputHTMLAttributes<HTMLInputElement>
 
 export function Input(props: Props) {
-  const { id, label, className, readOnly, ...rest } = props
-  const classes = twMerge(
-    "appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-gray-500",
-    readOnly && "text-foreground/50",
-    className
-  )
+  const { id, label, className, error, ...rest } = props
+  const classes = twMerge("input", className)
 
-  const Input = (
-    <input className={classes} id={id} readOnly={readOnly} {...rest} />
-  )
+  const Input = <input className={classes} id={id} {...rest} />
 
   if (!label) {
     return Input
@@ -23,15 +18,9 @@ export function Input(props: Props) {
 
   return (
     <div>
-      {label && (
-        <label
-          className="block text-foreground/80 text-sm font-bold mb-2 cursor-pointer"
-          htmlFor={id}
-        >
-          {label}
-        </label>
-      )}
+      {label && <label htmlFor={id}>{label}</label>}
       {Input}
+      {error && <p className="m-0 text-destructive">{error}</p>}
     </div>
   )
 }

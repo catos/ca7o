@@ -11,7 +11,7 @@ type Props = {
 
 export function Avatar({ fallback, src, className }: Props) {
   const classes = twMerge(
-    "w-8 h-8 flex items-center justify-center rounded-full text-sm font-semibold bg-slate-200",
+    "flex h-8 w-8 min-w-8 items-center justify-center rounded-full bg-foreground/15",
     className
   )
 
@@ -20,7 +20,7 @@ export function Avatar({ fallback, src, className }: Props) {
       {src ? (
         <img src={src} alt="Avatar" className="rounded-full" />
       ) : (
-        <span className="rounded-full">{fallback}</span>
+        <span className="block rounded-full">{fallback}</span>
       )}
     </span>
   )

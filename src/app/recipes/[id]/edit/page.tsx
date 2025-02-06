@@ -10,18 +10,8 @@ export default async function Edit({ params }: { params: { id: string } }) {
   }
 
   return (
-    <>
-      <div className="flex gap-4 items-center">
-        <Link href={`/recipes/${recipe.id}`}>Go to recipe</Link>
-        <Link
-          className="no-underline font-bold ml-auto"
-          href={`/recipes/${recipe.id}/delete`}
-        >
-          Delete
-        </Link>
-      </div>
-
-      <div className="flex gap-4">
+    <div className="flex flex-col gap-4 md:gap-6">
+      <div className="flex flex-col justify-end text-muted md:flex-row md:gap-4">
         <span>
           <strong>Created: </strong>
           {recipe.created_at.toLocaleString()}
@@ -33,6 +23,6 @@ export default async function Edit({ params }: { params: { id: string } }) {
       </div>
 
       <RecipeForm action={updateRecipe} recipe={recipe} />
-    </>
+    </div>
   )
 }

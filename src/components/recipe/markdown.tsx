@@ -1,9 +1,5 @@
 import Image from "@/components/image"
 
-import { Heading } from "@/components/ui/heading"
-import { List } from "@/components/ui/list"
-import { ListItem } from "@/components/ui/list-item"
-
 import Timer from "../timer"
 
 import Markdown from "react-markdown"
@@ -17,23 +13,23 @@ export default function MarkdownLol({ children }: { children: string | null }) {
 const serializers = {
   h1: (props: any) => {
     const { children } = props
-    return <Heading as="h2">{children}</Heading>
+    return <h2>{children}</h2>
   },
 
   h2: (props: any) => {
     const { children } = props
-    return <Heading as="h3">{children}</Heading>
+    return <h3>{children}</h3>
   },
 
   ul: (props: any) => {
     const { children } = props
 
-    return <List>{children}</List>
+    return <ul>{children}</ul>
   },
 
   li: (props: any) => {
     const { children } = props
-    return <ListItem>{children}</ListItem>
+    return <li>{children}</li>
   },
 
   p: ({ children }: any) => {

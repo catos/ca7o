@@ -1,4 +1,3 @@
-import { Heading } from "@/components/ui/heading"
 import { getNotes } from "@/data/note-actions"
 import { createClient } from "@/utils/supabase/server"
 import { redirect } from "next/navigation"
@@ -29,10 +28,10 @@ export default async function Todos() {
 
   return (
     <div className="flex flex-col gap-4">
-      <div className="flex flex-col gap-4 p-4 bg-white rounded-md">
+      <div className="flex flex-col gap-4 p-4 rounded-md">
         {/* <CreateForm /> */}
-        <Heading as="h2">TODOs</Heading>
-        <div className="flex flex-col gap-2 bg-white">
+        <h2>TODOs</h2>
+        <div className="flex flex-col gap-2">
           {notes.map((note) => (
             // <TodoItem key={todo.id} todo={todo} nextState={1} />
             <div key={note.id}>{note.content}</div>

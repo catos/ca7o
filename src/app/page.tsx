@@ -1,20 +1,17 @@
-import { Heading } from "@/components/ui/heading"
-import { Paragraph } from "@/components/ui/paragraph"
-
 export default function Home() {
   return (
     <>
-      <Heading>H1 Title Lorem</Heading>
-      <Paragraph>
+      <h1>H1 Title Lorem</h1>
+      <p>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed
         faucibus sapien. Phasellus hendrerit sollicitudin sagittis. Morbi eu dui
         turpis. Sed ac pretium orci, vel accumsan mi. Nam in mollis nisl.
         Phasellus non dapibus dolor. Morbi tincidunt euismod nibh ut
         condimentum. Suspendisse at odio dui.
-      </Paragraph>
+      </p>
 
-      <Heading as="h2">H2 Lorem</Heading>
-      <Paragraph>
+      <h2>H2 Lorem</h2>
+      <p>
         Aenean interdum leo a leo viverra malesuada. Suspendisse potenti. Nunc
         fermentum eros lacinia nunc rutrum suscipit. Aenean accumsan rhoncus
         nisi, commodo congue erat vulputate eu. Donec bibendum, est et venenatis
@@ -22,10 +19,10 @@ export default function Home() {
         ornare ut massa quis congue. Vestibulum et est pharetra, ornare dui nec,
         elementum leo. Quisque lobortis velit in efficitur dictum. Suspendisse
         vel lacus mi. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-      </Paragraph>
+      </p>
 
-      <Heading as="h3">H3 Lorem - Font sans</Heading>
-      <Paragraph className="font-sans">
+      <h3>H3 Lorem - Font sans</h3>
+      <p className="font-sans">
         Quisque posuere, metus eu cursus porttitor, purus augue elementum ante,
         et ornare mauris nulla ac est. Etiam et mauris euismod, elementum augue
         consectetur, egestas nisi. Sed tempor porttitor sem et maximus. Quisque
@@ -35,10 +32,10 @@ export default function Home() {
         bibendum sapien, vitae dictum felis feugiat sed. Nullam at iaculis
         justo. Duis et leo euismod, congue eros ac, laoreet neque. Nullam in
         facilisis mi, et feugiat turpis.
-      </Paragraph>
+      </p>
 
-      <Heading as="h4">H4 Lorem - Font serif</Heading>
-      <Paragraph className="font-serif">
+      <h4>H4 Lorem - Font serif</h4>
+      <p className="font-serif">
         Proin sed nibh efficitur, iaculis nunc ut, aliquam erat. In quis finibus
         mauris. Maecenas quis elit sollicitudin, bibendum purus in, condimentum
         purus. Donec scelerisque eros odio, scelerisque interdum ligula mattis
@@ -49,9 +46,9 @@ export default function Home() {
         dignissim libero eu urna luctus, eget suscipit nisl tincidunt. Praesent
         rhoncus lobortis mi ac maximus. Fusce euismod sed elit ac iaculis. Sed
         quis arcu sed nunc rutrum finibus.
-      </Paragraph>
+      </p>
 
-      <Paragraph className="font-mono">
+      <p className="font-mono">
         Phasellus bibendum enim vel nulla sollicitudin elementum. Nam odio
         turpis, interdum ac enim quis, accumsan hendrerit felis. Nunc maximus,
         lacus in consequat malesuada, erat elit maximus velit, ac egestas leo
@@ -59,15 +56,15 @@ export default function Home() {
         vel. Cras imperdiet justo a eleifend interdum. Vestibulum in eros felis.
         Ut semper egestas sapien, et varius lectus. Donec in justo et magna
         eleifend malesuada.
-      </Paragraph>
+      </p>
 
-      <Paragraph>
+      <p>
         Nam in enim a dolor auctor maximus in a dui. Phasellus quis lorem
         tortor. Mauris quis varius felis, eget congue magna. Vestibulum mollis
         eros nunc, gravida condimentum nulla feugiat in. Sed at tristique diam,
         a varius est. Aliquam non pellentesque enim, id laoreet sapien. Morbi
         vitae condimentum ligula.
-      </Paragraph>
+      </p>
     </>
   )
 }

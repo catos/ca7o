@@ -1,7 +1,6 @@
 import { deleteRecipe, getRecipe } from "@/data/recipe.actions"
 
 import { Button } from "@/components/ui/button"
-import { Heading } from "@/components/ui/heading"
 import { Link } from "@/components/ui/link"
 
 type Props = {
@@ -23,7 +22,7 @@ export default async function DeleteRecipe({ params }: Props) {
     >
       <input type="hidden" name="id" value={recipe.id} />
 
-      <Heading className="m-0">Delete recipe: {recipe.title} ?</Heading>
+      <h1 className="m-0">Delete recipe: {recipe.title} ?</h1>
 
       <div className="flex gap-8 items-center justify-between absolute right-8 top-8">
         <Button type="submit">Delete</Button>

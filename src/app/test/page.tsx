@@ -1,5 +1,4 @@
 import { Button } from "@/components/ui/button"
-import { Heading } from "@/components/ui/heading"
 
 import TestForm from "./test-form"
 
@@ -10,7 +9,7 @@ export default function Test() {
 
       <TestForm />
 
-      <Heading>Buttons</Heading>
+      <h1>Buttons</h1>
 
       <div className="flex gap-2">
         <Button>Default</Button>

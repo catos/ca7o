@@ -1,6 +1,5 @@
 import { Avatar } from "@/components/ui/avatar"
 import { Button } from "@/components/ui/button"
-import { Heading } from "@/components/ui/heading"
 import { Input } from "@/components/ui/input"
 import { getProfile, update } from "@/data/profile.actions"
 import { getInitials } from "@/lib/get-initials"
@@ -37,8 +36,8 @@ export default async function Profile() {
           src={user.user_metadata.avatar_url}
           className="w-32 h-32 hover:ring-2 ring-primary"
         />
-        <Heading className="m-0">{user.user_metadata.full_name}</Heading>
-        <Heading as="h2">{user.email}</Heading>
+        <h1 className="m-0">{user.user_metadata.full_name}</h1>
+        <h2>{user.email}</h2>
       </div>
       <form action={update} className="relative flex flex-col gap-4 p-4 mb-4">
         <Input name="id" hidden defaultValue={user.id} />
@@ -67,7 +66,7 @@ export default async function Profile() {
         method="post"
       >
         <LogOutIcon />
-        <Button variant="link" type="submit" className="px-0 text-base">
+        <Button variant="button-link" type="submit" className="px-0 text-base">
           Logg ut
         </Button>
       </form>

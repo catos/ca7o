@@ -5,7 +5,6 @@ import { Link } from "@/components/ui/link"
 
 import Logo from "./logo"
 import { createClient } from "@/utils/supabase/server"
-import { getInitials } from "@/lib/get-initials"
 
 export default async function Header() {
   const supabase = createClient()
@@ -14,32 +13,34 @@ export default async function Header() {
   } = await supabase.auth.getUser()
 
   // TODO: temporary solution
-  const name = user?.email ?? "N A"
-  console.log(user)
+  const avatarUrl: string = user?.user_metadata?.avatar_url ?? ""
+  const initials: string = (
+    user?.email?.split("@")[0].slice(0, 2) ?? "NA"
+  ).toUpperCase()
 
   return (
-    <nav className="bg-background border-b border-primary-300">
-      <div className="px-4 container mx-auto flex items-center justify-between flex-wrap gap-2 h-16">
+    <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+      <nav className="m-auto flex max-w-6xl items-center justify-between px-6 py-2 text-sm font-semibold">
         <Link className="hover:bg-primary/5 p-2 mr-1 rounded-full" href="/">
           <Logo />
         </Link>
 
-        <div className="flex text-base gap-2 items-center">
-          <HeaderLink href="/recipes">Oppskrifter</HeaderLink>
-          <HeaderLink href="/about">Om oss</HeaderLink>
-        </div>
+        <div className="flex w-full items-center justify-end gap-2 md:gap-4">
+          <HeaderLink href="/recipes">Recipes</HeaderLink>
+          <HeaderLink href="/notes">Notes</HeaderLink>
+          <HeaderLink href="/ui">UI</HeaderLink>
+          <HeaderLink href="/chat">Chat</HeaderLink>
 
-        <div className="flex gap-4 ml-auto">
-          <Link href="/profile">
-            <Avatar
-              fallback={getInitials(name)}
-              src={user?.user_metadata.avatar_url}
-              className="w-8 h-8 hover:ring-2 ring-primary"
-            />
-          </Link>
+          {user ? (
+            <Link href="/profile">
+              <Avatar fallback={initials} src={avatarUrl} />
+            </Link>
+          ) : (
+            <HeaderLink href="/login">Login</HeaderLink>
+          )}
         </div>
-      </div>
-    </nav>
+      </nav>
+    </header>
   )
 }
 
@@ -47,7 +48,7 @@ export default async function Header() {
 function HeaderLink({ href, children }: { href: string; children: ReactNode }) {
   return (
     <Link
-      className="no-underline text-foreground hover:text-foreground/80 font-semibold px-3 py-2"
+      className="px-2 py-4 text-sm font-semibold leading-6 no-underline hover:text-primary"
       href={href}
     >
       {children}
