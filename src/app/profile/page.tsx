@@ -5,6 +5,7 @@ import { Input } from "@/components/ui/input"
 import { getProfile, update } from "@/data/profile.actions"
 import { getInitials } from "@/lib/get-initials"
 import { createClient } from "@/utils/supabase/server"
+import { LogOutIcon } from "lucide-react"
 import Image from "next/image"
 import { redirect } from "next/navigation"
 
@@ -58,6 +59,17 @@ export default async function Profile() {
           defaultValue={profile?.avatar_url ?? ""}
         />
         <Button type="submit">Save</Button>
+      </form>
+
+      <form
+        className="p-2 flex gap-2 items-center"
+        action="/auth/signout"
+        method="post"
+      >
+        <LogOutIcon />
+        <Button variant="link" type="submit" className="px-0 text-base">
+          Logg ut
+        </Button>
       </form>
     </div>
   )
