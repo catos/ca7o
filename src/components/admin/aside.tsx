@@ -29,28 +29,26 @@ export default function Aside() {
   const [expanded, setExpanded] = useState(false)
 
   return (
-    <div className="relative h-screen p-2 border-r">
-      <Button
-        className="flex items-center gap-2 p-2 no-underline"
-        onClick={() => setExpanded(!expanded)}
-      >
+    <div
+      className={twJoin(
+        "relative h-screen p-2 border-r",
+        expanded && "md:w-48"
+      )}
+    >
+      <Button variant="button-icon" onClick={() => setExpanded(!expanded)}>
         {expanded ? <ChevronLeftIcon /> : <ChevronRightIcon />}
-        {expanded && <span className="font-bold">Admin</span>}
       </Button>
 
-      <ul className={twJoin("pl-0 list-none", expanded && "md:w-48")}>
-        {asideData.map(({ title, href, icon }) => (
-          <li key={href} className="p-0">
-            <Link
-              className="flex items-center gap-2 p-2 no-underline"
-              href={href}
-            >
-              {icon}
-              {expanded && <span>{title}</span>}
-            </Link>
-          </li>
-        ))}
-      </ul>
+      {asideData.map(({ title, href, icon }) => (
+        <Link
+          key={href}
+          className="flex items-center gap-2 p-2 no-underline"
+          href={href}
+        >
+          {icon}
+          {expanded && <span>{title}</span>}
+        </Link>
+      ))}
     </div>
   )
 }

@@ -2,6 +2,7 @@ import { Avatar } from "@/components/ui/avatar"
 import React, { ReactNode } from "react"
 
 import { Link } from "@/components/ui/link"
+import { SearchInput } from "@/components/search-input"
 
 import Logo from "./logo"
 import { createClient } from "@/utils/supabase/server"
@@ -20,16 +21,20 @@ export default async function Header() {
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <nav className="m-auto flex max-w-6xl items-center justify-between px-6 py-2 text-sm font-semibold">
-        <Link className="hover:bg-primary/5 p-2 mr-1 rounded-full" href="/">
+      <nav className="m-auto flex max-w-6xl items-center gap-4 px-6 py-2 text-sm font-semibold">
+        <Link
+          className="hover:bg-primary/5 p-2 mr-1 rounded-full w-16"
+          href="/"
+        >
           <Logo />
         </Link>
 
-        <div className="flex w-full items-center justify-end gap-2 md:gap-4">
+        <div className="w-full">
+          <SearchInput />
+        </div>
+
+        <div className="flex items-center justify-end gap-2 md:gap-4">
           <HeaderLink href="/recipes">Recipes</HeaderLink>
-          <HeaderLink href="/notes">Notes</HeaderLink>
-          <HeaderLink href="/ui">UI</HeaderLink>
-          <HeaderLink href="/chat">Chat</HeaderLink>
 
           {user ? (
             <Link href="/profile">

@@ -127,7 +127,7 @@
 
 @layer components {
   .button {
-    @apply rounded-lg px-4 py-2.5 text-center text-sm font-medium;
+    @apply rounded-md px-4 py-2.5 text-center text-sm font-medium flex gap-2 items-center;
   }
 
   .button-filled {
@@ -140,7 +140,7 @@
   }
 
   .button-icon {
-    @apply flex h-10 w-10 items-center justify-center rounded-full hover:bg-accent;
+    @apply flex h-8 w-8 items-center justify-center rounded-full hover:bg-accent;
   }
 
   .button-link {

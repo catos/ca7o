@@ -1,6 +1,7 @@
 import { Avatar } from "@/components/ui/avatar"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
+import { Link } from "@/components/ui/link"
 import { getProfile, update } from "@/data/profile.actions"
 import { getInitials } from "@/lib/get-initials"
 import { createClient } from "@/utils/supabase/server"
@@ -65,8 +66,8 @@ export default async function Profile() {
         action="/auth/signout"
         method="post"
       >
-        <LogOutIcon />
-        <Button variant="button-link" type="submit" className="px-0 text-base">
+        <Button variant="button-outlined" type="submit">
+          <LogOutIcon />
           Logg ut
         </Button>
       </form>

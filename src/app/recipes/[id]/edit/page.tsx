@@ -1,5 +1,4 @@
 import { RecipeForm } from "@/components/recipe/recipe-form"
-import { Link } from "@/components/ui/link"
 import { getRecipe, updateRecipe } from "@/data/recipe.actions"
 
 export default async function Edit({ params }: { params: { id: string } }) {

@@ -6,8 +6,6 @@ import { Input } from "@/components/ui/input"
 import { SubmitButton } from "./submit-button"
 import { Link } from "../ui/link"
 import { CookingPotIcon, XIcon } from "lucide-react"
-import { Button } from "../ui/button"
-import { useRouter } from "next/navigation"
 
 type Props = {
   action: (formData: FormData) => void
@@ -23,7 +21,6 @@ export function RecipeForm({ action, recipe }: Props) {
     instructions: "...",
   }
   const data = { ...defaultValues, ...recipe }
-  const router = useRouter()
 
   return (
     <form className="relative flex flex-col gap-4" action={action}>

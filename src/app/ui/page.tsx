@@ -164,6 +164,10 @@ export default function UI() {
           <Button variant="button-icon">
             <XIcon />
           </Button>
+          <Button variant="button-outlined">
+            <XIcon />
+            <span>Icon and text</span>
+          </Button>
           <Button variant="button-link">Link</Button>
           <Button variant="button-destructive">Destructive</Button>
         </div>
