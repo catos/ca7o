@@ -4,12 +4,14 @@
   "semi": false,
   "singleQuote": false,
   "importOrder": [
-    "^@core/(.*)$",
-    "^@server/(.*)$",
     "^@/data/(.*)$",
+    "^@lib/(.*)$",
+    "^@styles/(.*)$",
     "^@/components/ui/(.*)$",
+    "^@/components/(.*)$",
     "^[./]"
   ],
-  "importOrderSeparation": true,
-  "importOrderSortSpecifiers": true
+  "importOrderSeparation": false,
+  "importOrderSortSpecifiers": true,
+  "plugins": ["@trivago/prettier-plugin-sort-imports"]
 }

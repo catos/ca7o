@@ -1,9 +1,9 @@
 "use client"
 
-import { Button } from "@/components/ui/button"
 import { SearchIcon } from "lucide-react"
 import { useRouter } from "next/navigation"
 import { useEffect, useRef } from "react"
+import { Button } from "@/components/ui/button"
 
 export function SearchInput() {
   const router = useRouter()
@@ -54,10 +54,10 @@ export function SearchInput() {
       />
       <Button
         variant="button-icon"
-        className="absolute right-2 top-1"
+        className="absolute right-2 top-1 h-8 w-8 p-1"
         type="submit"
       >
-        <SearchIcon />
+        <SearchIcon className="w-5" />
       </Button>
     </form>
   )

@@ -1,11 +1,9 @@
+import { CookingPot, HeartIcon, PrinterIcon, StarIcon } from "lucide-react"
+import { getRecipe } from "@/data/recipe.actions"
+import { Button } from "@/components/ui/button"
+import { Link } from "@/components/ui/link"
 import Image from "@/components/image"
 import Markdown from "@/components/recipe/markdown"
-import { CookingPot, HeartIcon, PrinterIcon, StarIcon } from "lucide-react"
-
-import { getRecipe } from "@/data/recipe.actions"
-
-import { Link } from "@/components/ui/link"
-import { Button } from "@/components/ui/button"
 
 export const revalidate = 60 * 60 * 24
 
@@ -56,13 +54,17 @@ export default async function RecipesPage({ params }: Props) {
 
       <section className="flex justify-center gap-4">
         <span>
-          <StarIcon />
+          <Button variant="button-icon">
+            <StarIcon />
+          </Button>
         </span>
         <Button variant="button-icon">
           <HeartIcon />
         </Button>
         <span>
-          <PrinterIcon />
+          <Button variant="button-icon">
+            <PrinterIcon />
+          </Button>
         </span>
       </section>
 
