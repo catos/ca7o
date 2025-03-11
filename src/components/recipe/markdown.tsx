@@ -1,12 +1,12 @@
-import Markdown from "react-markdown"
-import Image from "@/components/image"
+import ReactMarkdown from "react-markdown"
+import { Image } from "@/components/image"
 import Timer from "@/components/timer"
 
-export default function MarkdownLol({ children }: { children: string | null }) {
+export function Markdown({ children }: { children: string | null }) {
   if (!children) return null
 
   return (
-    <Markdown
+    <ReactMarkdown
       components={{
         h1: (props: any) => {
           const { children } = props
@@ -83,6 +83,6 @@ export default function MarkdownLol({ children }: { children: string | null }) {
       }}
     >
       {children}
-    </Markdown>
+    </ReactMarkdown>
   )
 }

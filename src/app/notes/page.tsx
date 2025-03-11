@@ -1,6 +1,7 @@
-import { getNotes } from "@/data/note-actions"
 import { createClient } from "@/utils/supabase/server"
 import { redirect } from "next/navigation"
+import { getNotes } from "@/data/note-actions"
+import { Note } from "@/components/notes/notes"
 
 // TODO: move TODO-components to components-folder
 export default async function Todos() {
@@ -33,8 +34,7 @@ export default async function Todos() {
         <h2>TODOs</h2>
         <div className="flex flex-col gap-2">
           {notes.map((note) => (
-            // <TodoItem key={todo.id} todo={todo} nextState={1} />
-            <div key={note.id}>{note.content}</div>
+            <Note key={note.id} note={note} />
           ))}
         </div>
         {/* <div className="flex flex-col gap-2">

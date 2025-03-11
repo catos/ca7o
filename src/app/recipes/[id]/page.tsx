@@ -2,8 +2,8 @@ import { CookingPot, HeartIcon, PrinterIcon, StarIcon } from "lucide-react"
 import { getRecipe } from "@/data/recipe.actions"
 import { Button } from "@/components/ui/button"
 import { Link } from "@/components/ui/link"
-import Image from "@/components/image"
-import Markdown from "@/components/recipe/markdown"
+import { Image } from "@/components/image"
+import { Markdown } from "@/components/recipe/markdown"
 
 export const revalidate = 60 * 60 * 24
 
