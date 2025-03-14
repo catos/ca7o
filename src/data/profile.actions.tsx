@@ -11,7 +11,7 @@ export async function update(formData: FormData) {
       throw new Error("Profile not found!")
     }
 
-    const supabase = createClient()
+    const supabase = await createClient()
     const {
       data: { user },
     } = await supabase.auth.getUser()
@@ -40,7 +40,7 @@ export async function update(formData: FormData) {
 }
 
 export async function getProfile(userId: string) {
-  const supabase = createClient()
+  const supabase = await createClient()
 
   try {
     const { data, error, status } = await supabase

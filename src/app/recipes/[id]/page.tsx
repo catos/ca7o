@@ -5,10 +5,10 @@ import { Link } from "@/components/ui/link"
 import { Image } from "@/components/image"
 import { Markdown } from "@/components/recipe/markdown"
 
-export const revalidate = 60 * 60 * 24
+export const revalidate = 3600
 
 type Props = {
-  params: { id: string }
+  params: Promise<{ id: string }>
 }
 
 // TODO: implement dynamic metadata

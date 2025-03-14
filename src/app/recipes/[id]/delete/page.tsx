@@ -1,16 +1,15 @@
 import { deleteRecipe, getRecipe } from "@/data/recipe.actions"
-
 import { Button } from "@/components/ui/button"
 import { Link } from "@/components/ui/link"
 
 type Props = {
-  params: { id: string }
+  params: Promise<{ id: string }>
 }
 
 export default async function DeleteRecipe({ params }: Props) {
-  const recipeId = params.id
+  const { id } = await params
+  const recipe = await getRecipe(id)
 
-  const recipe = await getRecipe(recipeId)
   if (!recipe) {
     return null
   }
@@ -26,7 +25,7 @@ export default async function DeleteRecipe({ params }: Props) {
 
       <div className="flex gap-8 items-center justify-between">
         <Button type="submit">Delete</Button>
-        <Link className="no-underline font-bold" href={`/recipes/${recipeId}`}>
+        <Link className="no-underline font-bold" href={`/recipes/${id}`}>
           Cancel
         </Link>
       </div>

@@ -2,7 +2,7 @@ import { getRecipe, updateRecipe } from "@/data/recipe.actions"
 import { RecipeForm } from "@/components/recipe/recipe-form"
 
 type Props = {
-  params: { id: string }
+  params: Promise<{ id: string }>
 }
 
 export default async function Edit({ params }: Props) {

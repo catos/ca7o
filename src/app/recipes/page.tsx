@@ -1,12 +1,9 @@
+import { CirclePlusIcon } from "lucide-react"
+import { getRecipes } from "@/data/recipe.actions"
+import { Link } from "@/components/ui/link"
 import Card from "@/components/recipe/card"
 
-import { getRecipes } from "@/data/recipe.actions"
-
-import { Link } from "@/components/ui/link"
-import { CirclePlusIcon } from "lucide-react"
-
-// TODO: can I set this more globally ?
-export const revalidate = 10
+export const revalidate = 3600
 
 export default async function RecipesPage() {
   const recipes = await getRecipes()
