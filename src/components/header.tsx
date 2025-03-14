@@ -1,14 +1,12 @@
-import { Avatar } from "@/components/ui/avatar"
+import { createClient } from "@/utils/supabase/server"
 import React, { ReactNode } from "react"
-
+import { Avatar } from "@/components/ui/avatar"
 import { Link } from "@/components/ui/link"
 import { SearchInput } from "@/components/search-input"
-
 import Logo from "./logo"
-import { createClient } from "@/utils/supabase/server"
 
 export default async function Header() {
-  const supabase = createClient()
+  const supabase = await createClient()
   const {
     data: { user },
   } = await supabase.auth.getUser()

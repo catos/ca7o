@@ -7,7 +7,7 @@ import { redirect } from "next/navigation"
 
 export async function getRecipes(limit: number = 100) {
   try {
-    const supabase = createClient()
+    const supabase = await await createClient()
     const { data, error } = await supabase
       .from("recipes")
       .select()
@@ -28,7 +28,7 @@ export async function getRecipes(limit: number = 100) {
 
 export async function getRecipe(id: string) {
   try {
-    const supabase = createClient()
+    const supabase = await createClient()
     const { data, error } = await supabase
       .from("recipes")
       .select()
@@ -69,7 +69,7 @@ export async function updateRecipe(formData: FormData) {
       updated_at: new Date().toISOString(),
     }
 
-    const supabase = createClient()
+    const supabase = await createClient()
 
     const { error } = await supabase.from("recipes").update(form).eq("id", id)
     console.log("error", error)
@@ -99,7 +99,7 @@ export async function createRecipe(formData: FormData) {
       updated_at: date,
     }
 
-    const supabase = createClient()
+    const supabase = await createClient()
     const { data, error } = await supabase
       .from("recipes")
       .insert(form)
@@ -130,7 +130,7 @@ export async function deleteRecipe(formData: FormData) {
 
     const id = formData.get("id") as string
 
-    const supabase = createClient()
+    const supabase = await createClient()
     await supabase.from("recipes").delete().eq("id", id)
 
     revalidatePath(`/recipes/${id}`)

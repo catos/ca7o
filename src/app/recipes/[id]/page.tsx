@@ -20,7 +20,8 @@ type Props = {
 // TODO: implement like | dislike: https://fireship.io/courses/nextjs/adv-actions/
 
 export default async function RecipesPage({ params }: Props) {
-  const recipe = await getRecipe(params.id)
+  const { id } = await params
+  const recipe = await getRecipe(id)
 
   if (!recipe) {
     return null

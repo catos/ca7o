@@ -1,8 +1,13 @@
-import { RecipeForm } from "@/components/recipe/recipe-form"
 import { getRecipe, updateRecipe } from "@/data/recipe.actions"
+import { RecipeForm } from "@/components/recipe/recipe-form"
 
-export default async function Edit({ params }: { params: { id: string } }) {
-  const recipe = await getRecipe(params.id)
+type Props = {
+  params: { id: string }
+}
+
+export default async function Edit({ params }: Props) {
+  const { id } = await params
+  const recipe = await getRecipe(id)
 
   if (!recipe) {
     return null

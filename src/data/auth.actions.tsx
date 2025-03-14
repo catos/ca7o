@@ -1,12 +1,11 @@
 "use server"
 
+import { createClient } from "@/utils/supabase/server"
 import { revalidatePath } from "next/cache"
 import { redirect } from "next/navigation"
 
-import { createClient } from "@/utils/supabase/server"
-
 export async function signIn(formData: FormData) {
-  const supabase = createClient()
+  const supabase = await createClient()
 
   // type-casting here for convenience
   // in practice, you should validate your inputs
@@ -30,7 +29,7 @@ export async function signInWithGithub() {
   // TODO: Implement redirect URL if needed
   // returnUrl: string = "/"
   // redirectTo: `${process.env.NEXT_PUBLIC_SITE_URL}/auth/callback?next=${returnUrl}`,
-  const supabase = createClient()
+  const supabase = await createClient()
 
   const { data, error } = await supabase.auth.signInWithOAuth({
     provider: "github",
@@ -51,7 +50,7 @@ export async function signInWithGithub() {
 }
 
 export async function signUp(formData: FormData) {
-  const supabase = createClient()
+  const supabase = await createClient()
 
   // type-casting here for convenience
   // in practice, you should validate your inputs
@@ -71,7 +70,7 @@ export async function signUp(formData: FormData) {
 }
 
 export async function signOut() {
-  const supabase = createClient()
+  const supabase = await createClient()
 
   const { error } = await supabase.auth.signOut()
   if (error) {

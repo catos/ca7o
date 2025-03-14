@@ -1,15 +1,13 @@
-import { createServerClient, type CookieOptions } from "@supabase/ssr"
-import { NextResponse, type NextRequest } from "next/server"
 import type { Database } from "@/types/database"
+import { type CookieOptions, createServerClient } from "@supabase/ssr"
+import { type NextRequest, NextResponse } from "next/server"
 
 export async function updateSession(request: NextRequest) {
-  let response = NextResponse.next({
-    request: {
-      headers: request.headers,
-    },
+  let supabaseResponse = NextResponse.next({
+    request,
   })
 
-  const supabase = createServerClient<Database>(
+  const supabase = createServerClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
     {
@@ -21,11 +19,11 @@ export async function updateSession(request: NextRequest) {
           cookiesToSet.forEach(({ name, value, options }) =>
             request.cookies.set(name, value)
           )
-          response = NextResponse.next({
+          supabaseResponse = NextResponse.next({
             request,
           })
           cookiesToSet.forEach(({ name, value, options }) =>
-            response.cookies.set(name, value, options)
+            supabaseResponse.cookies.set(name, value, options)
           )
         },
       },
@@ -35,13 +33,22 @@ export async function updateSession(request: NextRequest) {
   // TODO: Test and verify this code
   // https://supabase.com/docs/guides/auth/server-side/nextjs?queryGroups=router&router=app
 
-  const { error } = await supabase.auth.getUser()
+  const {
+    data: { user },
+  } = await supabase.auth.getUser()
 
   const { pathname } = request.nextUrl
-  const protectedPaths = ["/admin", "/profile"]
-  if (protectedPaths.some((path) => pathname.startsWith(path)) && error) {
+  const protectedPaths = [
+    /^\/recipes\/.*\/edit/,
+    /^\/recipes\/create/,
+    /^\/recipes\/export/,
+    /^\/notes/,
+    /^\/wesketch/,
+  ]
+
+  if (!user && protectedPaths.some((p) => p.test(pathname))) {
     return NextResponse.redirect(new URL("/login", request.url))
   }
 
-  return response
+  return supabaseResponse
 }

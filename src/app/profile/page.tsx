@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 
 export default async function Profile() {
-  const supabase = createClient()
+  const supabase = await createClient()
 
   const {
     data: { user },
