@@ -1,7 +1,6 @@
-import Image from "@/components/image"
 import { twMerge } from "tailwind-merge"
-
 import { Link } from "@/components/ui/link"
+import { Image } from "@/components/image"
 
 type Props = {
   image: string

@@ -1,13 +1,11 @@
-import { Avatar } from "@/components/ui/avatar"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Link } from "@/components/ui/link"
-import { getProfile, update } from "@/data/profile.actions"
 import { getInitials } from "@/lib/get-initials"
 import { createClient } from "@/utils/supabase/server"
 import { LogOutIcon } from "lucide-react"
-import Image from "next/image"
 import { redirect } from "next/navigation"
+import { getProfile, update } from "@/data/profile.actions"
+import { Avatar } from "@/components/ui/avatar"
+import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
 
 export default async function Profile() {
   const supabase = createClient()

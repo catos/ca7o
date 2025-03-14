@@ -4,7 +4,7 @@ type Props = {
   src: string
   alt: string
   className?: string
-}
+} & React.ImgHTMLAttributes<HTMLImageElement>
 
 // TODO: use Next image
 export function Image({ src, alt, className }: Props) {
