@@ -1,19 +1,39 @@
 import { Button } from "@/components/ui/button"
-
 import TestForm from "./test-form"
 
-export default function Test() {
+type Time = {
+  now: string
+}
+
+async function getTime() {
+  const res = await fetch("http://localhost:3001/api/time/no")
+  const data: Time = await res.json()
+  return data
+}
+
+async function getTimeRevalidate() {
+  const res = await fetch("http://localhost:3001/api/time/no-revalidate-5", {
+    next: {
+      revalidate: 5,
+    },
+  })
+  const data: Time = await res.json()
+  return data
+}
+
+export default async function Test() {
+  const [data, data2] = await Promise.all([getTime(), getTimeRevalidate()])
+
+  console.log(data)
   return (
     <div>
-      <h1>Testform!</h1>
+      <h1>Time</h1>
 
-      <TestForm />
+      <h2>getTime()</h2>
+      <p>{data.now}</p>
 
-      <h1>Buttons</h1>
-
-      <div className="flex gap-2">
-        <Button>Default</Button>
-      </div>
+      <h2>getTimeRevalidate()</h2>
+      <p>{data2.now}</p>
     </div>
   )
 }

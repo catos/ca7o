@@ -22,6 +22,10 @@ https://kobez.dev/blog/creating-custom-remark-plugins
 
 ## Wesketch Deux
 
+## Chef AI ?
+
+https://sdk.vercel.ai/providers/ai-sdk-providers/openai
+
 ## Calculators (Factorio/Satisfactory)
 
 # Check til å jumpstarte komponenter
