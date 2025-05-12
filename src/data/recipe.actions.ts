@@ -7,7 +7,7 @@ import { redirect } from "next/navigation"
 
 export async function getRecipes(limit: number = 100) {
   try {
-    const supabase = await await createClient()
+    const supabase = await createClient()
     const { data, error } = await supabase
       .from("recipes")
       .select()

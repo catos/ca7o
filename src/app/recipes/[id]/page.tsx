@@ -1,3 +1,4 @@
+import { createClient } from "@/utils/supabase/server"
 import { CookingPot, HeartIcon, PrinterIcon, StarIcon } from "lucide-react"
 import { getRecipe } from "@/data/recipe.actions"
 import { Button } from "@/components/ui/button"

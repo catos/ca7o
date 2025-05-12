@@ -1,10 +1,5 @@
-// export const config = {
-//   matcher: ["/admin/:path*"],
-// }
-
-import { type NextRequest } from "next/server"
 import { updateSession } from "@/utils/supabase/middleware"
-import { cookies } from "next/headers"
+import { type NextRequest } from "next/server"
 
 export async function middleware(request: NextRequest) {
   return await updateSession(request)
