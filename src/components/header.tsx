@@ -20,10 +20,7 @@ export default async function Header() {
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <nav className="m-auto flex max-w-6xl items-center gap-4 px-6 py-2 text-sm font-semibold">
-        <Link
-          className="hover:bg-primary/5 p-2 mr-1 rounded-full w-16"
-          href="/"
-        >
+        <Link className="hover:bg-primary/5 p-2 mr-1 rounded-full" href="/">
           <Logo />
         </Link>
 
