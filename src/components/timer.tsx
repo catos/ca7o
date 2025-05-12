@@ -140,7 +140,7 @@ const Timer: React.FC<ITimerProps> = ({ value }) => {
   return (
     <div className="flex gap-2">
       <div
-        className="flex-grow relative cursor-pointer h-8 rounded"
+        className="grow relative cursor-pointer h-8 rounded"
         onClick={isRunning ? pause : start}
       >
         <LinearProgress
@@ -150,7 +150,7 @@ const Timer: React.FC<ITimerProps> = ({ value }) => {
           value={progress}
           // style={{ height: "2rem", width: "100%" }}
         />
-        <span className="absolute top-0 right-0 bottom-0 left-0 flex flex-grow justify-center items-center text-white text-xl">
+        <span className="absolute top-0 right-0 bottom-0 left-0 flex grow justify-center items-center text-white text-xl">
           {clock}
         </span>
       </div>

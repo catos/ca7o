@@ -49,7 +49,7 @@ export function SearchInput() {
         type="text"
         name="q"
         placeholder="Search"
-        className="input ml-auto pr-10 w-32 focus:w-full focus:md:w-1/2"
+        className="input ml-auto pr-10 w-32 focus:w-full md:focus:w-1/2"
         ref={inputRef}
       />
       <Button
