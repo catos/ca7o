@@ -1,9 +1,9 @@
+import { XIcon } from "lucide-react"
 import { Alert } from "@/components/ui/alert"
 import { Avatar } from "@/components/ui/avatar"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
-import { XIcon } from "lucide-react"
 
 export default function UI() {
   return (
@@ -160,16 +160,16 @@ export default function UI() {
         <h2 className="mt-0">Button</h2>
         <div className="flex flex-wrap gap-4">
           <Button>Filled</Button>
-          <Button variant="button-outlined">Outlined</Button>
-          <Button variant="button-icon">
+          <Button variant="outlined">Outlined</Button>
+          <Button variant="icon">
             <XIcon />
           </Button>
-          <Button variant="button-outlined">
+          <Button variant="outlined">
             <XIcon />
             <span>Icon and text</span>
           </Button>
-          <Button variant="button-link">Link</Button>
-          <Button variant="button-destructive">Destructive</Button>
+          <Button variant="link">Link</Button>
+          <Button variant="destructive">Destructive</Button>
         </div>
       </section>
 

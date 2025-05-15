@@ -56,15 +56,15 @@ export default async function RecipesPage({ params }: Props) {
 
       <section className="flex justify-center gap-4">
         <span>
-          <Button variant="button-icon">
+          <Button variant="icon">
             <StarIcon />
           </Button>
         </span>
-        <Button variant="button-icon">
+        <Button variant="icon">
           <HeartIcon />
         </Button>
         <span>
-          <Button variant="button-icon">
+          <Button variant="icon">
             <PrinterIcon />
           </Button>
         </span>

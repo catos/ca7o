@@ -64,7 +64,7 @@ export default async function Profile() {
         action="/auth/signout"
         method="post"
       >
-        <Button variant="button-outlined" type="submit">
+        <Button variant="outlined" type="submit">
           <LogOutIcon />
           Logg ut
         </Button>

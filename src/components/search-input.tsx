@@ -53,7 +53,7 @@ export function SearchInput() {
         ref={inputRef}
       />
       <Button
-        variant="button-icon"
+        variant="icon"
         className="absolute right-2 top-1 h-8 w-8 p-1"
         type="submit"
       >

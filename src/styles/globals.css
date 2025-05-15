@@ -1,4 +1,4 @@
-@import 'tailwindcss';
+@import "tailwindcss";
 
 @custom-variant dark (&:is(.dark *));
 
@@ -93,30 +93,6 @@
   ::file-selector-button {
     border-color: var(--color-gray-200, currentcolor);
   }
-}
-
-@utility button {
-  @apply rounded-md px-4 py-2.5 text-center text-sm font-medium flex gap-2 items-center;
-}
-
-@utility button-filled {
-  @apply button bg-primary text-primary-foreground hover:bg-primary/90;
-}
-
-@utility button-outlined {
-  @apply button border-2 border-primary hover:bg-accent hover:text-accent-foreground;
-}
-
-@utility button-icon {
-  @apply flex h-10 w-10 p-2 items-center justify-center rounded-full hover:bg-accent;
-}
-
-@utility button-link {
-  @apply button underline underline-offset-4 hover:bg-accent;
-}
-
-@utility button-destructive {
-  @apply button bg-destructive hover:bg-destructive/90;
 }
 
 @layer base {

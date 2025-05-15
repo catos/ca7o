@@ -1,14 +1,13 @@
+import { signIn, signInWithGithub, signUp } from "@/data/auth.actions"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Link } from "@/components/ui/link"
-
-import { signIn, signInWithGithub, signUp } from "@/data/auth.actions"
 
 export default function LoginPage() {
   return (
     <div className="flex justify-center">
       <section className="rounded-md sm:w-2/3 md:w-1/2 border p-4 mt-8">
-        <form className="relative flex flex-col gap-4 p-4 mb-4">
+        <form action={signIn} className="relative flex flex-col gap-4 p-4 mb-4">
           <h1 className="mb-4">Logg inn</h1>
 
           <Input required id="email" type="email" name="email" label="E-post" />
@@ -30,8 +29,8 @@ export default function LoginPage() {
             </span>
           </div>
 
-          <Button formAction={signIn}>Logg inn</Button>
-          <Button variant="button-outlined" formAction={signUp}>
+          <Button type="submit">Logg inn</Button>
+          <Button variant="outlined" formAction={signUp}>
             Registrer deg
           </Button>
 

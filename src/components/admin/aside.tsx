@@ -8,7 +8,6 @@ import {
 } from "lucide-react"
 import { useState } from "react"
 import { twJoin } from "tailwind-merge"
-
 import { Button } from "@/components/ui/button"
 import { Link } from "@/components/ui/link"
 
@@ -35,7 +34,7 @@ export default function Aside() {
         expanded && "md:w-48"
       )}
     >
-      <Button variant="button-icon" onClick={() => setExpanded(!expanded)}>
+      <Button variant="icon" onClick={() => setExpanded(!expanded)}>
         {expanded ? <ChevronLeftIcon /> : <ChevronRightIcon />}
       </Button>
 
