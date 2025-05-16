@@ -1,11 +1,12 @@
 "use client"
 
-import { Textarea } from "@/components/ui/textarea"
 import { Tables } from "@/types/database"
+import { CookingPotIcon } from "lucide-react"
 import { Input } from "@/components/ui/input"
-import { SubmitButton } from "./submit-button"
+import { Textarea } from "@/components/ui/textarea"
 import { Link } from "../ui/link"
-import { CookingPotIcon, XIcon } from "lucide-react"
+import { DeleteButton } from "./delete-button"
+import { SubmitButton } from "./submit-button"
 
 type Props = {
   action: (formData: FormData) => void
@@ -81,12 +82,7 @@ export function RecipeForm({ action, recipe }: Props) {
       <div className="flex gap-8 items-center">
         {recipe && (
           <>
-            <Link
-              className="flex gap-2 text-destructive"
-              href={`/recipes/${recipe.id}/delete`}
-            >
-              <XIcon /> Delete
-            </Link>
+            <DeleteButton id={recipe.id} />
             <Link className="flex gap-2 ml-auto" href={`/recipes/${recipe.id}`}>
               <CookingPotIcon /> Go to recipe
             </Link>
