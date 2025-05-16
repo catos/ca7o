@@ -122,6 +122,38 @@ export async function createRecipe(formData: FormData) {
   redirect(redirectUrl)
 }
 
+export async function createRecipeJSON(formData: FormData) {
+  let newRecipeId: string | null = null
+
+  try {
+    const json = formData.get("json") as string
+    const recipe = JSON.parse(json)
+
+    const date = new Date().toISOString()
+    recipe.created_at = date
+    recipe.updated_at = date
+
+    const supabase = await createClient()
+    const { data, error } = await supabase
+      .from("recipes")
+      .insert(recipe)
+      .select()
+      .single()
+
+    if (error) {
+      throw error
+    }
+
+    if (data) {
+      newRecipeId = data.id
+    }
+  } catch (error) {
+    handleDBError(error, "Failed to create recipe.")
+  }
+
+  newRecipeId ? redirect(`/recipes/${newRecipeId}`) : redirect("/recipes/")
+}
+
 export async function deleteRecipe(formData: FormData) {
   try {
     if (!formData.has("id")) {
