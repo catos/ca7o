@@ -36,6 +36,7 @@ export async function signInWithGithub() {
       redirectTo: `${process.env.NEXT_PUBLIC_SITE_URL}/auth/callback`,
     },
   })
+  console.log("### signInWithGithub", data, error)
 
   if (error) {
     redirect("/error")

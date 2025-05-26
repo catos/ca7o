@@ -4,6 +4,7 @@ import { SearchIcon } from "lucide-react"
 import { useRouter } from "next/navigation"
 import { useEffect, useRef } from "react"
 import { Button } from "@/components/ui/button"
+import { Input } from "./ui/input"
 
 export function SearchInput() {
   const router = useRouter()
@@ -45,7 +46,7 @@ export function SearchInput() {
       action="/recipes"
       className="relative"
     >
-      <input
+      <Input
         type="text"
         name="q"
         placeholder="Search"

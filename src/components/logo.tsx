@@ -1,7 +1,11 @@
-export default function Logo() {
+import { twMerge } from "tailwind-merge"
+
+export default function Logo({ className }: { className?: string }) {
+  const classes = twMerge("h-8 w-8", className)
+
   return (
     <svg
-      className="h-8 w-8"
+      className={classes}
       width="100%"
       height="100%"
       viewBox="0 0 81 81"

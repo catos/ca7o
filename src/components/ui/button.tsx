@@ -15,7 +15,8 @@ export function Button({
   className,
   ...rest
 }: Props) {
-  const base = "flex gap-2 items-center rounded-md px-4 py-2 text-sm"
+  const base =
+    "flex gap-2 items-center justify-center rounded-md px-4 py-3 text-sm"
 
   const variants = {
     filled: "bg-primary text-primary-foreground hover:bg-primary/90",
