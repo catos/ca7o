@@ -5,8 +5,13 @@ import Card from "@/components/recipe/card"
 
 export const revalidate = 3600
 
-export default async function RecipesPage() {
-  const recipes = await getRecipes()
+export default async function RecipesPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ q: string | null | undefined }>
+}) {
+  const { q } = await searchParams
+  const recipes = await getRecipes(q)
 
   if (!recipes) {
     return (

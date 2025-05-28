@@ -1,14 +1,26 @@
 "use client"
 
 import { SearchIcon } from "lucide-react"
-import { useRouter } from "next/navigation"
-import { useEffect, useRef } from "react"
+import { useRouter, useSearchParams } from "next/navigation"
+import { useEffect, useRef, useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "./ui/input"
 
 export function SearchInput() {
   const router = useRouter()
   const inputRef = useRef<HTMLInputElement>(null)
+
+  const searchParams = useSearchParams()
+  const q = searchParams.get("q")
+  const [inputValue, setInputValue] = useState<string | null>(q || "")
+
+  useEffect(() => {
+    setInputValue(q)
+  }, [q])
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setInputValue(e.target.value)
+  }
 
   useEffect(() => {
     const handler = (e: KeyboardEvent) => {
@@ -35,6 +47,7 @@ export function SearchInput() {
     const formData = new FormData(e.currentTarget)
     const query = formData.get("q")
     if (typeof query === "string") {
+      setInputValue("")
       router.push(`/recipes?q=${query}`)
     }
   }
@@ -51,6 +64,8 @@ export function SearchInput() {
         name="q"
         placeholder="Search"
         className="input ml-auto pr-10 w-32 focus:w-full md:focus:w-1/2"
+        value={inputValue || ""}
+        onChange={handleChange}
         ref={inputRef}
       />
       <Button
