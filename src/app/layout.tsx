@@ -1,7 +1,6 @@
+import { Inter, Roboto_Mono } from "next/font/google"
 import Header from "@/components/header"
 import Providers from "@/components/providers"
-import { Inter, Roboto_Mono } from "next/font/google"
-
 import "../styles/globals.css"
 
 // TODO: does this work ? for all nested pages?
@@ -36,12 +35,14 @@ export default function RootLayout({
       className={`dark ${inter.variable} ${roboto_mono.variable}`}
     >
       <body className="bg-background text-foreground">
-        <Providers>
-          <Header />
-          <main className="mx-auto min-h-screen max-w-6xl overflow-hidden p-4 md:p-6">
-            {children}
-          </main>
-        </Providers>
+        <div>
+          <Providers>
+            <Header />
+            <main className="mx-auto min-h-screen max-w-6xl overflow-hidden p-4 md:p-6">
+              {children}
+            </main>
+          </Providers>
+        </div>
       </body>
     </html>
   )

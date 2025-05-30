@@ -170,7 +170,7 @@
   }
 
   a {
-    @apply font-medium text-foreground underline underline-offset-4;
+    @apply text-foreground font-medium underline underline-offset-4;
   }
 
   blockquote {
@@ -206,10 +206,14 @@
   }
 
   label {
-    @apply block text-sm font-medium text-foreground;
+    @apply text-foreground block text-sm font-medium;
   }
 
   textarea {
-    @apply flex min-h-[80px] w-full rounded-md border-2 border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50;
+    @apply border-input bg-background ring-offset-background placeholder:text-muted-foreground focus-visible:ring-ring flex min-h-[80px] w-full rounded-md border-2 px-3 py-2 text-sm focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-hidden disabled:cursor-not-allowed disabled:opacity-50;
+  }
+
+  .bg-blur {
+    @apply bg-background/95 supports-backdrop-filter:bg-background/60 backdrop-blur-sm;
   }
 }
