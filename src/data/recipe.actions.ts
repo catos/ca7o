@@ -5,10 +5,7 @@ import { createClient } from "@/utils/supabase/server"
 import { revalidatePath } from "next/cache"
 import { redirect } from "next/navigation"
 
-export async function getRecipes(
-  q: string | null | undefined,
-  limit: number = 100
-) {
+export async function getRecipes(q?: string | null, limit: number = 100) {
   try {
     const supabase = await createClient()
     const { data, error } =
