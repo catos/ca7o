@@ -31,7 +31,7 @@ export default function LoginPage() {
 
           <div className="flex gap-4 flex-col">
             <Button type="submit">Logg inn</Button>
-            <Button variant="outlined" formAction={signUp} className="w-full">
+            <Button variant="outlined" type="submit" formAction={signUp} className="w-full">
               Registrer deg
             </Button>
           </div>

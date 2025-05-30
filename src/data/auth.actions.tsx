@@ -50,6 +50,8 @@ export async function signInWithGithub() {
 }
 
 export async function signUp(formData: FormData) {
+  throw new Error("signUp is not enabled...")
+
   const supabase = await createClient()
 
   // type-casting here for convenience
