@@ -78,7 +78,7 @@ export default function UI() {
         <h3 className="mt-0">Tables (TODO)</h3>
         <table className="w-full">
           <thead>
-            <tr className="m-0 border-t p-0 even:bg-muted">
+            <tr className="even:bg-muted m-0 border-t p-0">
               <th className="border px-4 py-2 text-left font-bold [&[align=center]]:text-center [&[align=right]]:text-right">
                 King&apos;s Treasury
               </th>
@@ -88,7 +88,7 @@ export default function UI() {
             </tr>
           </thead>
           <tbody>
-            <tr className="m-0 border-t p-0 even:bg-muted">
+            <tr className="even:bg-muted m-0 border-t p-0">
               <td className="border px-4 py-2 text-left [&[align=center]]:text-center [&[align=right]]:text-right">
                 Empty
               </td>
@@ -96,7 +96,7 @@ export default function UI() {
                 Overflowing
               </td>
             </tr>
-            <tr className="m-0 border-t p-0 even:bg-muted">
+            <tr className="even:bg-muted m-0 border-t p-0">
               <td className="border px-4 py-2 text-left [&[align=center]]:text-center [&[align=right]]:text-right">
                 Modest
               </td>
@@ -104,7 +104,7 @@ export default function UI() {
                 Satisfied
               </td>
             </tr>
-            <tr className="m-0 border-t p-0 even:bg-muted">
+            <tr className="even:bg-muted m-0 border-t p-0">
               <td className="border px-4 py-2 text-left [&[align=center]]:text-center [&[align=right]]:text-right">
                 Full
               </td>
@@ -176,20 +176,20 @@ export default function UI() {
       <section className="flex flex-col gap-4 border p-8">
         <h2 className="mt-0">Forms</h2>
         <div>
-          <label htmlFor="title">Title</label>
           <Input
             id="title"
             name="title"
             type="text"
+            label="Title"
             required
             placeholder="A short descriptive title"
           />
         </div>
         <div>
-          <label htmlFor="text">Text</label>
           <Textarea
             id="text"
             name="text"
+            label="Text"
             required
             className="h-32"
             placeholder="A descriptive text"
@@ -200,19 +200,19 @@ export default function UI() {
       <section className="flex flex-col gap-4 border p-8">
         <h2 className="mt-0">Palette</h2>
         <div className="flex flex-wrap gap-4">
-          <div className="flex-1 bg-primary p-4 text-center text-white">
+          <div className="bg-primary flex-1 p-4 text-center text-white">
             Primary
           </div>
-          <div className="flex-1 bg-secondary p-4 text-center text-white">
+          <div className="bg-secondary flex-1 p-4 text-center text-white">
             Secondary
           </div>
-          <div className="flex-1 bg-muted p-4 text-center text-white">
+          <div className="bg-muted flex-1 p-4 text-center text-white">
             Muted
           </div>
-          <div className="flex-1 bg-accent p-4 text-center text-white">
+          <div className="bg-accent flex-1 p-4 text-center text-white">
             Accent
           </div>
-          <div className="flex-1 bg-destructive p-4 text-center text-white">
+          <div className="bg-destructive flex-1 p-4 text-center text-white">
             Destructive
           </div>
         </div>
@@ -226,5 +226,5 @@ function Section({
 }: {
   children: React.ReactNode | React.ReactNode[]
 }) {
-  ;<section className="border rounded-lg p-4">{children}</section>
+  ;<section className="rounded-lg border p-4">{children}</section>
 }

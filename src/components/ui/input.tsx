@@ -1,34 +1,32 @@
+import { Field, Input as HeadlessInput, Label } from "@headlessui/react"
 import { InputHTMLAttributes } from "react"
 import { twMerge } from "tailwind-merge"
 
 type Props = {
+  id: string
   label?: string
+  className?: string
   error?: string
   ref?: React.RefObject<HTMLInputElement | null>
 } & InputHTMLAttributes<HTMLInputElement>
 
 export function Input(props: Props) {
   const { id, label, className, error, ...rest } = props
-  const classes = twMerge(
-    "flex w-full rounded-md border-2 border-input bg-background px-3 py-3 text-base ring-offset-background placeholder:text-muted-foreground focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm",
-    className
-  )
 
-  const Input = <input className={classes} id={id} {...rest} />
+  const baseStyles =
+    "block w-full rounded-lg border-none bg-foreground/5 px-3 py-1.5 text-sm/6 ui-outline"
 
-  if (!label) {
-    return Input
-  }
+  const inputStyles = twMerge(baseStyles, className)
 
   return (
-    <div>
+    <Field className="flex flex-col gap-3">
       {label && (
-        <label className="mb-2" htmlFor={id}>
+        <Label htmlFor={id} className="block text-sm/6 font-medium">
           {label}
-        </label>
+        </Label>
       )}
-      {Input}
-      {error && <p className="m-0 text-destructive">{error}</p>}
-    </div>
+      <HeadlessInput id={id} className={inputStyles} {...rest} />
+      {error && <p className="text-destructive m-0">{error}</p>}
+    </Field>
   )
 }

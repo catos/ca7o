@@ -60,17 +60,18 @@ export function SearchInput() {
       className="relative"
     >
       <Input
+        id="q"
         type="text"
         name="q"
         placeholder="Search"
-        className="input ml-auto pr-10 w-32 focus:w-full md:focus:w-1/2"
+        className="ml-auto w-32 pr-10 focus:w-full md:focus:w-1/2"
         value={inputValue || ""}
         onChange={handleChange}
         ref={inputRef}
       />
       <Button
         variant="icon"
-        className="absolute right-2 top-1 h-8 w-8 p-1"
+        className="absolute top-1 right-2 h-7 w-7 p-1"
         type="submit"
       >
         <SearchIcon className="w-5" />

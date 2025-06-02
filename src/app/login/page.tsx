@@ -10,7 +10,7 @@ export default function LoginPage() {
     <div className="flex justify-center">
       <section className="rounded-md sm:w-2/3 md:w-1/2">
         <form action={signIn} className="relative flex flex-col gap-8">
-          <div className="flex flex-col gap-4 items-center">
+          <div className="flex flex-col items-center gap-4">
             <Logo className="opacity-50" />
             <h2 className="m-0 text-2xl/9 font-bold tracking-tight">
               Logg inn for å se dine favoritter
@@ -20,18 +20,28 @@ export default function LoginPage() {
           <Input required id="email" type="email" name="email" label="E-post" />
 
           <div>
-            <div className="mb-2 flex items-center justify-between">
-              <label htmlFor="password">Passord</label>
-              <div className="text-sm">
-                <Link href="/auth/forgot-password">Glemt passord?</Link>
-              </div>
-            </div>
-            <Input required id="password" type="password" name="password" />
+            <Input
+              required
+              id="password"
+              type="password"
+              name="password"
+              label="Passord"
+            />
           </div>
 
-          <div className="flex gap-4 flex-col">
+          <div className="flex w-full flex-col items-center text-sm">
+            <Link href="/auth/forgot-password">Glemt passord?</Link>
+          </div>
+
+          <div className="flex flex-col gap-4">
             <Button type="submit">Logg inn</Button>
-            <Button variant="outlined" type="submit" formAction={signUp} className="w-full">
+            <Button
+              variant="outlined"
+              type="submit"
+              formAction={signUp}
+              className="w-full"
+              disabled
+            >
               Registrer deg
             </Button>
           </div>
@@ -39,10 +49,10 @@ export default function LoginPage() {
         <form className="mt-4">
           <Button
             onClick={signInWithGithub}
-            className="w-full flex items-center gap-4"
+            className="flex w-full items-center gap-4"
             variant="link"
           >
-            <GithubIcon className="w-4 h-4" />
+            <GithubIcon className="h-4 w-4" />
             Logg inn med GitHub
           </Button>
         </form>

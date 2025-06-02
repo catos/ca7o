@@ -33,25 +33,28 @@ export default async function Profile() {
         <Avatar
           fallback={getInitials(name)}
           src={user.user_metadata.avatar_url}
-          className="w-32 h-32 hover:ring-2 ring-primary"
+          className="ring-primary h-32 w-32 hover:ring-2"
         />
         <h1 className="m-0">{user.user_metadata.full_name}</h1>
         <h2>{user.email}</h2>
       </div>
-      <form action={update} className="relative flex flex-col gap-4 p-4 mb-4">
-        <Input name="id" hidden defaultValue={user.id} />
+      <form action={update} className="relative mb-4 flex flex-col gap-4 p-4">
+        <Input id="id" name="id" hidden defaultValue={user.id} />
         <Input
+          id="username"
           name="username"
           label="Username"
           readOnly
           defaultValue={profile?.username ?? ""}
         />
         <Input
+          id="fullname"
           name="fullname"
           label="Full Name"
           defaultValue={profile?.name ?? ""}
         />
         <Input
+          id="email"
           name="avatar"
           label="Avatar"
           defaultValue={profile?.avatar_url ?? ""}
@@ -60,7 +63,7 @@ export default async function Profile() {
       </form>
 
       <form
-        className="p-2 flex gap-2 items-center"
+        className="flex items-center gap-2 p-2"
         action="/auth/signout"
         method="post"
       >

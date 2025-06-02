@@ -44,46 +44,44 @@ export function RecipeForm({ action, recipe }: Props) {
         defaultValue={data.image}
       />
 
-      <div>
-        <label htmlFor="description">Description</label>
-        <Textarea
-          required
-          id="description"
-          name="description"
-          defaultValue={data.description ?? ""}
-          className="h-24"
-        />
-      </div>
+      <Textarea
+        required
+        id="description"
+        name="description"
+        label="Description"
+        defaultValue={data.description ?? ""}
+        className="h-24"
+      />
 
       <div className="flex flex-col gap-4 md:flex-row">
         <div className="basis-1/2">
-          <label htmlFor="ingredients">Ingredients</label>
           <Textarea
             required
             id="ingredients"
             name="ingredients"
-            className="h-48"
+            label="Ingredients"
+            className="h-48 md:h-96"
             defaultValue={data.ingredients}
           />
         </div>
 
         <div className="basis-1/2">
-          <label htmlFor="instructions">Instructions</label>
           <Textarea
             required
             id="instructions"
             name="instructions"
-            className="h-48"
+            label="Instructions"
+            className="h-48 md:h-96"
             defaultValue={data.instructions}
           />
         </div>
       </div>
 
-      <div className="flex gap-8 items-center">
+      <div className="flex items-center gap-8">
         {recipe && (
           <>
             <DeleteButton id={recipe.id} />
-            <Link className="flex gap-2 ml-auto" href={`/recipes/${recipe.id}`}>
+            <Link className="ml-auto flex gap-2" href={`/recipes/${recipe.id}`}>
               <CookingPotIcon /> Go to recipe
             </Link>
           </>

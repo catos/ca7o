@@ -21,11 +21,11 @@ function snip(title: string, length: number): string {
 export default function Card({ image, href, title }: Props) {
   return (
     <Link
-      className="hover:outline-primary-700 relative flex max-h-64 w-full flex-col overflow-hidden rounded no-underline shadow-lg hover:outline hover:outline-2"
+      className="group ui-outline relative flex max-h-64 w-full flex-col overflow-hidden rounded no-underline shadow-lg"
       href={href}
     >
       <Image
-        className="bg-primary-300 h-64 object-cover"
+        className="bg-primary-300 h-64 object-cover transition-transform duration-300 ease-in-out group-hover:scale-125"
         src={image}
         alt={title}
       />
@@ -48,7 +48,7 @@ function CardHeading({ title }: { title: string }) {
   return (
     <h2
       className={twMerge(
-        "absolute bottom-0 left-0 right-0 mb-0 flex h-24 flex-1 items-center overflow-hidden bg-background/75 px-4 text-xl font-semibold leading-6 text-white",
+        "bg-background/75 absolute right-0 bottom-0 left-0 mb-0 flex h-24 flex-1 items-center overflow-hidden px-4 text-xl leading-6 font-semibold text-white",
         size
       )}
     >
