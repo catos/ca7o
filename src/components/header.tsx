@@ -24,6 +24,7 @@ export default async function Header() {
 
         <div className="flex items-center justify-end gap-2 md:gap-4">
           <HeaderLink href="/recipes">Recipes</HeaderLink>
+          <HeaderLink href="/notes">Notes</HeaderLink>
 
           {user ? (
             <ProfilePopover user={user} />

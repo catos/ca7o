@@ -1,10 +1,11 @@
+import { Tables } from "@/types/database"
 import { createClient } from "@/utils/supabase/server"
 import { redirect } from "next/navigation"
 import { getNotes } from "@/data/note-actions"
-import { Note } from "@/components/notes/notes"
+import { Note, NoteWithChildren } from "@/components/notes/note"
+import CreateForm from "./create-form"
 
-// TODO: move TODO-components to components-folder
-export default async function Todos() {
+export default async function Notes() {
   const supabase = await createClient()
 
   const {
@@ -20,20 +21,33 @@ export default async function Todos() {
     return (
       <>
         {/* <CreateForm /> */}
-        <div className="py-4 text-xl text-center">
-          No TODOs... TODO: start creating some!
+        <div className="py-4 text-center text-xl">
+          No notes... TODO: start creating some!
         </div>
       </>
     )
   }
 
+  function buildNoteTree(note: Tables<"notes">): NoteWithChildren {
+    return {
+      ...note,
+      children: notes
+        .filter((child) => child.parent_id === note.id)
+        .map(buildNoteTree),
+    }
+  }
+
+  const rootNotes: NoteWithChildren[] = notes
+    .filter((note) => !note.parent_id)
+    .map(buildNoteTree)
+
   return (
     <div className="flex flex-col gap-4">
-      <div className="flex flex-col gap-4 p-4 rounded-md">
-        {/* <CreateForm /> */}
-        <h2>TODOs</h2>
+      <div className="flex flex-col gap-4 rounded-md p-4">
+        <CreateForm />
+        <h2>Notes</h2>
         <div className="flex flex-col gap-2">
-          {notes.map((note) => (
+          {rootNotes.map((note) => (
             <Note key={note.id} note={note} />
           ))}
         </div>

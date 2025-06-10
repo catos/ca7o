@@ -4,7 +4,7 @@ import useForm from "@/lib/use-form"
 import useOutsideClick from "@/lib/use-outside-click"
 import { useState } from "react"
 import { twMerge } from "tailwind-merge"
-
+import { createNote } from "@/data/note-actions"
 // import { createTodo } from "@/data/todo-actions"
 
 import { Button } from "@/components/ui/button"
@@ -21,7 +21,7 @@ function useTodo() {
   const mutate = async (formData: FormData) => {
     setStatus("pending")
     try {
-      //   await createTodo(formData)
+      await createNote(formData)
       setMessage(message)
       setStatus("success")
     } catch (error) {
@@ -68,27 +68,15 @@ export default function CreateForm() {
 
   return (
     <form ref={ref} onSubmit={handleSubmit} className="flex flex-col gap-2">
-      <Input
-        {...register("title")}
-        placeholder="Start typing your TODO here..."
-        className={twMerge(
-          !expanded && "border-2 border-primary-400 rounded-md"
-        )}
+      <Textarea
+        {...register("content")}
+        placeholder="Add some content if you like"
+        rows={expanded ? 3 : 1}
         onFocus={handleFocus}
       />
-
-      {expanded && (
-        <>
-          <Textarea
-            {...register("content")}
-            placeholder="Add some content if you like"
-          />
-          <Button type="submit" disabled={status === "pending"}>
-            Create
-          </Button>
-          {message && <div>TODO: style me properly please - {message}</div>}
-        </>
-      )}
+      <Button type="submit" disabled={status === "pending"}>
+        Create
+      </Button>
     </form>
   )
 }

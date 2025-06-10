@@ -2,6 +2,7 @@
 
 import { handleDBError } from "@/lib/error-handler"
 import { createClient } from "@/utils/supabase/server"
+import { revalidatePath } from "next/cache"
 
 export async function getNotes(userId: string) {
   try {
@@ -64,32 +65,40 @@ export async function getNotes(userId: string) {
 //   }
 // }
 
-// export async function createTodo(formData: FormData) {
-//   const session = await getServerSession(authOptions)
-//   if (!session || !session.user) {
-//     throw new Error("Not authenticated")
-//   }
+export async function createNote(formData: FormData) {
+  const supabase = await createClient()
+  const {
+    data: { user },
+  } = await supabase.auth.getUser()
 
-//   const validatedFields = CreateForm.safeParse(Object.fromEntries(formData))
-//   if (!validatedFields.success) {
-//     throw new Error("Failed to create todo, missing fields.")
-//   }
+  if (!user) {
+    throw new Error("User not found!")
+  }
 
-//   const data = {
-//     ...validatedFields.data,
-//     authorId: +session.user.id,
-//   }
+  const date = new Date().toISOString()
 
-//   try {
-//     await prisma.todo.create({ data })
-//   } catch (error) {
-//     // TODO: reconsider this .... handleDBError(error, "Failed to create todo.")
-//     throw new Error("Database error. Failed to create todo.")
-//   }
+  const form = {
+    parent_id: formData.get("parent_id") as string | null,
+    content: formData.get("content") as string,
+    user_id: user.id,
+    created_at: date,
+    updated_at: date,
+    state: formData.get("state") ? +(formData.get("state") as string) : 1,
+  }
 
-//   revalidatePath("/todos")
-//   redirect("/todos")
-// }
+  const { data, error } = await supabase
+    .from("notes")
+    .insert(form)
+    .select()
+    .single()
+
+  if (error) {
+    throw error
+  }
+
+  revalidatePath("/notes")
+  return data
+}
 
 // // TODO: use this method as example for other methods
 // export async function updateTodo(formData: FormData) {
