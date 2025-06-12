@@ -43,10 +43,10 @@ export default async function Notes() {
 
   return (
     <div className="flex flex-col gap-4">
-      <div className="flex flex-col gap-4 rounded-md p-4">
+      <div className="flex flex-col gap-4 rounded-md">
         <CreateForm />
         <h2>Notes</h2>
-        <div className="flex flex-col gap-2">
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
           {rootNotes.map((note) => (
             <Note key={note.id} note={note} />
           ))}

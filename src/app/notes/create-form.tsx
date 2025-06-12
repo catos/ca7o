@@ -2,19 +2,17 @@
 
 import useForm from "@/lib/use-form"
 import useOutsideClick from "@/lib/use-outside-click"
+import { LoaderCircleIcon, PlusIcon } from "lucide-react"
 import { useState } from "react"
-import { twMerge } from "tailwind-merge"
 import { createNote } from "@/data/note-actions"
-// import { createTodo } from "@/data/todo-actions"
-
 import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 
 // TODO: type all return values
 type Status = "idle" | "pending" | "success" | "error"
+
 // TODO: create useQuery hook from this ?
-function useTodo() {
+function useNote() {
   const [status, setStatus] = useState<Status>("idle")
   const [message, setMessage] = useState<string | undefined>()
 
@@ -25,6 +23,7 @@ function useTodo() {
       setMessage(message)
       setStatus("success")
     } catch (error) {
+      console.error("Error creating todo:", error)
       setStatus("error")
 
       let message = "Something went wrong"
@@ -42,19 +41,23 @@ function useTodo() {
   }
 }
 
+const initialValues = {
+  content: "",
+  parent_id: undefined as string | undefined,
+  state: 1,
+}
+
 export default function CreateForm() {
   const [expanded, setExpanded] = useState(false)
-  const { status, message, mutate } = useTodo()
+  const { status, message, mutate } = useNote()
   const ref = useOutsideClick<HTMLFormElement>(() => setExpanded(false))
-  const { register, handleSubmit, reset } = useForm({
-    initialValues: {
-      title: "",
-      content: "",
-    },
+  const { register, handleSubmit, reset, values } = useForm<
+    typeof initialValues
+  >({
+    initialValues,
     onSubmit: (values: any) => {
       setExpanded(false)
       const formData = new FormData()
-      formData.set("title", values.title)
       formData.set("content", values.content)
       mutate(formData)
       // TODO: check if mutation was successful first
@@ -66,16 +69,37 @@ export default function CreateForm() {
     setExpanded(true)
   }
 
+  const handleBlur = (e: React.FocusEvent<HTMLTextAreaElement>) => {
+    // If the textarea is empty, collapse it
+    if (!register("content").value) {
+      setExpanded(false)
+    }
+
+    if (values.content) {
+      handleSubmit(e)
+    }
+  }
+
   return (
-    <form ref={ref} onSubmit={handleSubmit} className="flex flex-col gap-2">
+    <form ref={ref} onSubmit={handleSubmit} className="relative">
       <Textarea
         {...register("content")}
         placeholder="Add some content if you like"
-        rows={expanded ? 3 : 1}
+        rows={expanded ? 3 : 2}
         onFocus={handleFocus}
+        onBlur={handleBlur}
       />
-      <Button type="submit" disabled={status === "pending"}>
-        Create
+      <Button
+        variant="icon"
+        type="submit"
+        disabled={status === "pending"}
+        className="absolute top-2 right-2"
+      >
+        {status !== "pending" ? (
+          <PlusIcon className="h-5 w-5" />
+        ) : (
+          <LoaderCircleIcon className="w-5" />
+        )}
       </Button>
     </form>
   )

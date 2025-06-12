@@ -1,6 +1,18 @@
-import { Tables } from "@/types/database"
-import styles from "./styles.module.css"
+"use client"
 
+import { Tables } from "@/types/database"
+import {
+  Description,
+  Dialog,
+  DialogBackdrop,
+  DialogPanel,
+  DialogTitle,
+} from "@headlessui/react"
+import { useState } from "react"
+import { Textarea } from "../ui/textarea"
+import { NoteOptions } from "./NoteOptions"
+
+// TODO: move to note.d.ts
 export type NoteWithChildren = Tables<"notes"> & {
   children: NoteWithChildren[]
 }
@@ -28,24 +40,69 @@ type Props = {
  */
 
 export function Note({ note }: Props) {
+  const [isOpen, setIsOpen] = useState(false)
+
+  const openDialog = () => {
+    setIsOpen(true)
+  }
+
   return (
-    <div className="bg-primary/40 border-primary flex flex-col gap-2 rounded-md border p-4">
-      <div>{note.content}</div>
-      {note.children?.length > 0 && (
-        <div>
-          {note.children.map((child) => (
-            <ChildNote key={child.id} note={child} />
-          ))}
+    <>
+      <NotePreview note={note} onClick={openDialog} />
+      <Dialog
+        open={isOpen}
+        onClose={() => setIsOpen(false)}
+        className="relative z-50"
+      >
+        <DialogBackdrop className="fixed inset-0 bg-black/50" />
+
+        <div className="fixed inset-0 flex w-screen items-center justify-center p-4">
+          <DialogPanel className="border-primary bg-blur bg-primary/40 w-lg border p-4">
+            <Textarea
+              id="note-content"
+              className="h-full w-full resize-none"
+              placeholder="Write your note here..."
+              value={note.content}
+              onChange={(e) => {
+                console.log("Content changed:", e.target.value)
+              }}
+              autoFocus
+              rows={16}
+            />
+
+            <NoteOptions note={note} />
+          </DialogPanel>
         </div>
-      )}
-    </div>
+      </Dialog>
+    </>
   )
 }
 
-function ChildNote({ note }: Props) {
+function NotePreview({
+  note,
+  onClick,
+}: {
+  note: NoteWithChildren
+  onClick: () => void
+}) {
   return (
-    <div className="flex flex-col gap-2 rounded-md bg-white/10 p-4">
-      <div>{note.content}</div>
+    <div className="group bg-primary/40 hover:bg-primary/50 border-primary relative flex cursor-pointer flex-col justify-between overflow-auto rounded-md border">
+      <a onClick={onClick}>
+        <div className="max-h-[200px] overflow-hidden p-4">{note.content}</div>
+      </a>
+      {note.children?.length > 0 && (
+        <div className="m-4">
+          {note.children.map((child) => (
+            <div
+              key={child.id}
+              className="flex flex-col gap-2 rounded-md bg-white/10 p-4"
+            >
+              <div>{child.content.substring(0, 24)}</div>
+            </div>
+          ))}
+        </div>
+      )}
+      <NoteOptions note={note} />
     </div>
   )
 }

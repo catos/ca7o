@@ -86,17 +86,23 @@ export async function createNote(formData: FormData) {
     state: formData.get("state") ? +(formData.get("state") as string) : 1,
   }
 
+  if (!form.content) {
+    throw new Error("Content is required.")
+  }
+
   const { data, error } = await supabase
     .from("notes")
     .insert(form)
     .select()
     .single()
 
+  // TODO: use handleDBError everywhere in actions
   if (error) {
-    throw error
+    handleDBError(error, "Failed to delete note.")
   }
 
   revalidatePath("/notes")
+
   return data
 }
 
@@ -158,24 +164,16 @@ export async function createNote(formData: FormData) {
 //   redirect("/todos")
 // }
 
-// export async function deleteTodo(id: number) {
-//   const session = await getServerSession(authOptions)
-//   if (!session || !session.user) {
-//     throw new Error("Not authenticated")
-//   }
+export async function deleteNote(id: string) {
+  const supabase = await createClient()
 
-//   // TODO: check if user is the author of the todo
+  const { error } = await supabase.from("notes").delete().eq("id", id)
 
-//   try {
-//     await prisma.todo.delete({
-//       where: {
-//         id,
-//       },
-//     })
-//   } catch (error) {
-//     throw new Error("Failed to delete todo.")
-//   }
+  if (error) {
+    handleDBError(error, "Failed to delete note.")
+  }
 
-//   revalidatePath("/todos")
-//   redirect("/todos")
-// }
+  revalidatePath("/notes")
+
+  return true
+}
