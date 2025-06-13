@@ -1,14 +1,9 @@
 "use client"
 
 import { Tables } from "@/types/database"
-import {
-  Description,
-  Dialog,
-  DialogBackdrop,
-  DialogPanel,
-  DialogTitle,
-} from "@headlessui/react"
+import { Dialog, DialogBackdrop, DialogPanel } from "@headlessui/react"
 import { useState } from "react"
+import { Markdown } from "../recipe/markdown"
 import { Textarea } from "../ui/textarea"
 import { NoteOptions } from "./NoteOptions"
 
@@ -41,6 +36,15 @@ type Props = {
 
 export function Note({ note }: Props) {
   const [isOpen, setIsOpen] = useState(false)
+  const [updatedNote, setUpdatedNote] = useState<NoteWithChildren>(note)
+
+  const handleContentChange = () => (content: string) => {
+    setUpdatedNote((prev) => ({
+      ...prev,
+      content,
+    }))
+    console.log("Content changed:", content)
+  }
 
   const openDialog = () => {
     setIsOpen(true)
@@ -63,9 +67,7 @@ export function Note({ note }: Props) {
               className="h-full w-full resize-none"
               placeholder="Write your note here..."
               value={note.content}
-              onChange={(e) => {
-                console.log("Content changed:", e.target.value)
-              }}
+              onChange={handleContentChange}
               autoFocus
               rows={16}
             />
@@ -86,22 +88,26 @@ function NotePreview({
   onClick: () => void
 }) {
   return (
-    <div className="group bg-primary/40 hover:bg-primary/50 border-primary relative flex cursor-pointer flex-col justify-between overflow-auto rounded-md border">
-      <a onClick={onClick}>
-        <div className="max-h-[200px] overflow-hidden p-4">{note.content}</div>
-      </a>
-      {note.children?.length > 0 && (
-        <div className="m-4">
-          {note.children.map((child) => (
-            <div
-              key={child.id}
-              className="flex flex-col gap-2 rounded-md bg-white/10 p-4"
-            >
-              <div>{child.content.substring(0, 24)}</div>
-            </div>
-          ))}
-        </div>
-      )}
+    <div className="group bg-primary/40 hover:bg-primary/50 border-primary relative flex flex-col justify-between overflow-auto rounded-md border">
+      <div>
+        <a onClick={onClick} className="cursor-pointer">
+          <div className="max-h-[200px] overflow-hidden p-4">
+            <Markdown>{note.content}</Markdown>
+          </div>
+        </a>
+        {note.children?.length > 0 && (
+          <div className="m-4">
+            {note.children.map((child) => (
+              <div
+                key={child.id}
+                className="flex flex-col gap-2 rounded-md bg-white/10 p-4"
+              >
+                <div>{child.content.substring(0, 24)}</div>
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
       <NoteOptions note={note} />
     </div>
   )

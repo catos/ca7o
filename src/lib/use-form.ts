@@ -34,7 +34,8 @@ function useForm<T>({
 
   const handleChange = (event: React.ChangeEvent<ChangeEventType>) => {
     const { name, value } = event.target
-    if (!name || !value) {
+
+    if (!name) {
       return
     }
 
@@ -52,6 +53,7 @@ function useForm<T>({
 
   const register = (name: string) => {
     const key = name as keyof T
+
     return {
       id: name,
       name,

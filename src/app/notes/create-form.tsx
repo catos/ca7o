@@ -43,7 +43,6 @@ function useNote() {
 
 const initialValues = {
   content: "",
-  parent_id: undefined as string | undefined,
   state: 1,
 }
 
@@ -71,7 +70,7 @@ export default function CreateForm() {
 
   const handleBlur = (e: React.FocusEvent<HTMLTextAreaElement>) => {
     // If the textarea is empty, collapse it
-    if (!register("content").value) {
+    if (register("content").value.toString().trim().length === 0) {
       setExpanded(false)
     }
 
@@ -88,6 +87,7 @@ export default function CreateForm() {
         rows={expanded ? 3 : 2}
         onFocus={handleFocus}
         onBlur={handleBlur}
+        className="placeholder:pt-2 placeholder:text-center placeholder:text-lg"
       />
       <Button
         variant="icon"
