@@ -1,7 +1,6 @@
 "use client"
 
 import useForm from "@/lib/use-form"
-import useOutsideClick from "@/lib/use-outside-click"
 import { LoaderCircleIcon, PlusIcon } from "lucide-react"
 import { useState } from "react"
 import { createNote } from "@/data/note-actions"
@@ -54,13 +53,15 @@ type FormType = typeof initialValues
  * @returns
  */
 export default function CreateForm() {
-  const [expanded, setExpanded] = useState(false)
   const { status, mutate } = useNote()
-  const ref = useOutsideClick<HTMLFormElement>(() => setExpanded(false))
+
+  // const [_, setExpanded] = useState(false)
+  // const ref = useOutsideClick<HTMLFormElement>(() => setExpanded(false))
+
   const { register, handleSubmit, reset, values } = useForm<FormType>({
     initialValues,
     onSubmit: (values: FormType) => {
-      setExpanded(false)
+      // setExpanded(false)
       const formData = new FormData()
       formData.set("content", values.content)
       mutate(formData)
@@ -70,13 +71,13 @@ export default function CreateForm() {
   })
 
   const handleFocus = () => {
-    setExpanded(true)
+    // setExpanded(true)
   }
 
   const handleBlur = (e: React.FocusEvent<HTMLTextAreaElement>) => {
     // If the textarea is empty, collapse it
     if (register("content").value.toString().trim().length === 0) {
-      setExpanded(false)
+      // setExpanded(false)
     }
 
     if (values.content) {
@@ -91,7 +92,7 @@ export default function CreateForm() {
   }
 
   return (
-    <form ref={ref} onSubmit={handleSubmit} className="relative">
+    <form onSubmit={handleSubmit} className="relative">
       <Textarea
         {...register("content")}
         placeholder="Add some content if you like (CTRL + Enter to submit)"
