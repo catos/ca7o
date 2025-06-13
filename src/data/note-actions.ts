@@ -107,63 +107,49 @@ export async function createNote(formData: FormData) {
   return data
 }
 
-// // TODO: use this method as example for other methods
-// export async function updateTodo(formData: FormData) {
-//   const session = await getServerSession(authOptions)
-//   if (!session || !session.user) {
-//     throw new Error("Not authenticated")
-//   }
+export async function updateNote(formData: FormData) {
+  const supabase = await createClient()
+  const {
+    data: { user },
+  } = await supabase.auth.getUser()
 
-//   // TODO: find a better way to do this
-//   const data = {
-//     id: +(formData.get("id")?.toString() ?? ""),
-//     title: formData.get("title")?.toString(),
-//     content: formData.get("content")?.toString(),
-//     state: +(formData.get("state")?.toString() ?? ""),
-//     authorId: +session.user.id,
-//     updatedAt: new Date(),
-//   }
+  if (!user) {
+    throw new Error("User not found!")
+  }
 
-//   const validatedFields = UpdateForm.safeParse(data)
-//   if (!validatedFields.success) {
-//     throw new Error("Failed to update todo, missing fields.")
-//   }
+  const date = new Date().toISOString()
 
-//   try {
-//     await prisma.todo.update({
-//       where: { id: data.id },
-//       data,
-//     })
-//   } catch (error) {
-//     throw new Error("Database error. Failed to update todo.")
-//   }
+  const form = {
+    id: formData.get("id") as string,
+    content: formData.get("content") as string,
+    user_id: user.id,
+    updated_at: date,
+    state: formData.get("state") ? +(formData.get("state") as string) : 1,
+  }
 
-//   revalidatePath("/todos")
-//   redirect("/todos")
-// }
+  if (!form.id) {
+    throw new Error("Id is required.")
+  }
 
-// export async function updateState(id: number, state: number = 0) {
-//   const session = await getServerSession(authOptions)
-//   if (!session || !session.user) {
-//     throw new Error("Not authenticated")
-//   }
+  if (!form.content) {
+    throw new Error("Content is required.")
+  }
 
-//   try {
-//     await prisma.todo.update({
-//       where: {
-//         id,
-//       },
-//       data: {
-//         state,
-//       },
-//     })
-//   } catch (error) {
-//     throw new Error("Failed to mark todo as done.")
-//   }
+  const { data, error } = await supabase
+    .from("notes")
+    .update(form)
+    .eq("id", form.id)
+    .select()
+    .single()
 
-//   revalidatePath("/todos")
-//   redirect("/todos")
-// }
+  if (error) {
+    handleDBError(error, "Failed to update note.")
+  }
+
+  revalidatePath("/notes")
+
+  return data
+}
 
 export async function deleteNote(id: string) {
   const supabase = await createClient()

@@ -1,13 +1,26 @@
-import { ArchiveIcon, Palette, PlusIcon, TrashIcon } from "lucide-react"
+import {
+  ArchiveIcon,
+  Palette,
+  PlusIcon,
+  SaveIcon,
+  TrashIcon,
+} from "lucide-react"
+import { twMerge } from "tailwind-merge"
 import { createNote, deleteNote } from "@/data/note-actions"
 import { Button } from "../ui/button"
 import { NoteWithChildren } from "./note"
 
 type Props = {
   note: NoteWithChildren
+  includeSubmitButton?: boolean
+  alwaysShow?: boolean
 }
 
-export function NoteOptions({ note }: Props) {
+export function NoteOptions({
+  note,
+  includeSubmitButton = false,
+  alwaysShow = false,
+}: Props) {
   const handleAdd = async () => {
     const form = new FormData()
     form.append("parent_id", note.id)
@@ -27,8 +40,17 @@ export function NoteOptions({ note }: Props) {
     await deleteNote(note.id)
   }
 
+  const baseStyles =
+    "bg-primary/20 flex justify-around gap-1 opacity-0 group-hover:opacity-100"
+  const classes = twMerge(baseStyles, alwaysShow && "opacity-100")
+
   return (
-    <div className="bg-primary/20 flex justify-around gap-1 opacity-0 group-hover:opacity-100">
+    <div className={classes}>
+      {includeSubmitButton && (
+        <Button type="submit" variant="icon">
+          <SaveIcon className="h-4 w-4" />
+        </Button>
+      )}
       <Button variant="icon" aria-label="Add note" onClick={handleAdd}>
         <PlusIcon className="h-4 w-4" />
       </Button>

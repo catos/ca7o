@@ -46,15 +46,20 @@ const initialValues = {
   state: 1,
 }
 
+type FormType = typeof initialValues
+
+/**
+ * TODO:
+ * - [ ] Increase height of textarea when typing
+ * @returns
+ */
 export default function CreateForm() {
   const [expanded, setExpanded] = useState(false)
   const { status, mutate } = useNote()
   const ref = useOutsideClick<HTMLFormElement>(() => setExpanded(false))
-  const { register, handleSubmit, reset, values } = useForm<
-    typeof initialValues
-  >({
+  const { register, handleSubmit, reset, values } = useForm<FormType>({
     initialValues,
-    onSubmit: (values: any) => {
+    onSubmit: (values: FormType) => {
       setExpanded(false)
       const formData = new FormData()
       formData.set("content", values.content)
@@ -79,15 +84,22 @@ export default function CreateForm() {
     }
   }
 
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
+    if ((e.metaKey || e.ctrlKey) && e.key === "Enter") {
+      handleSubmit(e)
+    }
+  }
+
   return (
     <form ref={ref} onSubmit={handleSubmit} className="relative">
       <Textarea
         {...register("content")}
-        placeholder="Add some content if you like"
-        rows={expanded ? 3 : 2}
+        placeholder="Add some content if you like (CTRL + Enter to submit)"
+        rows={1}
         onFocus={handleFocus}
         onBlur={handleBlur}
-        className="placeholder:pt-2 placeholder:text-center placeholder:text-lg"
+        onKeyDown={handleKeyDown}
+        className="overflow-clip p-4 placeholder:text-center placeholder:text-lg"
       />
       <Button
         variant="icon"
@@ -98,7 +110,7 @@ export default function CreateForm() {
         {status !== "pending" ? (
           <PlusIcon className="h-5 w-5" />
         ) : (
-          <LoaderCircleIcon className="w-5" />
+          <LoaderCircleIcon className="w-5 animate-spin ease-in-out" />
         )}
       </Button>
     </form>
