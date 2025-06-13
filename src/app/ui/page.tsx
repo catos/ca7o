@@ -220,11 +220,3 @@ export default function UI() {
     </div>
   )
 }
-
-function Section({
-  children,
-}: {
-  children: React.ReactNode | React.ReactNode[]
-}) {
-  ;<section className="rounded-lg border p-4">{children}</section>
-}

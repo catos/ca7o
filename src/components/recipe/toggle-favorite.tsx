@@ -1,3 +1,4 @@
+export default {}
 // "use client"
 
 // import { createFavorite, deleteFavorite } from "@/data/favorite-actions"

@@ -1,9 +1,10 @@
 "use client"
-import { useCallback, useEffect, useState } from "react"
+
+import { Tables } from "@/types/database"
 import { createClient } from "@/utils/supabase/client"
 import { type User } from "@supabase/supabase-js"
+import { useCallback, useEffect, useState } from "react"
 import Avatar from "./avatar"
-import { Tables } from "@/types/database"
 
 interface IProfile
   extends Omit<Tables<"profiles">, "created_at" | "updated_at"> {}
@@ -39,7 +40,7 @@ export default function ProfileForm({ user }: { user: User | null }) {
         setProfile(data)
       }
     } catch (error) {
-      console.error("Error loading user data!")
+      console.error("Error loading user data!", error)
     } finally {
       setLoading(false)
     }

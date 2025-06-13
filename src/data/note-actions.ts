@@ -10,6 +10,7 @@ export async function getNotes(userId: string) {
     const { data, error } = await supabase
       .from("notes")
       .select()
+      .eq("user_id", userId)
       .order("updated_at", { ascending: false })
 
     if (error) {

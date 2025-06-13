@@ -1,3 +1,5 @@
+export default {}
+
 // "use client"
 
 // import { useDebounce } from "@/lib/use-debounce"

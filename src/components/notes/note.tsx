@@ -36,8 +36,8 @@ type Props = {
 
 export function Note({ note }: Props) {
   const [isOpen, setIsOpen] = useState(false)
-  const [updatedNote, setUpdatedNote] = useState<NoteWithChildren>(note)
-
+  const [_updatedNote, setUpdatedNote] = useState<NoteWithChildren>(note)
+  alert("lol")
   const handleContentChange = () => (content: string) => {
     setUpdatedNote((prev) => ({
       ...prev,

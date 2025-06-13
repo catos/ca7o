@@ -11,7 +11,6 @@ type Props = {
 export function Button({
   children,
   variant = "filled",
-  color = "primary",
   className,
   ...rest
 }: Props) {

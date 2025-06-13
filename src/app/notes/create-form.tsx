@@ -48,7 +48,7 @@ const initialValues = {
 
 export default function CreateForm() {
   const [expanded, setExpanded] = useState(false)
-  const { status, message, mutate } = useNote()
+  const { status, mutate } = useNote()
   const ref = useOutsideClick<HTMLFormElement>(() => setExpanded(false))
   const { register, handleSubmit, reset, values } = useForm<
     typeof initialValues

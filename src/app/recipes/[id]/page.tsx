@@ -1,4 +1,3 @@
-import { createClient } from "@/utils/supabase/server"
 import { CookingPot, HeartIcon, PrinterIcon, StarIcon } from "lucide-react"
 import { getRecipe } from "@/data/recipe.actions"
 import { Button } from "@/components/ui/button"
@@ -32,7 +31,7 @@ export default async function RecipesPage({ params }: Props) {
     <div className="-mt-4 flex flex-col gap-4 md:gap-6">
       <section className="relative">
         <Link
-          className="absolute right-2 top-2 rounded-full bg-background p-2 font-bold no-underline opacity-60"
+          className="bg-background absolute top-2 right-2 rounded-full p-2 font-bold no-underline opacity-60"
           href={`/recipes/${recipe.id}/edit`}
         >
           <CookingPot />
@@ -72,12 +71,12 @@ export default async function RecipesPage({ params }: Props) {
 
       <div className="flex flex-col gap-4 sm:flex-row">
         <section className="min-h-64 rounded-md sm:w-1/2 md:w-5/12">
-          <h2 className="text-base uppercase text-muted">Ingrendienser</h2>
+          <h2 className="text-muted text-base uppercase">Ingrendienser</h2>
           <Markdown>{recipe.ingredients}</Markdown>
         </section>
 
         <section className="min-h-64 rounded-md sm:w-1/2 md:w-7/12">
-          <h2 className="text-base uppercase text-muted">Fremgangsmåte</h2>
+          <h2 className="text-muted text-base uppercase">Fremgangsmåte</h2>
           <Markdown>{recipe.instructions}</Markdown>
         </section>
       </div>

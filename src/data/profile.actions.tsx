@@ -58,7 +58,7 @@ export async function getProfile(userId: string) {
       return data
     }
   } catch (error) {
-    console.error("Error loading user data!")
+    console.error("Error loading user data!", error)
   }
 
   return null

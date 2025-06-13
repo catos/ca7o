@@ -51,17 +51,12 @@ export async function getRecipe(id: string) {
 }
 
 export async function updateRecipe(formData: FormData) {
-  let redirectUrl = "/recipes/"
-
   try {
     if (!formData.has("id")) {
       throw new Error("Missing recipe id")
     }
 
     const id = formData.get("id") as string
-    if (id) {
-      redirectUrl = `/recipes/${id}`
-    }
 
     const form = {
       title: formData.get("title") as string,
@@ -84,8 +79,6 @@ export async function updateRecipe(formData: FormData) {
   } catch (error) {
     handleDBError(error, "Failed to update recipe.")
   }
-
-  // redirect(redirectUrl)
 }
 
 export async function createRecipe(formData: FormData) {

@@ -18,7 +18,7 @@ export function Markdown({ children }: { children: string | null }) {
           return <h3>{children}</h3>
         },
 
-        ul: ({ children, node, ...props }) => {
+        ul: ({ children }) => {
           if (!Array.isArray(children)) {
             return null
           }
@@ -52,7 +52,7 @@ export function Markdown({ children }: { children: string | null }) {
         },
 
         code: (props: any) => {
-          const { children, className, node, ...rest } = props
+          const { children, className, ...rest } = props
 
           const code = children && children[0]
           if (code && code.startsWith("timer:")) {
@@ -65,10 +65,10 @@ export function Markdown({ children }: { children: string | null }) {
           )
         },
 
-        img: ({ children, ...rest }: any) => {
+        img: ({ src, alt }: any) => {
           return (
             <span className="relative">
-              <Image src={rest.src} alt={rest.alt} />
+              <Image src={src} alt={alt} />
             </span>
           )
         },
