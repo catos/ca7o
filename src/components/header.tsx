@@ -3,7 +3,7 @@ import React, { ReactNode } from "react"
 import { Link } from "@/components/ui/link"
 import { SearchInput } from "@/components/search-input"
 import Logo from "./logo"
-import { ProfilePopover } from "./profilePopover"
+import { Menu } from "./menu/Menu"
 
 export default async function Header() {
   const supabase = await createClient()
@@ -24,10 +24,9 @@ export default async function Header() {
 
         <div className="flex items-center justify-end gap-2 md:gap-4">
           <HeaderLink href="/recipes">Recipes</HeaderLink>
-          <HeaderLink href="/notes">Notes</HeaderLink>
 
           {user ? (
-            <ProfilePopover user={user} />
+            <Menu user={user} />
           ) : (
             <HeaderLink href="/login">Login</HeaderLink>
           )}

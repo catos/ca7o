@@ -18,24 +18,6 @@ type Props = {
   note: NoteWithChildren
 }
 
-/**
- * CSS Modules vs Tailwind CSS
- *
- * Cons of CSS Modules:
- *
- * - no intellisense on styles.
- * - no easy access to theme from ***.module.css
- * - conditional styles would have to be if-statements in component including one of multiple classes from .module.css
- *
- * Pros of CSS Modules:
- *
- * - scoped styles, no conflicts with other components
- * - native CSS, learn actual web development skills
- *
- *
- *
- */
-
 type FormType = {
   content: string
 }
