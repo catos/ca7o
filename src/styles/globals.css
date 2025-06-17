@@ -49,23 +49,23 @@
 
 @layer base {
   h1 {
-    @apply mb-4 scroll-m-20 text-3xl font-bold tracking-tight text-slate-900 md:text-4xl dark:text-slate-100;
+    @apply mb-4 scroll-m-20 text-3xl font-light tracking-tight text-slate-900 md:text-4xl dark:text-slate-100;
   }
 
   h2 {
-    @apply mb-4 scroll-m-20 text-2xl font-bold tracking-tight text-slate-900 md:text-3xl dark:text-slate-100;
+    @apply mb-4 scroll-m-20 text-2xl font-light tracking-tight text-slate-900 md:text-3xl dark:text-slate-100;
   }
 
   h3 {
-    @apply mb-4 scroll-m-20 text-xl font-semibold tracking-tight md:text-2xl;
+    @apply mb-4 scroll-m-20 text-xl font-light tracking-tight md:text-2xl;
   }
 
   p {
-    @apply mb-5 leading-7;
+    @apply mb-5 leading-7 font-light;
   }
 
   a {
-    @apply text-foreground font-medium underline underline-offset-4;
+    @apply text-foreground font-light underline underline-offset-4;
   }
 
   blockquote {
@@ -74,6 +74,10 @@
 
   ul {
     @apply my-6 ml-6 list-disc [&>li]:mt-2;
+  }
+
+  li {
+    @apply m-1 font-light;
   }
 
   table {
@@ -92,10 +96,10 @@
 
   tbody {
     tr {
-      @apply m-0 border-t p-0;
+      @apply even:bg-muted/25 m-0 p-0;
 
       td {
-        @apply border px-4 py-2 text-left [&[align=center]]:text-center [&[align=right]]:text-right;
+        @apply px-4 py-2 text-left [&[align=center]]:text-center [&[align=right]]:text-right;
       }
     }
   }

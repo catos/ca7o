@@ -16,16 +16,16 @@ export default async function DeleteRecipe({ params }: Props) {
 
   return (
     <form
-      className="relative justify-center flex flex-col gap-4 w-full  shadow-md rounded px-8 py-8 mb-4"
+      className="relative mb-4 flex w-full flex-col justify-center gap-4 rounded px-8 py-8 shadow-md"
       action={deleteRecipe}
     >
       <input type="hidden" name="id" value={recipe.id} />
 
       <h1 className="m-0">Delete recipe: &quot;{recipe.title}&quot; ?</h1>
 
-      <div className="flex gap-8 items-center justify-between">
+      <div className="flex items-center justify-between gap-8">
         <Button type="submit">Delete</Button>
-        <Link className="no-underline font-bold" href={`/recipes/${id}`}>
+        <Link className="no-underline" href={`/recipes/${id}`}>
           Cancel
         </Link>
       </div>

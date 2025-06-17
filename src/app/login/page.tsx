@@ -12,9 +12,7 @@ export default function LoginPage() {
         <form action={signIn} className="relative flex flex-col gap-8">
           <div className="flex flex-col items-center gap-4">
             <Logo className="opacity-50" />
-            <h2 className="m-0 text-2xl/9 font-bold tracking-tight">
-              Logg inn for å se dine favoritter
-            </h2>
+            <h2>Logg inn for å se dine favoritter</h2>
           </div>
 
           <Input required id="email" type="email" name="email" label="E-post" />

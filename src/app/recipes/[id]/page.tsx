@@ -31,7 +31,7 @@ export default async function RecipesPage({ params }: Props) {
     <div className="-mt-4 flex flex-col gap-4 md:gap-6">
       <section className="relative">
         <Link
-          className="bg-background absolute top-2 right-2 rounded-full p-2 font-bold no-underline opacity-60"
+          className="bg-background absolute top-2 right-2 rounded-full p-2 no-underline opacity-60"
           href={`/recipes/${recipe.id}/edit`}
         >
           <CookingPot />
@@ -44,7 +44,7 @@ export default async function RecipesPage({ params }: Props) {
       </section>
 
       <section className="flex flex-col">
-        <h1 className="m-0 px-4 text-center font-semibold">{recipe.title}</h1>
+        <h1 className="m-0 px-4 text-center">{recipe.title}</h1>
       </section>
 
       {recipe.description && (
