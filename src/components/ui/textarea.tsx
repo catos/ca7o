@@ -2,15 +2,20 @@ import { Field, Textarea as HeadlessTextarea, Label } from "@headlessui/react"
 import { TextareaHTMLAttributes, useEffect, useRef } from "react"
 import { twMerge } from "tailwind-merge"
 
+type DynamicHeightProps = {
+  initial?: number
+  clampAt?: number
+}
+
 type Props = {
   id: string
   label?: string
   className?: string
-  height?: number
+  dynamicHeight?: DynamicHeightProps
 } & TextareaHTMLAttributes<HTMLTextAreaElement>
 
 export function Textarea(props: Props) {
-  const { id, label, className, value, height = 64, ...rest } = props
+  const { id, label, className, value, dynamicHeight, ...rest } = props
 
   const baseStyles =
     "bg-foreground/5 block w-full resize-none rounded-lg border-none px-3 py-1.5 text-sm/6 ui-outline"
@@ -19,32 +24,45 @@ export function Textarea(props: Props) {
 
   const textareaRef = useRef<HTMLTextAreaElement>(null)
   useEffect(() => {
-    if (textareaRef.current) {
-      textareaRef.current.style.height = `${height}px` // Reset height - important to shrink on delete
+    if (textareaRef.current && dynamicHeight) {
+      const { initial = 32, clampAt } = dynamicHeight
+
+      textareaRef.current.style.height = `${initial}px` // Reset height - important to shrink on delete
       const computed = window.getComputedStyle(textareaRef.current)
       const elementHeight =
         textareaRef.current.scrollHeight +
         parseInt(computed.getPropertyValue("border-top-width")) +
         parseInt(computed.getPropertyValue("border-bottom-width"))
-      const clampedHeight = elementHeight > 300 ? 300 : elementHeight
+
+      let clampedHeight = elementHeight
+      if (clampAt) {
+        clampedHeight = elementHeight > clampAt ? clampAt : elementHeight
+      }
+
       textareaRef.current.style.height = `${clampedHeight}px`
     }
   }, [value])
 
+  const TextAreaComponent = (
+    <HeadlessTextarea
+      id={id}
+      className={textareaStyles}
+      ref={textareaRef}
+      value={value}
+      {...rest}
+    />
+  )
+
+  if (!label) {
+    return TextAreaComponent
+  }
+
   return (
     <Field className="flex flex-col gap-3">
-      {label && (
-        <Label htmlFor={id} className="text-sm/6 font-medium">
-          {label}
-        </Label>
-      )}
-      <HeadlessTextarea
-        id={id}
-        className={textareaStyles}
-        ref={textareaRef}
-        value={value}
-        {...rest}
-      />
+      <Label htmlFor={id} className="text-sm/6 font-medium">
+        {label}
+      </Label>
+      {TextAreaComponent}
     </Field>
   )
 }

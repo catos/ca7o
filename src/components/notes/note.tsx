@@ -54,16 +54,18 @@ export function Note({ note }: Props) {
     <>
       <NotePreview note={note} onClick={openDialog} />
       <Dialog open={isOpen} onClose={closeDialog} className="relative z-50">
-        <DialogBackdrop className="fixed inset-0 bg-black/50" />
+        <DialogBackdrop className="fixed inset-0 bg-black/75" />
 
         <div className="fixed inset-0 flex w-screen items-center justify-center p-4">
-          <DialogPanel className="border-primary bg-blur bg-primary/40 w-lg rounded-md border shadow-lg">
-            <form onSubmit={handleSubmit}>
+          <DialogPanel className="bg-blur border-border h-1/2 w-2/3 rounded-md border-2 shadow-lg">
+            <form
+              onSubmit={handleSubmit}
+              className="flex h-full flex-col justify-between"
+            >
               <Textarea
                 className="h-full w-full resize-none p-4 outline-none"
                 {...register("content")}
                 autoFocus
-                rows={16}
               />
               <NoteOptions note={note} includeSubmitButton alwaysShow />
             </form>

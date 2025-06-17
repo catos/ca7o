@@ -10,7 +10,7 @@ export function NotePreview({
   onClick: () => void
 }) {
   return (
-    <div className="group bg-accent border-border hover:bg-foreground/15 relative flex flex-col justify-between overflow-auto rounded-md border">
+    <div className="group bg-accent hover:bg-foreground/15 relative flex flex-col justify-between overflow-auto rounded shadow-lg">
       <div>
         <a onClick={onClick} className="cursor-pointer">
           <div className="max-h-[200px] overflow-hidden p-4">

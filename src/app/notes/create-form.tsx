@@ -47,11 +47,6 @@ const initialValues = {
 
 type FormType = typeof initialValues
 
-/**
- * TODO:
- * - [ ] Increase height of textarea when typing
- * @returns
- */
 export default function CreateForm() {
   const { status, mutate } = useNote()
 
@@ -85,7 +80,7 @@ export default function CreateForm() {
         placeholder={
           status !== "pending" ? "Just start typing!" : "Creating note..."
         }
-        height={32}
+        dynamicHeight={{ initial: 32, clampAt: 200 }}
         onBlur={handleBlur}
         onKeyDown={handleKeyDown}
         className="px-3 py-2 text-base/normal placeholder:text-center"
