@@ -50,7 +50,7 @@ export function RecipeForm({ action, recipe }: Props) {
         name="description"
         label="Description"
         defaultValue={data.description ?? ""}
-        className="h-24"
+        height={64}
       />
 
       <div className="flex flex-col gap-4 md:flex-row">

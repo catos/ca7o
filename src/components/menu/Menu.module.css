@@ -81,6 +81,10 @@
   }
 }
 
+.logoutButton {
+  width: 100%;
+}
+
 @keyframes slideUpAndFade {
   from {
     transform: translateY(2px);

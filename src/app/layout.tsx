@@ -2,7 +2,7 @@ import { Inter, Roboto_Mono } from "next/font/google"
 import Header from "@/components/header"
 import Providers from "@/components/providers"
 import "../styles/globals.css"
-import "../theme/theme.css"
+import "../styles/variables.css"
 
 // TODO: does this work ? for all nested pages?
 // export const revalidate = 3600

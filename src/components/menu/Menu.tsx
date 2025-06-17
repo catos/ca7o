@@ -50,12 +50,12 @@ export function Menu({ user }: { user: User | null }) {
             <Link href="/ui">UI demoside</Link>
           </section>
 
-          <form
-            className="flex items-center gap-2 p-2"
-            action="/auth/signout"
-            method="post"
-          >
-            <Button variant="outlined" type="submit" className="w-full">
+          <form action="/auth/signout" method="post">
+            <Button
+              variant="outlined"
+              type="submit"
+              className={styles.logoutButton}
+            >
               <LogOutIcon />
               Logg ut
             </Button>

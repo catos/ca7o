@@ -55,13 +55,9 @@ type FormType = typeof initialValues
 export default function CreateForm() {
   const { status, mutate } = useNote()
 
-  // const [_, setExpanded] = useState(false)
-  // const ref = useOutsideClick<HTMLFormElement>(() => setExpanded(false))
-
   const { register, handleSubmit, reset, values } = useForm<FormType>({
     initialValues,
     onSubmit: (values: FormType) => {
-      // setExpanded(false)
       const formData = new FormData()
       formData.set("content", values.content)
       mutate(formData)
@@ -70,16 +66,7 @@ export default function CreateForm() {
     },
   })
 
-  const handleFocus = () => {
-    // setExpanded(true)
-  }
-
   const handleBlur = (e: React.FocusEvent<HTMLTextAreaElement>) => {
-    // If the textarea is empty, collapse it
-    if (register("content").value.toString().trim().length === 0) {
-      // setExpanded(false)
-    }
-
     if (values.content) {
       handleSubmit(e)
     }
@@ -95,23 +82,24 @@ export default function CreateForm() {
     <form onSubmit={handleSubmit} className="relative">
       <Textarea
         {...register("content")}
-        placeholder="Add some content if you like (CTRL + Enter to submit)"
-        rows={1}
-        onFocus={handleFocus}
+        placeholder={
+          status !== "pending" ? "Just start typing!" : "Creating note..."
+        }
+        height={32}
         onBlur={handleBlur}
         onKeyDown={handleKeyDown}
-        className="overflow-clip p-4 placeholder:text-center placeholder:text-lg"
+        className="px-3 py-2 text-base/normal placeholder:text-center"
       />
       <Button
         variant="icon"
         type="submit"
         disabled={status === "pending"}
-        className="absolute top-2 right-2"
+        className="absolute top-[6px] right-2 h-7 w-7 p-1"
       >
         {status !== "pending" ? (
-          <PlusIcon className="h-5 w-5" />
+          <PlusIcon className="h-4 w-4" />
         ) : (
-          <LoaderCircleIcon className="w-5 animate-spin ease-in-out" />
+          <LoaderCircleIcon className="w-4 animate-spin ease-in-out" />
         )}
       </Button>
     </form>

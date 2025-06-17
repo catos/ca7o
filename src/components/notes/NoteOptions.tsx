@@ -8,7 +8,7 @@ import {
 import { twMerge } from "tailwind-merge"
 import { createNote, deleteNote } from "@/data/note-actions"
 import { Button } from "../ui/button"
-import { NoteWithChildren } from "./note"
+import { NoteWithChildren } from "./types"
 
 type Props = {
   note: NoteWithChildren
@@ -41,7 +41,7 @@ export function NoteOptions({
   }
 
   const baseStyles =
-    "bg-primary/20 flex justify-around gap-1 opacity-0 group-hover:opacity-100"
+    "bg-foreground/20 flex justify-around gap-1 opacity-0 group-hover:opacity-100"
   const classes = twMerge(baseStyles, alwaysShow && "opacity-100")
 
   return (

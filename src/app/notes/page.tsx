@@ -2,7 +2,8 @@ import { Tables } from "@/types/database"
 import { createClient } from "@/utils/supabase/server"
 import { redirect } from "next/navigation"
 import { getNotes } from "@/data/note-actions"
-import { Note, NoteWithChildren } from "@/components/notes/note"
+import { Note } from "@/components/notes/note"
+import { NoteWithChildren } from "@/components/notes/types"
 import CreateForm from "./create-form"
 
 export default async function Notes() {
@@ -20,9 +21,9 @@ export default async function Notes() {
   if (!notes || notes.length === 0) {
     return (
       <>
-        {/* <CreateForm /> */}
+        <CreateForm />
         <div className="py-4 text-center text-xl">
-          No notes... TODO: start creating some!
+          No notes, start creating some!
         </div>
       </>
     )
@@ -51,7 +52,7 @@ export default async function Notes() {
             <Note key={note.id} note={note} />
           ))}
         </div>
-        {/* <div className="flex flex-col gap-2">
+        {/* TODO: states ... <div className="flex flex-col gap-2">
           {todones?.map((todo) => <TodoItem key={todo.id} todo={todo} />)}
         </div> */}
       </div>
