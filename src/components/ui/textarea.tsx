@@ -1,3 +1,5 @@
+"use client"
+
 import { Field, Textarea as HeadlessTextarea, Label } from "@headlessui/react"
 import { TextareaHTMLAttributes, useEffect, useRef } from "react"
 import { twMerge } from "tailwind-merge"

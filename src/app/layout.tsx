@@ -1,4 +1,4 @@
-import { Inter, Roboto_Mono } from "next/font/google"
+import { Inter } from "next/font/google"
 import Header from "@/components/header"
 import Providers from "@/components/providers"
 import "../styles/globals.css"
@@ -10,14 +10,6 @@ export const dynamic = "force-dynamic"
 
 const inter = Inter({
   subsets: ["latin"],
-  display: "swap",
-  variable: "--font-inter",
-})
-
-const roboto_mono = Roboto_Mono({
-  subsets: ["latin"],
-  display: "swap",
-  variable: "--font-roboto-mono",
 })
 
 export const metadata = {
@@ -31,10 +23,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html
-      lang="en"
-      className={`dark ${inter.variable} ${roboto_mono.variable}`}
-    >
+    <html lang="en" className={`dark ${inter.className}`}>
       <body className="bg-background text-foreground">
         <div>
           <Providers>
