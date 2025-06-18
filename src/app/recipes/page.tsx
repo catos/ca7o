@@ -32,13 +32,7 @@ export default async function RecipesPage({
       {/* // TODO: create a session storage list of recently visited recipes */}
       <section className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
         {recipes.map((recipe) => (
-          <Card
-            key={recipe.id}
-            image={recipe.image}
-            href={`/recipes/${recipe.id}`}
-            title={recipe.title}
-            description={recipe.description}
-          />
+          <Card key={recipe.id} recipe={recipe} />
         ))}
       </section>
     </>
