@@ -12,16 +12,20 @@
   flex-direction: column;
   gap: 1rem;
 
-  animation-duration: 400ms;
-  animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
-  will-change: transform, opacity;
   margin-top: 1.5rem;
-  /* border: 1px solid var(--color-border); */
+  margin-left: 1rem;
+  margin-right: 1rem;
+
+  padding: 2rem;
+  width: calc(100vw - 2rem);
+
+  border: 1px solid var(--color-border);
   border-radius: var(--radius);
   background-color: hsl(var(--background) / 0.9);
 
-  padding: 2rem;
-  width: 100vw;
+  animation-duration: 400ms;
+  animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform, opacity;
 
   &[data-state="open"][data-side="top"] {
     animation-name: slideDownAndFade;

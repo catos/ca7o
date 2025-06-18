@@ -31,6 +31,12 @@ export default function RootLayout({
             <main className="mx-auto min-h-screen max-w-6xl overflow-hidden p-4 md:p-6">
               {children}
             </main>
+            <footer className="text-muted-foreground mx-auto mt-8 max-w-6xl py-8 text-center text-sm">
+              <div>
+                © {new Date().getFullYear()} ca7o.com - What does all rights
+                reserved mean?
+              </div>
+            </footer>
           </Providers>
         </div>
       </body>

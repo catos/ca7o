@@ -31,13 +31,13 @@ export function DeleteButton({ id }: { id: string }) {
         className="relative z-50"
       >
         <div className="fixed inset-0 flex w-screen items-center justify-center p-4">
-          <DialogPanel className="max-w-lg space-y-4 border rounded-md bg-background p-12">
-            <DialogTitle className="font-bold">Delete recipe</DialogTitle>
+          <DialogPanel className="bg-background border-border max-w-lg space-y-4 rounded-md border p-12">
+            <DialogTitle>Delete recipe</DialogTitle>
             <Description>
               Are you sure you want to delete this recipe? This action cannot be
               undone.
             </Description>
-            <div className="flex gap-4 justify-end">
+            <div className="flex justify-end gap-4">
               <Button variant="outlined" onClick={() => setIsOpen(false)}>
                 Cancel
               </Button>

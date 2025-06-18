@@ -44,10 +44,10 @@ export function Menu({ user }: { user: User | null }) {
           </div>
 
           <section className={styles.links}>
-            <Link href="/my-recipes">Mine oppskrifter</Link>
+            <Link href="/recipes/favorites">Mine oppskrifter</Link>
             <Link href="/notes">Notater</Link>
             <Link href="/wesketch">Wesketch</Link>
-            <Link href="/ui">UI demoside</Link>
+            <Link href="/ui">UI components</Link>
           </section>
 
           <form action="/auth/signout" method="post">
