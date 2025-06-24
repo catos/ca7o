@@ -18,39 +18,14 @@ export default function Card({ recipe }: IProps) {
       className="group ui-outline relative flex max-h-64 w-full flex-col overflow-hidden rounded no-underline shadow-lg"
       href={href}
     >
-      <PreparationTime preparationTime={0} />
       <Image
         className="bg-primary-300 h-64 object-cover transition-transform duration-300 ease-in-out group-hover:scale-125"
         src={image}
         alt={title}
       />
       <CardHeading title={title} />
+      <PreparationTime preparationTime={0} />
     </Link>
-  )
-}
-
-function PreparationTime({ preparationTime }: { preparationTime: number }) {
-  const getPreparationText = (time: number) => {
-    if (time <= 15) {
-      return "< 15"
-    }
-    if (time <= 30) {
-      return "15-30"
-    }
-    if (time <= 60) {
-      return "30-60"
-    }
-
-    return "60+"
-  }
-
-  const text = getPreparationText(preparationTime)
-
-  return (
-    <div className="bg-background/75 absolute top-2 right-0 flex items-center justify-center gap-1 px-4 py-2 text-sm">
-      <TimerIcon className="w-5" />
-      <span className="font-semibold">{text}</span>
-    </div>
   )
 }
 
@@ -68,11 +43,36 @@ function CardHeading({ title }: { title: string }) {
   return (
     <h2
       className={twMerge(
-        "bg-background/75 absolute right-0 bottom-0 left-0 mb-0 flex h-24 flex-1 items-center overflow-hidden px-4 text-xl text-white",
+        "bg-background/80 text-foreground absolute right-0 bottom-0 left-0 mb-0 flex h-24 flex-1 items-center overflow-hidden px-4 text-xl group-hover:opacity-20",
         size
       )}
     >
       {snip(title, 50)}
     </h2>
+  )
+}
+
+function PreparationTime({ preparationTime }: { preparationTime: number }) {
+  const getPreparationText = (time: number) => {
+    if (time <= 15) {
+      return "15"
+    }
+    if (time <= 30) {
+      return "15-30"
+    }
+    if (time <= 60) {
+      return "30-60"
+    }
+
+    return "60+"
+  }
+
+  const text = getPreparationText(preparationTime)
+
+  return (
+    <div className="bg-background/75 absolute top-2 right-2 flex items-center justify-center gap-1 rounded-full px-3 py-2 text-sm group-hover:opacity-20">
+      <TimerIcon className="w-5" />
+      <span className="font-semibold">{text}</span>
+    </div>
   )
 }
