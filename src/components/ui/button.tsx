@@ -1,6 +1,5 @@
 "use client"
 
-import { Button as HeadlessButton } from "@headlessui/react"
 import { twMerge } from "tailwind-merge"
 
 type Props = {
@@ -33,8 +32,8 @@ export function Button({
   )
 
   return (
-    <HeadlessButton className={classes} {...rest}>
+    <button className={classes} {...rest}>
       {children}
-    </HeadlessButton>
+    </button>
   )
 }

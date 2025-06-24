@@ -1,4 +1,5 @@
 import { XIcon } from "lucide-react"
+import { Form } from "radix-ui"
 import { Alert } from "@/components/ui/alert"
 import { Avatar } from "@/components/ui/avatar"
 import { Button } from "@/components/ui/button"
@@ -159,7 +160,7 @@ export default function UI() {
 
       <section className="flex flex-col gap-4 border p-8">
         <h2 className="mt-0">Forms</h2>
-        <div>
+        <Form.Root className="flex flex-col gap-8">
           <Input
             id="title"
             name="title"
@@ -168,8 +169,6 @@ export default function UI() {
             required
             placeholder="A short descriptive title"
           />
-        </div>
-        <div>
           <Textarea
             id="text"
             name="text"
@@ -178,7 +177,17 @@ export default function UI() {
             className="h-32"
             placeholder="A descriptive text"
           />
-        </div>
+
+          <Textarea
+            id="text"
+            name="dynamic-height"
+            label="Text with dynamic height"
+            required
+            className="h-32"
+            placeholder="TODO: dynamicHeight not working without constrolled state ?"
+            dynamicHeight={{ initial: 32, clampAt: 128 }}
+          />
+        </Form.Root>
       </section>
 
       <section className="flex flex-col gap-4 border p-8">

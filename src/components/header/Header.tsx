@@ -2,8 +2,8 @@ import { createClient } from "@/utils/supabase/server"
 import React, { ReactNode } from "react"
 import { Link } from "@/components/ui/link"
 import { SearchInput } from "@/components/search-input"
-import Logo from "./logo"
-import { Menu } from "./menu/Menu"
+import Logo from "../logo"
+import { Menu } from "./Menu"
 
 export default async function Header() {
   const supabase = await createClient()
@@ -14,7 +14,7 @@ export default async function Header() {
   return (
     <header className="border-border/40 bg-blur sticky top-0 z-50 w-full border-b">
       <nav className="m-auto flex max-w-6xl items-center gap-4 px-6 py-2 text-sm font-semibold">
-        <Link className="hover:bg-primary/5 mr-1 rounded-full p-2" href="/">
+        <Link className="hover:bg-primary/5 rounded-full p-2" href="/">
           <Logo />
         </Link>
 
@@ -40,7 +40,7 @@ export default async function Header() {
 function HeaderLink({ href, children }: { href: string; children: ReactNode }) {
   return (
     <Link
-      className="hover:text-primary px-2 py-4 text-sm leading-6 font-semibold no-underline"
+      className="px-2 py-4 text-sm leading-6 font-semibold no-underline"
       href={href}
     >
       {children}

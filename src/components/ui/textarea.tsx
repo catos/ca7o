@@ -1,6 +1,6 @@
 "use client"
 
-import { Field, Textarea as HeadlessTextarea, Label } from "@headlessui/react"
+import { Form } from "radix-ui"
 import { TextareaHTMLAttributes, useEffect, useRef } from "react"
 import { twMerge } from "tailwind-merge"
 
@@ -11,13 +11,14 @@ type DynamicHeightProps = {
 
 type Props = {
   id: string
+  name: string
   label?: string
   className?: string
   dynamicHeight?: DynamicHeightProps
 } & TextareaHTMLAttributes<HTMLTextAreaElement>
 
 export function Textarea(props: Props) {
-  const { id, label, className, value, dynamicHeight, ...rest } = props
+  const { id, name, label, className, value, dynamicHeight, ...rest } = props
 
   const baseStyles =
     "bg-foreground/5 block w-full resize-none rounded-lg border-none px-3 py-1.5 text-sm/6 ui-outline"
@@ -46,13 +47,15 @@ export function Textarea(props: Props) {
   }, [value])
 
   const TextAreaComponent = (
-    <HeadlessTextarea
-      id={id}
-      className={textareaStyles}
-      ref={textareaRef}
-      value={value}
-      {...rest}
-    />
+    <Form.Control asChild>
+      <textarea
+        id={id}
+        className={textareaStyles}
+        ref={textareaRef}
+        value={value}
+        {...rest}
+      />
+    </Form.Control>
   )
 
   if (!label) {
@@ -60,11 +63,11 @@ export function Textarea(props: Props) {
   }
 
   return (
-    <Field className="flex flex-col gap-3">
-      <Label htmlFor={id} className="text-sm/6 font-medium">
+    <Form.Field name={name} className="flex flex-col gap-3">
+      <Form.Label htmlFor={id} className="text-sm/6 font-medium">
         {label}
-      </Label>
+      </Form.Label>
       {TextAreaComponent}
-    </Field>
+    </Form.Field>
   )
 }

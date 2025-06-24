@@ -45,6 +45,58 @@
   --radius-lg: var(--radius);
   --radius-md: calc(var(--radius) - 2px);
   --radius-sm: calc(var(--radius) - 4px);
+
+  --animate-slide-up-and-fade: slideUpAndFade 400ms
+    cubic-bezier(0.16, 1, 0.3, 1);
+  @keyframes slideUpAndFade {
+    from {
+      transform: translateY(2px);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  --animate-slide-right-and-fade: slideRightAndFade 400ms
+    cubic-bezier(0.16, 1, 0.3, 1);
+  @keyframes slideRightAndFade {
+    from {
+      transform: translateX(-2px);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+
+  --animate-slide-down-and-fade: slideDownAndFade 400ms
+    cubic-bezier(0.16, 1, 0.3, 1);
+  @keyframes slideDownAndFade {
+    from {
+      transform: translateY(-2px);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  --animate-slide-left-and-fade: slideLeftAndFade 400ms
+    cubic-bezier(0.16, 1, 0.3, 1);
+  @keyframes slideLeftAndFade {
+    from {
+      transform: translateX(2px);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
 }
 
 @layer base {
@@ -65,7 +117,7 @@
   }
 
   a {
-    @apply text-foreground font-light underline underline-offset-4;
+    @apply text-foreground hover:text-primary font-light underline underline-offset-4;
   }
 
   blockquote {

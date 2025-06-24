@@ -2,6 +2,7 @@
 
 import { Tables } from "@/types/database"
 import { CookingPotIcon } from "lucide-react"
+import { Form } from "radix-ui"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Link } from "../ui/link"
@@ -24,7 +25,7 @@ export function RecipeForm({ action, recipe }: Props) {
   const data = { ...defaultValues, ...recipe }
 
   return (
-    <form className="relative flex flex-col gap-4" action={action}>
+    <Form.Root className="relative flex flex-col gap-4" action={action}>
       {recipe && <input type="hidden" name="id" value={recipe.id} />}
 
       <Input
@@ -50,7 +51,7 @@ export function RecipeForm({ action, recipe }: Props) {
         name="description"
         label="Description"
         defaultValue={data.description ?? ""}
-        height={64}
+        className="h-16"
       />
 
       <div className="flex flex-col gap-4 md:flex-row">
@@ -89,6 +90,6 @@ export function RecipeForm({ action, recipe }: Props) {
 
         <SubmitButton>Save</SubmitButton>
       </div>
-    </form>
+    </Form.Root>
   )
 }
