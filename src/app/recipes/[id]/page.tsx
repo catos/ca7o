@@ -1,4 +1,11 @@
-import { CookingPot, HeartIcon, PrinterIcon, StarIcon } from "lucide-react"
+import {
+  CookingPot,
+  HeartIcon,
+  PrinterIcon,
+  ShareIcon,
+  StarIcon,
+  TimerIcon,
+} from "lucide-react"
 import { getRecipe } from "@/data/recipe.actions"
 import { Button } from "@/components/ui/button"
 import { Link } from "@/components/ui/link"
@@ -41,32 +48,30 @@ export default async function RecipesPage({ params }: Props) {
           src={recipe.image}
           alt={recipe.title}
         />
-      </section>
-
-      <section className="flex flex-col">
-        <h1 className="m-0 px-4 text-center">{recipe.title}</h1>
+        <h1 className="text-foreground bg-background/40 absolute right-0 bottom-0 left-0 mb-0 flex h-24 flex-1 items-center justify-center overflow-hidden px-4 text-center text-2xl backdrop-blur-xs group-hover:opacity-20">
+          {recipe.title}
+        </h1>
       </section>
 
       {recipe.description && (
-        <section>
+        <section className="text-center">
           <Markdown>{recipe.description}</Markdown>
         </section>
       )}
 
-      <section className="flex justify-center gap-4">
-        <span>
-          <Button variant="icon">
-            <StarIcon />
-          </Button>
-        </span>
+      <section className="bg-foreground/10 flex justify-center gap-4 p-4">
         <Button variant="icon">
           <HeartIcon />
         </Button>
-        <span>
-          <Button variant="icon">
-            <PrinterIcon />
-          </Button>
-        </span>
+        <Button variant="icon">
+          <TimerIcon />
+        </Button>
+        <Button variant="icon">
+          <PrinterIcon />
+        </Button>
+        <Button variant="icon">
+          <ShareIcon />
+        </Button>
       </section>
 
       <div className="flex flex-col gap-4 sm:flex-row">

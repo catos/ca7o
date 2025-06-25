@@ -43,7 +43,7 @@ function CardHeading({ title }: { title: string }) {
   return (
     <h2
       className={twMerge(
-        "bg-background/80 text-foreground absolute right-0 bottom-0 left-0 mb-0 flex h-24 flex-1 items-center overflow-hidden px-4 text-xl group-hover:opacity-20",
+        "text-foreground bg-background/40 absolute right-0 bottom-0 left-0 mb-0 flex h-24 flex-1 items-center justify-center overflow-hidden px-4 text-center text-2xl backdrop-blur-xs group-hover:opacity-20",
         size
       )}
     >
