@@ -1,3 +1,4 @@
+import { Form } from "radix-ui"
 import { createRecipeJSON } from "@/data/recipe.actions"
 import { Button } from "@/components/ui/button"
 import { Textarea } from "@/components/ui/textarea"
@@ -6,11 +7,11 @@ import { Textarea } from "@/components/ui/textarea"
 
 export default function CreateJSONRecipePage() {
   return (
-    <form action={createRecipeJSON} method="POST">
+    <Form.Root action={createRecipeJSON} method="POST">
       <Textarea required id="json" name="json" className="h-48" />
       <Button type="submit" className="mt-4">
         Create Recipe
       </Button>
-    </form>
+    </Form.Root>
   )
 }
