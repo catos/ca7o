@@ -46,28 +46,22 @@ export function Textarea(props: Props) {
     }
   }, [value])
 
-  const TextAreaComponent = (
-    <Form.Control asChild>
-      <textarea
-        id={id}
-        className={textareaStyles}
-        ref={textareaRef}
-        value={value}
-        {...rest}
-      />
-    </Form.Control>
-  )
-
-  if (!label) {
-    return TextAreaComponent
-  }
-
   return (
     <Form.Field name={name} className="flex flex-col gap-3">
-      <Form.Label htmlFor={id} className="text-sm/6 font-medium">
-        {label}
-      </Form.Label>
-      {TextAreaComponent}
+      {label && (
+        <Form.Label htmlFor={id} className="text-sm/6 font-medium">
+          {label}
+        </Form.Label>
+      )}
+      <Form.Control asChild>
+        <textarea
+          id={id}
+          className={textareaStyles}
+          ref={textareaRef}
+          value={value}
+          {...rest}
+        />
+      </Form.Control>
     </Form.Field>
   )
 }
