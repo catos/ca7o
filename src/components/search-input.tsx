@@ -71,10 +71,10 @@ export function SearchInput() {
       />
       <Button
         variant="icon"
-        className="absolute top-1 right-2 h-7 w-7 p-1"
+        className="absolute top-0 right-0 w-10"
         type="submit"
       >
-        <SearchIcon className="w-5" />
+        <SearchIcon />
       </Button>
     </form>
   )

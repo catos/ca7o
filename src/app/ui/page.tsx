@@ -143,8 +143,9 @@ export default function UI() {
 
       <section className="flex flex-col gap-4 border p-8">
         <h2 className="mt-0">Button</h2>
-        <div className="flex flex-wrap gap-4">
-          <Button>Filled</Button>
+
+        <h3>Variants</h3>
+        <div className="flex flex-wrap items-end gap-4">
           <Button variant="outlined">Outlined</Button>
           <Button variant="icon">
             <XIcon />
@@ -155,6 +156,13 @@ export default function UI() {
           </Button>
           <Button variant="link">Link</Button>
           <Button variant="destructive">Destructive</Button>
+        </div>
+
+        <h3>Sizes</h3>
+        <div className="flex items-end gap-4">
+          <Button size="lg">Large</Button>
+          <Button>Base (default)</Button>
+          <Button size="sm">Small</Button>
         </div>
       </section>
 
