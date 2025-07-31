@@ -5,8 +5,8 @@ import { Dialog, DialogBackdrop, DialogPanel } from "@headlessui/react"
 import { useState } from "react"
 import { updateNote } from "@/data/note-actions"
 import { Textarea } from "../ui/textarea"
-import { NoteOptions } from "./NoteOptions"
-import { NotePreview } from "./NotePreview"
+import { NoteOptions } from "./note-options"
+import { NotePreview } from "./note-preview"
 import { NoteWithChildren } from "./types"
 
 type Props = {

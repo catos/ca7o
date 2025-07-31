@@ -1,6 +1,6 @@
 import type { NoteWithChildren } from "@/components/notes/types"
 import { Markdown } from "@/components/recipe/markdown"
-import { NoteOptions } from "./NoteOptions"
+import { NoteOptions } from "./note-options"
 
 export function NotePreview({
   note,

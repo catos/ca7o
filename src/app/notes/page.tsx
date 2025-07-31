@@ -2,7 +2,7 @@ import { Tables } from "@/types/database"
 import { createClient } from "@/utils/supabase/server"
 import { redirect } from "next/navigation"
 import { getNotes } from "@/data/note-actions"
-import { Note } from "@/components/notes/Note"
+import { Note } from "@/components/notes/note"
 import { NoteWithChildren } from "@/components/notes/types"
 import CreateForm from "./create-form"
 

@@ -3,7 +3,7 @@ import React, { ReactNode } from "react"
 import { Link } from "@/components/ui/link"
 import { SearchInput } from "@/components/search-input"
 import Logo from "../logo"
-import { Menu } from "./Menu"
+import { Menu } from "./menu"
 
 export default async function Header() {
   const supabase = await createClient()
